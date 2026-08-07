@@ -45,3 +45,14 @@ test_bom_backup.xlsx
 
 # 父目录的启动脚本
 启动网站.bat
+
+# ===== 补充：防止自动生成文件上传 =====
+# STP 缓存（后端解析的 JSON 模型缓存）
+server/cache/
+server/__pycache__/
+server/*.pyc
+server/stp_metadata.json
+
+# Vite 临时文件
+client/vite.config.js.timestamp-*.mjs
+*.timestamp-*.mjs
