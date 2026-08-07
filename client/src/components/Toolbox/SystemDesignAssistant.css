@@ -1,0 +1,433 @@
+/* ==================== AI 系统设计助手 ==================== */
+
+.sda-panel-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(8px);
+  z-index: 100000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 70px 20px 40px;
+  overflow-y: auto;
+  animation: sdaFadeIn 0.25s ease-out;
+}
+
+@keyframes sdaFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.sda-panel-container {
+  width: 92%;
+  max-width: 880px;
+  max-height: calc(100vh - 100px);
+  background: #1a1d2e;
+  border-radius: 16px;
+  border: 1px solid rgba(139, 92, 246, 0.25);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.55), 0 0 40px rgba(139, 92, 246, 0.08);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  animation: sdaSlideUp 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes sdaSlideUp {
+  from { opacity: 0; transform: translateY(30px) scale(0.97); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* ========== 头部 ========== */
+.sda-panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 24px;
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.12) 0%, rgba(30, 34, 53, 1) 100%);
+  border-bottom: 1px solid rgba(139, 92, 246, 0.2);
+  flex-shrink: 0;
+}
+
+.sda-header-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.sda-icon {
+  font-size: 32px;
+  filter: drop-shadow(0 2px 8px rgba(139, 92, 246, 0.5));
+  animation: sdaIconPulse 2.5s ease-in-out infinite;
+}
+
+@keyframes sdaIconPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.08); }
+}
+
+.sda-title {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 700;
+  color: #e2e8f0;
+  background: linear-gradient(135deg, #c4b5fd 0%, #8b5cf6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.sda-subtitle {
+  margin: 2px 0 0;
+  font-size: 12px;
+  color: #94a3b8;
+}
+
+.sda-close-btn {
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.04);
+  color: #94a3b8;
+  font-size: 18px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+.sda-close-btn:hover {
+  background: #ef4444;
+  color: #fff;
+  border-color: transparent;
+  transform: rotate(90deg);
+}
+
+/* ========== 消息区 ========== */
+.sda-messages-area {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px 24px;
+  background: rgba(15, 19, 33, 0.4);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.sda-msg {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  animation: msgIn 0.3s ease-out;
+}
+
+@keyframes msgIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.sda-msg-user {
+  flex-direction: row-reverse;
+}
+
+.sda-msg-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: rgba(30, 34, 53, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  flex-shrink: 0;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.sda-msg-user .sda-msg-avatar {
+  background: rgba(14, 165, 233, 0.15);
+  border-color: rgba(14, 165, 233, 0.3);
+}
+
+.sda-msg-bubble {
+  max-width: 78%;
+  padding: 10px 14px;
+  background: rgba(30, 34, 53, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 12px;
+  color: #e2e8f0;
+  font-size: 13.5px;
+  line-height: 1.65;
+}
+
+.sda-msg-user .sda-msg-bubble {
+  background: linear-gradient(135deg, rgba(14, 165, 233, 0.18), rgba(14, 165, 233, 0.05));
+  border-color: rgba(14, 165, 233, 0.3);
+  color: #f0f9ff;
+}
+
+.msg-line { margin: 2px 0; }
+.msg-line strong { color: #c4b5fd; font-weight: 700; }
+
+/* 思考中 */
+.sda-msg-bubble.thinking {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 16px;
+}
+.thinking-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: #8b5cf6;
+  animation: thinkingPulse 1.2s ease-in-out infinite;
+}
+.thinking-dot:nth-child(2) { animation-delay: 0.15s; }
+.thinking-dot:nth-child(3) { animation-delay: 0.3s; }
+.thinking-text {
+  font-size: 12px;
+  color: #94a3b8;
+  font-style: italic;
+  margin-left: 6px;
+}
+@keyframes thinkingPulse {
+  0%, 100% { transform: scale(0.6); opacity: 0.4; }
+  50% { transform: scale(1); opacity: 1; }
+}
+
+/* ========== 追问（clarify）气泡 ========== */
+.clarify-header {
+  font-size: 13px;
+  font-weight: 600;
+  color: #fbbf24;
+  margin-bottom: 10px;
+}
+.clarify-question {
+  margin: 10px 0;
+  padding: 10px 12px;
+  background: rgba(251, 191, 36, 0.06);
+  border: 1px solid rgba(251, 191, 36, 0.18);
+  border-radius: 8px;
+}
+.clarify-text {
+  font-size: 13px;
+  color: #fcd34d;
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+.clarify-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.clarify-option-btn {
+  padding: 5px 12px;
+  background: rgba(30, 34, 53, 0.6);
+  border: 1px solid rgba(251, 191, 36, 0.25);
+  border-radius: 16px;
+  color: #fcd34d;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.clarify-option-btn:hover {
+  background: rgba(251, 191, 36, 0.2);
+  border-color: rgba(251, 191, 36, 0.5);
+  color: #fde68a;
+}
+.clarify-progress {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px dashed rgba(255, 255, 255, 0.08);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  align-items: center;
+  font-size: 11px;
+  color: #94a3b8;
+}
+.progress-tag {
+  padding: 2px 7px;
+  background: rgba(16, 185, 129, 0.12);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  border-radius: 3px;
+  color: #6ee7b7;
+  font-family: 'SF Mono', Consolas, monospace;
+}
+
+/* ========== 方案卡片 ========== */
+.plan-card {
+  max-width: 88%;
+  padding: 16px 18px;
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.05), rgba(30, 34, 53, 0.9));
+  border: 1px solid rgba(139, 92, 246, 0.2);
+  border-radius: 14px;
+  width: 88%;
+}
+
+.plan-title {
+  font-size: 17px;
+  font-weight: 700;
+  color: #c4b5fd;
+  margin-bottom: 4px;
+}
+
+.plan-subtitle {
+  font-size: 13px;
+  color: #94a3b8;
+  margin-bottom: 14px;
+}
+
+.plan-section {
+  margin: 12px 0;
+  padding: 12px 14px;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  border-left: 3px solid #8b5cf6;
+}
+
+.plan-section-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: #c4b5fd;
+  margin-bottom: 10px;
+  letter-spacing: 0.2px;
+}
+
+.plan-section-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.plan-row {
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  gap: 10px;
+  align-items: flex-start;
+  font-size: 12.5px;
+}
+
+.plan-row-label {
+  color: #94a3b8;
+  font-weight: 600;
+  padding-top: 2px;
+}
+
+.plan-row-value {
+  color: #cbd5e1;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.plan-spec {
+  font-family: 'SF Mono', Consolas, monospace;
+  font-size: 11.5px;
+  color: #7dd3fc;
+  background: rgba(125, 211, 252, 0.08);
+  border: 1px solid rgba(125, 211, 252, 0.18);
+  border-radius: 4px;
+  padding: 3px 8px;
+  display: inline-block;
+  align-self: flex-start;
+}
+
+.plan-row-hint {
+  font-size: 11px;
+  color: #64748b;
+  line-height: 1.5;
+  font-style: italic;
+}
+
+.plan-footer {
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px dashed rgba(139, 92, 246, 0.3);
+}
+
+.plan-footer-tip {
+  font-size: 11.5px;
+  color: #94a3b8;
+  line-height: 1.6;
+  margin-bottom: 8px;
+}
+
+.plan-footer-cta {
+  font-size: 12px;
+  color: #c4b5fd;
+  font-weight: 500;
+  text-align: center;
+  padding: 8px 12px;
+  background: rgba(139, 92, 246, 0.1);
+  border: 1px solid rgba(139, 92, 246, 0.2);
+  border-radius: 8px;
+}
+
+/* ========== 输入栏 ========== */
+.sda-input-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 24px;
+  background: rgba(15, 19, 33, 0.7);
+  border-top: 1px solid rgba(139, 92, 246, 0.15);
+  flex-shrink: 0;
+}
+
+.sda-input {
+  flex: 1;
+  height: 42px;
+  padding: 0 14px;
+  background: rgba(30, 34, 53, 0.7);
+  border: 1px solid rgba(139, 92, 246, 0.2);
+  border-radius: 10px;
+  color: #e2e8f0;
+  font-size: 14px;
+  outline: none;
+  transition: all 0.2s;
+}
+
+.sda-input::placeholder { color: #64748b; }
+
+.sda-input:focus {
+  border-color: #8b5cf6;
+  box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.15);
+  background: rgba(30, 34, 53, 0.9);
+}
+
+.sda-send-btn {
+  height: 42px;
+  padding: 0 20px;
+  background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+  border: none;
+  border-radius: 10px;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 2px 10px rgba(139, 92, 246, 0.25);
+}
+
+.sda-send-btn:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 15px rgba(139, 92, 246, 0.4);
+}
+
+.sda-send-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* ========== 响应式 ========== */
+@media (max-width: 768px) {
+  .sda-panel-container { max-width: 100%; }
+  .sda-messages-area { padding: 16px; }
+  .sda-msg-bubble { max-width: 90%; }
+  .plan-card { max-width: 95%; padding: 12px 14px; }
+  .plan-row { grid-template-columns: 1fr; gap: 2px; }
+  .plan-row-label { font-size: 11px; color: #64748b; }
+  .sda-input-bar { padding: 10px 12px; }
+  .sda-input { font-size: 13px; }
+}

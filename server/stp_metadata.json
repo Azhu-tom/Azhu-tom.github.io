@@ -1,0 +1,5744 @@
+[
+  {
+    "filename": "23603105030.stp",
+    "stem": "23603105030",
+    "extension": ".stp",
+    "size_bytes": 6205280,
+    "size_formatted": "5.92 MB",
+    "modified_time": 1783404372.0,
+    "category": "增压泵",
+    "parsed_info": {
+      "code": "23603105030",
+      "parts": [
+        "23603105030"
+      ],
+      "code_pattern": "other"
+    },
+    "geometry_params": {
+      "geometry": "cylinder",
+      "color": "#4a90d9",
+      "metalness": 0.7,
+      "roughness": 0.2,
+      "scale": [
+        1.5,
+        2.0,
+        1.5
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "1",
+      "has_header": true,
+      "entity_count_estimate": 66,
+      "total_lines_estimate": 73
+    }
+  },
+  {
+    "filename": "23603105030.stp",
+    "stem": "23603105030",
+    "extension": ".stp",
+    "size_bytes": 6205280,
+    "size_formatted": "5.92 MB",
+    "modified_time": 1783404372.0,
+    "category": "增压泵",
+    "parsed_info": {
+      "code": "23603105030",
+      "parts": [
+        "23603105030"
+      ],
+      "code_pattern": "other"
+    },
+    "geometry_params": {
+      "geometry": "cylinder",
+      "color": "#4a90d9",
+      "metalness": 0.7,
+      "roughness": 0.2,
+      "scale": [
+        1.5,
+        2.0,
+        1.5
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "1",
+      "has_header": true,
+      "entity_count_estimate": 66,
+      "total_lines_estimate": 73
+    }
+  },
+  {
+    "filename": "23603105044qs.stp",
+    "stem": "23603105044qs",
+    "extension": ".stp",
+    "size_bytes": 5809095,
+    "size_formatted": "5.54 MB",
+    "modified_time": 1782977408.0,
+    "category": "增压泵",
+    "parsed_info": {
+      "code": "23603105044qs",
+      "parts": [
+        "23603105044qs"
+      ],
+      "code_pattern": "numeric_prefix"
+    },
+    "geometry_params": {
+      "geometry": "cylinder",
+      "color": "#4a90d9",
+      "metalness": 0.7,
+      "roughness": 0.2,
+      "scale": [
+        1.5,
+        2.0,
+        1.5
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "1_QS0565F_600_00_20001_ASM_1__2_ASM",
+      "has_header": true,
+      "entity_count_estimate": 105,
+      "total_lines_estimate": 118
+    }
+  },
+  {
+    "filename": "23603105044qs.stp",
+    "stem": "23603105044qs",
+    "extension": ".stp",
+    "size_bytes": 5809095,
+    "size_formatted": "5.54 MB",
+    "modified_time": 1782977408.0,
+    "category": "增压泵",
+    "parsed_info": {
+      "code": "23603105044qs",
+      "parts": [
+        "23603105044qs"
+      ],
+      "code_pattern": "numeric_prefix"
+    },
+    "geometry_params": {
+      "geometry": "cylinder",
+      "color": "#4a90d9",
+      "metalness": 0.7,
+      "roughness": 0.2,
+      "scale": [
+        1.5,
+        2.0,
+        1.5
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "1_QS0565F_600_00_20001_ASM_1__2_ASM",
+      "has_header": true,
+      "entity_count_estimate": 105,
+      "total_lines_estimate": 118
+    }
+  },
+  {
+    "filename": "23603105047wl.stp",
+    "stem": "23603105047wl",
+    "extension": ".stp",
+    "size_bytes": 42592099,
+    "size_formatted": "40.62 MB",
+    "modified_time": 1783302024.0,
+    "category": "增压泵",
+    "parsed_info": {
+      "code": "23603105047wl",
+      "parts": [
+        "23603105047wl"
+      ],
+      "code_pattern": "numeric_prefix"
+    },
+    "geometry_params": {
+      "geometry": "cylinder",
+      "color": "#4a90d9",
+      "metalness": 0.7,
+      "roughness": 0.2,
+      "scale": [
+        1.5,
+        2.0,
+        1.5
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "1000G_ASM_ASM_3LAST_VERSION_ASM_ASM",
+      "has_header": true,
+      "entity_count_estimate": 90,
+      "total_lines_estimate": 98
+    }
+  },
+  {
+    "filename": "23603105047wl.stp",
+    "stem": "23603105047wl",
+    "extension": ".stp",
+    "size_bytes": 42592099,
+    "size_formatted": "40.62 MB",
+    "modified_time": 1783302024.0,
+    "category": "增压泵",
+    "parsed_info": {
+      "code": "23603105047wl",
+      "parts": [
+        "23603105047wl"
+      ],
+      "code_pattern": "numeric_prefix"
+    },
+    "geometry_params": {
+      "geometry": "cylinder",
+      "color": "#4a90d9",
+      "metalness": 0.7,
+      "roughness": 0.2,
+      "scale": [
+        1.5,
+        2.0,
+        1.5
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "1000G_ASM_ASM_3LAST_VERSION_ASM_ASM",
+      "has_header": true,
+      "entity_count_estimate": 90,
+      "total_lines_estimate": 98
+    }
+  },
+  {
+    "filename": "23603105050pz.stp",
+    "stem": "23603105050pz",
+    "extension": ".stp",
+    "size_bytes": 8033135,
+    "size_formatted": "7.66 MB",
+    "modified_time": 1783046056.0,
+    "category": "增压泵",
+    "parsed_info": {
+      "code": "23603105050pz",
+      "parts": [
+        "23603105050pz"
+      ],
+      "code_pattern": "numeric_prefix"
+    },
+    "geometry_params": {
+      "geometry": "cylinder",
+      "color": "#4a90d9",
+      "metalness": 0.7,
+      "roughness": 0.2,
+      "scale": [
+        1.5,
+        2.0,
+        1.5
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "PZ1000JF_ASM",
+      "has_header": true,
+      "entity_count_estimate": 90,
+      "total_lines_estimate": 97
+    }
+  },
+  {
+    "filename": "23603105050pz.stp",
+    "stem": "23603105050pz",
+    "extension": ".stp",
+    "size_bytes": 8033135,
+    "size_formatted": "7.66 MB",
+    "modified_time": 1783046056.0,
+    "category": "增压泵",
+    "parsed_info": {
+      "code": "23603105050pz",
+      "parts": [
+        "23603105050pz"
+      ],
+      "code_pattern": "numeric_prefix"
+    },
+    "geometry_params": {
+      "geometry": "cylinder",
+      "color": "#4a90d9",
+      "metalness": 0.7,
+      "roughness": 0.2,
+      "scale": [
+        1.5,
+        2.0,
+        1.5
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "PZ1000JF_ASM",
+      "has_header": true,
+      "entity_count_estimate": 90,
+      "total_lines_estimate": 97
+    }
+  },
+  {
+    "filename": "23603105052ls.stp",
+    "stem": "23603105052ls",
+    "extension": ".stp",
+    "size_bytes": 43301997,
+    "size_formatted": "41.30 MB",
+    "modified_time": 1783046998.0,
+    "category": "增压泵",
+    "parsed_info": {
+      "code": "23603105052ls",
+      "parts": [
+        "23603105052ls"
+      ],
+      "code_pattern": "numeric_prefix"
+    },
+    "geometry_params": {
+      "geometry": "cylinder",
+      "color": "#4a90d9",
+      "metalness": 0.7,
+      "roughness": 0.2,
+      "scale": [
+        1.5,
+        2.0,
+        1.5
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "1200G-6_4_ASM",
+      "has_header": true,
+      "entity_count_estimate": 104,
+      "total_lines_estimate": 111
+    }
+  },
+  {
+    "filename": "23603105052ls.stp",
+    "stem": "23603105052ls",
+    "extension": ".stp",
+    "size_bytes": 43301997,
+    "size_formatted": "41.30 MB",
+    "modified_time": 1783046998.0,
+    "category": "增压泵",
+    "parsed_info": {
+      "code": "23603105052ls",
+      "parts": [
+        "23603105052ls"
+      ],
+      "code_pattern": "numeric_prefix"
+    },
+    "geometry_params": {
+      "geometry": "cylinder",
+      "color": "#4a90d9",
+      "metalness": 0.7,
+      "roughness": 0.2,
+      "scale": [
+        1.5,
+        2.0,
+        1.5
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "1200G-6_4_ASM",
+      "has_header": true,
+      "entity_count_estimate": 104,
+      "total_lines_estimate": 111
+    }
+  },
+  {
+    "filename": "23603105052qs.stp",
+    "stem": "23603105052qs",
+    "extension": ".stp",
+    "size_bytes": 12167425,
+    "size_formatted": "11.60 MB",
+    "modified_time": 1783070574.0,
+    "category": "增压泵",
+    "parsed_info": {
+      "code": "23603105052qs",
+      "parts": [
+        "23603105052qs"
+      ],
+      "code_pattern": "numeric_prefix"
+    },
+    "geometry_params": {
+      "geometry": "cylinder",
+      "color": "#4a90d9",
+      "metalness": 0.7,
+      "roughness": 0.2,
+      "scale": [
+        1.5,
+        2.0,
+        1.5
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "0585F_10001_ASM",
+      "has_header": true,
+      "entity_count_estimate": 66,
+      "total_lines_estimate": 73
+    }
+  },
+  {
+    "filename": "23603105052qs.stp",
+    "stem": "23603105052qs",
+    "extension": ".stp",
+    "size_bytes": 12167425,
+    "size_formatted": "11.60 MB",
+    "modified_time": 1783070574.0,
+    "category": "增压泵",
+    "parsed_info": {
+      "code": "23603105052qs",
+      "parts": [
+        "23603105052qs"
+      ],
+      "code_pattern": "numeric_prefix"
+    },
+    "geometry_params": {
+      "geometry": "cylinder",
+      "color": "#4a90d9",
+      "metalness": 0.7,
+      "roughness": 0.2,
+      "scale": [
+        1.5,
+        2.0,
+        1.5
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "0585F_10001_ASM",
+      "has_header": true,
+      "entity_count_estimate": 66,
+      "total_lines_estimate": 73
+    }
+  },
+  {
+    "filename": "23603105053ls.stp",
+    "stem": "23603105053ls",
+    "extension": ".stp",
+    "size_bytes": 41785524,
+    "size_formatted": "39.85 MB",
+    "modified_time": 1782985018.0,
+    "category": "增压泵",
+    "parsed_info": {
+      "code": "23603105053ls",
+      "parts": [
+        "23603105053ls"
+      ],
+      "code_pattern": "numeric_prefix"
+    },
+    "geometry_params": {
+      "geometry": "cylinder",
+      "color": "#4a90d9",
+      "metalness": 0.7,
+      "roughness": 0.2,
+      "scale": [
+        1.5,
+        2.0,
+        1.5
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "23603105053-JYW-R70002_ASM",
+      "has_header": true,
+      "entity_count_estimate": 95,
+      "total_lines_estimate": 105
+    }
+  },
+  {
+    "filename": "23603105053ls.stp",
+    "stem": "23603105053ls",
+    "extension": ".stp",
+    "size_bytes": 41785524,
+    "size_formatted": "39.85 MB",
+    "modified_time": 1782985018.0,
+    "category": "增压泵",
+    "parsed_info": {
+      "code": "23603105053ls",
+      "parts": [
+        "23603105053ls"
+      ],
+      "code_pattern": "numeric_prefix"
+    },
+    "geometry_params": {
+      "geometry": "cylinder",
+      "color": "#4a90d9",
+      "metalness": 0.7,
+      "roughness": 0.2,
+      "scale": [
+        1.5,
+        2.0,
+        1.5
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "23603105053-JYW-R70002_ASM",
+      "has_header": true,
+      "entity_count_estimate": 95,
+      "total_lines_estimate": 105
+    }
+  },
+  {
+    "filename": "23603105053qs.stp",
+    "stem": "23603105053qs",
+    "extension": ".stp",
+    "size_bytes": 9683248,
+    "size_formatted": "9.23 MB",
+    "modified_time": 1782985004.0,
+    "category": "增压泵",
+    "parsed_info": {
+      "code": "23603105053qs",
+      "parts": [
+        "23603105053qs"
+      ],
+      "code_pattern": "numeric_prefix"
+    },
+    "geometry_params": {
+      "geometry": "cylinder",
+      "color": "#4a90d9",
+      "metalness": 0.7,
+      "roughness": 0.2,
+      "scale": [
+        1.5,
+        2.0,
+        1.5
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "23603105053-JYW-R70001_ASM",
+      "has_header": true,
+      "entity_count_estimate": 69,
+      "total_lines_estimate": 77
+    }
+  },
+  {
+    "filename": "23603105053qs.stp",
+    "stem": "23603105053qs",
+    "extension": ".stp",
+    "size_bytes": 9683248,
+    "size_formatted": "9.23 MB",
+    "modified_time": 1782985004.0,
+    "category": "增压泵",
+    "parsed_info": {
+      "code": "23603105053qs",
+      "parts": [
+        "23603105053qs"
+      ],
+      "code_pattern": "numeric_prefix"
+    },
+    "geometry_params": {
+      "geometry": "cylinder",
+      "color": "#4a90d9",
+      "metalness": 0.7,
+      "roughness": 0.2,
+      "scale": [
+        1.5,
+        2.0,
+        1.5
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "23603105053-JYW-R70001_ASM",
+      "has_header": true,
+      "entity_count_estimate": 69,
+      "total_lines_estimate": 77
+    }
+  },
+  {
+    "filename": "23603105057ls.stp",
+    "stem": "23603105057ls",
+    "extension": ".stp",
+    "size_bytes": 26473618,
+    "size_formatted": "25.25 MB",
+    "modified_time": 1782984312.0,
+    "category": "增压泵",
+    "parsed_info": {
+      "code": "23603105057ls",
+      "parts": [
+        "23603105057ls"
+      ],
+      "code_pattern": "numeric_prefix"
+    },
+    "geometry_params": {
+      "geometry": "cylinder",
+      "color": "#4a90d9",
+      "metalness": 0.7,
+      "roughness": 0.2,
+      "scale": [
+        1.5,
+        2.0,
+        1.5
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "300G-4_ASM",
+      "has_header": true,
+      "entity_count_estimate": 71,
+      "total_lines_estimate": 79
+    }
+  },
+  {
+    "filename": "23603105057ls.stp",
+    "stem": "23603105057ls",
+    "extension": ".stp",
+    "size_bytes": 26473618,
+    "size_formatted": "25.25 MB",
+    "modified_time": 1782984312.0,
+    "category": "增压泵",
+    "parsed_info": {
+      "code": "23603105057ls",
+      "parts": [
+        "23603105057ls"
+      ],
+      "code_pattern": "numeric_prefix"
+    },
+    "geometry_params": {
+      "geometry": "cylinder",
+      "color": "#4a90d9",
+      "metalness": 0.7,
+      "roughness": 0.2,
+      "scale": [
+        1.5,
+        2.0,
+        1.5
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "300G-4_ASM",
+      "has_header": true,
+      "entity_count_estimate": 71,
+      "total_lines_estimate": 79
+    }
+  },
+  {
+    "filename": "23603105058ls.stp",
+    "stem": "23603105058ls",
+    "extension": ".stp",
+    "size_bytes": 22113382,
+    "size_formatted": "21.09 MB",
+    "modified_time": 1783071130.0,
+    "category": "增压泵",
+    "parsed_info": {
+      "code": "23603105058ls",
+      "parts": [
+        "23603105058ls"
+      ],
+      "code_pattern": "numeric_prefix"
+    },
+    "geometry_params": {
+      "geometry": "cylinder",
+      "color": "#4a90d9",
+      "metalness": 0.7,
+      "roughness": 0.2,
+      "scale": [
+        1.5,
+        2.0,
+        1.5
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "23603105058-JYW-R30001_ASM",
+      "has_header": true,
+      "entity_count_estimate": 98,
+      "total_lines_estimate": 106
+    }
+  },
+  {
+    "filename": "23603105058ls.stp",
+    "stem": "23603105058ls",
+    "extension": ".stp",
+    "size_bytes": 22113382,
+    "size_formatted": "21.09 MB",
+    "modified_time": 1783071130.0,
+    "category": "增压泵",
+    "parsed_info": {
+      "code": "23603105058ls",
+      "parts": [
+        "23603105058ls"
+      ],
+      "code_pattern": "numeric_prefix"
+    },
+    "geometry_params": {
+      "geometry": "cylinder",
+      "color": "#4a90d9",
+      "metalness": 0.7,
+      "roughness": 0.2,
+      "scale": [
+        1.5,
+        2.0,
+        1.5
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "23603105058-JYW-R30001_ASM",
+      "has_header": true,
+      "entity_count_estimate": 98,
+      "total_lines_estimate": 106
+    }
+  },
+  {
+    "filename": "23603105058pz.stp",
+    "stem": "23603105058pz",
+    "extension": ".stp",
+    "size_bytes": 13948769,
+    "size_formatted": "13.30 MB",
+    "modified_time": 1783072182.0,
+    "category": "增压泵",
+    "parsed_info": {
+      "code": "23603105058pz",
+      "parts": [
+        "23603105058pz"
+      ],
+      "code_pattern": "numeric_prefix"
+    },
+    "geometry_params": {
+      "geometry": "cylinder",
+      "color": "#4a90d9",
+      "metalness": 0.7,
+      "roughness": 0.2,
+      "scale": [
+        1.5,
+        2.0,
+        1.5
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "23603105058-JYW-R30002_ASM",
+      "has_header": true,
+      "entity_count_estimate": 129,
+      "total_lines_estimate": 137
+    }
+  },
+  {
+    "filename": "23603105058pz.stp",
+    "stem": "23603105058pz",
+    "extension": ".stp",
+    "size_bytes": 13948769,
+    "size_formatted": "13.30 MB",
+    "modified_time": 1783072182.0,
+    "category": "增压泵",
+    "parsed_info": {
+      "code": "23603105058pz",
+      "parts": [
+        "23603105058pz"
+      ],
+      "code_pattern": "numeric_prefix"
+    },
+    "geometry_params": {
+      "geometry": "cylinder",
+      "color": "#4a90d9",
+      "metalness": 0.7,
+      "roughness": 0.2,
+      "scale": [
+        1.5,
+        2.0,
+        1.5
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "23603105058-JYW-R30002_ASM",
+      "has_header": true,
+      "entity_count_estimate": 129,
+      "total_lines_estimate": 137
+    }
+  },
+  {
+    "filename": "23603105062qs.stp",
+    "stem": "23603105062qs",
+    "extension": ".stp",
+    "size_bytes": 7153010,
+    "size_formatted": "6.82 MB",
+    "modified_time": 1783299370.0,
+    "category": "增压泵",
+    "parsed_info": {
+      "code": "23603105062qs",
+      "parts": [
+        "23603105062qs"
+      ],
+      "code_pattern": "numeric_prefix"
+    },
+    "geometry_params": {
+      "geometry": "cylinder",
+      "color": "#4a90d9",
+      "metalness": 0.7,
+      "roughness": 0.2,
+      "scale": [
+        1.5,
+        2.0,
+        1.5
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "23603105062PZ_ASM",
+      "has_header": true,
+      "entity_count_estimate": 78,
+      "total_lines_estimate": 86
+    }
+  },
+  {
+    "filename": "23603105062qs.stp",
+    "stem": "23603105062qs",
+    "extension": ".stp",
+    "size_bytes": 7153010,
+    "size_formatted": "6.82 MB",
+    "modified_time": 1783299370.0,
+    "category": "增压泵",
+    "parsed_info": {
+      "code": "23603105062qs",
+      "parts": [
+        "23603105062qs"
+      ],
+      "code_pattern": "numeric_prefix"
+    },
+    "geometry_params": {
+      "geometry": "cylinder",
+      "color": "#4a90d9",
+      "metalness": 0.7,
+      "roughness": 0.2,
+      "scale": [
+        1.5,
+        2.0,
+        1.5
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "23603105062PZ_ASM",
+      "has_header": true,
+      "entity_count_estimate": 78,
+      "total_lines_estimate": 86
+    }
+  },
+  {
+    "filename": "23603105063pz.stp",
+    "stem": "23603105063pz",
+    "extension": ".stp",
+    "size_bytes": 4019556,
+    "size_formatted": "3.83 MB",
+    "modified_time": 1783073300.0,
+    "category": "增压泵",
+    "parsed_info": {
+      "code": "23603105063pz",
+      "parts": [
+        "23603105063pz"
+      ],
+      "code_pattern": "numeric_prefix"
+    },
+    "geometry_params": {
+      "geometry": "cylinder",
+      "color": "#4a90d9",
+      "metalness": 0.7,
+      "roughness": 0.2,
+      "scale": [
+        1.5,
+        2.0,
+        1.5
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "PUZHE100_ASM",
+      "has_header": true,
+      "entity_count_estimate": 130,
+      "total_lines_estimate": 137
+    }
+  },
+  {
+    "filename": "23603105063pz.stp",
+    "stem": "23603105063pz",
+    "extension": ".stp",
+    "size_bytes": 4019556,
+    "size_formatted": "3.83 MB",
+    "modified_time": 1783073300.0,
+    "category": "增压泵",
+    "parsed_info": {
+      "code": "23603105063pz",
+      "parts": [
+        "23603105063pz"
+      ],
+      "code_pattern": "numeric_prefix"
+    },
+    "geometry_params": {
+      "geometry": "cylinder",
+      "color": "#4a90d9",
+      "metalness": 0.7,
+      "roughness": 0.2,
+      "scale": [
+        1.5,
+        2.0,
+        1.5
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "PUZHE100_ASM",
+      "has_header": true,
+      "entity_count_estimate": 130,
+      "total_lines_estimate": 137
+    }
+  },
+  {
+    "filename": "23601223028.stp",
+    "stem": "23601223028",
+    "extension": ".stp",
+    "size_bytes": 4441347,
+    "size_formatted": "4.24 MB",
+    "modified_time": 1782974796.0,
+    "category": "滤芯",
+    "parsed_info": {
+      "code": "23601223028",
+      "parts": [
+        "23601223028"
+      ],
+      "code_pattern": "other"
+    },
+    "geometry_params": {
+      "geometry": "cylinder",
+      "color": "#f0f0f0",
+      "metalness": 0.3,
+      "roughness": 0.8,
+      "scale": [
+        1.0,
+        2.0,
+        1.0
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "RO-LVXIN_ASM_ASM_1_ASM_4_ASM_5__ASM",
+      "has_header": true,
+      "entity_count_estimate": 70,
+      "total_lines_estimate": 78
+    }
+  },
+  {
+    "filename": "23601223028.stp",
+    "stem": "23601223028",
+    "extension": ".stp",
+    "size_bytes": 4441347,
+    "size_formatted": "4.24 MB",
+    "modified_time": 1782974796.0,
+    "category": "滤芯",
+    "parsed_info": {
+      "code": "23601223028",
+      "parts": [
+        "23601223028"
+      ],
+      "code_pattern": "other"
+    },
+    "geometry_params": {
+      "geometry": "cylinder",
+      "color": "#f0f0f0",
+      "metalness": 0.3,
+      "roughness": 0.8,
+      "scale": [
+        1.0,
+        2.0,
+        1.0
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "RO-LVXIN_ASM_ASM_1_ASM_4_ASM_5__ASM",
+      "has_header": true,
+      "entity_count_estimate": 70,
+      "total_lines_estimate": 78
+    }
+  },
+  {
+    "filename": "23601223047.stp",
+    "stem": "23601223047",
+    "extension": ".stp",
+    "size_bytes": 3985570,
+    "size_formatted": "3.80 MB",
+    "modified_time": 1782974764.0,
+    "category": "滤芯",
+    "parsed_info": {
+      "code": "23601223047",
+      "parts": [
+        "23601223047"
+      ],
+      "code_pattern": "other"
+    },
+    "geometry_params": {
+      "geometry": "cylinder",
+      "color": "#f0f0f0",
+      "metalness": 0.3,
+      "roughness": 0.8,
+      "scale": [
+        1.0,
+        2.0,
+        1.0
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "PP-LVXIN_ASM_ASM_1_ASM_5_ASM_3__ASM",
+      "has_header": true,
+      "entity_count_estimate": 70,
+      "total_lines_estimate": 95
+    }
+  },
+  {
+    "filename": "23601223047.stp",
+    "stem": "23601223047",
+    "extension": ".stp",
+    "size_bytes": 3985570,
+    "size_formatted": "3.80 MB",
+    "modified_time": 1782974764.0,
+    "category": "滤芯",
+    "parsed_info": {
+      "code": "23601223047",
+      "parts": [
+        "23601223047"
+      ],
+      "code_pattern": "other"
+    },
+    "geometry_params": {
+      "geometry": "cylinder",
+      "color": "#f0f0f0",
+      "metalness": 0.3,
+      "roughness": 0.8,
+      "scale": [
+        1.0,
+        2.0,
+        1.0
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "PP-LVXIN_ASM_ASM_1_ASM_5_ASM_3__ASM",
+      "has_header": true,
+      "entity_count_estimate": 70,
+      "total_lines_estimate": 95
+    }
+  },
+  {
+    "filename": "23609200073.stp",
+    "stem": "23609200073",
+    "extension": ".stp",
+    "size_bytes": 4661410,
+    "size_formatted": "4.45 MB",
+    "modified_time": 1782900402.0,
+    "category": "滤芯",
+    "parsed_info": {
+      "code": "23609200073",
+      "parts": [
+        "23609200073"
+      ],
+      "code_pattern": "other"
+    },
+    "geometry_params": {
+      "geometry": "cylinder",
+      "color": "#f0f0f0",
+      "metalness": 0.3,
+      "roughness": 0.8,
+      "scale": [
+        1.0,
+        2.0,
+        1.0
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "PCP00_ASM",
+      "has_header": true,
+      "entity_count_estimate": 81,
+      "total_lines_estimate": 88
+    }
+  },
+  {
+    "filename": "23609200073.stp",
+    "stem": "23609200073",
+    "extension": ".stp",
+    "size_bytes": 4661410,
+    "size_formatted": "4.45 MB",
+    "modified_time": 1782900402.0,
+    "category": "滤芯",
+    "parsed_info": {
+      "code": "23609200073",
+      "parts": [
+        "23609200073"
+      ],
+      "code_pattern": "other"
+    },
+    "geometry_params": {
+      "geometry": "cylinder",
+      "color": "#f0f0f0",
+      "metalness": 0.3,
+      "roughness": 0.8,
+      "scale": [
+        1.0,
+        2.0,
+        1.0
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "PCP00_ASM",
+      "has_header": true,
+      "entity_count_estimate": 81,
+      "total_lines_estimate": 88
+    }
+  },
+  {
+    "filename": "23609205040.stp",
+    "stem": "23609205040",
+    "extension": ".stp",
+    "size_bytes": 5447560,
+    "size_formatted": "5.20 MB",
+    "modified_time": 1782900438.0,
+    "category": "滤芯",
+    "parsed_info": {
+      "code": "23609205040",
+      "parts": [
+        "23609205040"
+      ],
+      "code_pattern": "other"
+    },
+    "geometry_params": {
+      "geometry": "cylinder",
+      "color": "#f0f0f0",
+      "metalness": 0.3,
+      "roughness": 0.8,
+      "scale": [
+        1.0,
+        2.0,
+        1.0
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "ROC00_ASM",
+      "has_header": true,
+      "entity_count_estimate": 85,
+      "total_lines_estimate": 92
+    }
+  },
+  {
+    "filename": "23609205040.stp",
+    "stem": "23609205040",
+    "extension": ".stp",
+    "size_bytes": 5447560,
+    "size_formatted": "5.20 MB",
+    "modified_time": 1782900438.0,
+    "category": "滤芯",
+    "parsed_info": {
+      "code": "23609205040",
+      "parts": [
+        "23609205040"
+      ],
+      "code_pattern": "other"
+    },
+    "geometry_params": {
+      "geometry": "cylinder",
+      "color": "#f0f0f0",
+      "metalness": 0.3,
+      "roughness": 0.8,
+      "scale": [
+        1.0,
+        2.0,
+        1.0
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "ROC00_ASM",
+      "has_header": true,
+      "entity_count_estimate": 85,
+      "total_lines_estimate": 92
+    }
+  },
+  {
+    "filename": "2CH09003006.stp",
+    "stem": "2CH09003006",
+    "extension": ".stp",
+    "size_bytes": 6660390,
+    "size_formatted": "6.35 MB",
+    "modified_time": 1782974702.0,
+    "category": "滤芯",
+    "parsed_info": {
+      "code": "2CH09003006",
+      "parts": [
+        "2CH09003006"
+      ],
+      "code_pattern": "numeric_prefix"
+    },
+    "geometry_params": {
+      "geometry": "cylinder",
+      "color": "#f0f0f0",
+      "metalness": 0.3,
+      "roughness": 0.8,
+      "scale": [
+        1.0,
+        2.0,
+        1.0
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "PPC10-16_ASM_2_ASM",
+      "has_header": true,
+      "entity_count_estimate": 113,
+      "total_lines_estimate": 120
+    }
+  },
+  {
+    "filename": "2CH09003006.stp",
+    "stem": "2CH09003006",
+    "extension": ".stp",
+    "size_bytes": 6660390,
+    "size_formatted": "6.35 MB",
+    "modified_time": 1782974702.0,
+    "category": "滤芯",
+    "parsed_info": {
+      "code": "2CH09003006",
+      "parts": [
+        "2CH09003006"
+      ],
+      "code_pattern": "numeric_prefix"
+    },
+    "geometry_params": {
+      "geometry": "cylinder",
+      "color": "#f0f0f0",
+      "metalness": 0.3,
+      "roughness": 0.8,
+      "scale": [
+        1.0,
+        2.0,
+        1.0
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "PPC10-16_ASM_2_ASM",
+      "has_header": true,
+      "entity_count_estimate": 113,
+      "total_lines_estimate": 120
+    }
+  },
+  {
+    "filename": "23603104029.stp",
+    "stem": "23603104029",
+    "extension": ".stp",
+    "size_bytes": 4063740,
+    "size_formatted": "3.88 MB",
+    "modified_time": 1783391240.0,
+    "category": "电磁阀",
+    "parsed_info": {
+      "code": "23603104029",
+      "parts": [
+        "23603104029"
+      ],
+      "code_pattern": "other"
+    },
+    "geometry_params": {
+      "geometry": "box",
+      "color": "#2d5a87",
+      "metalness": 0.8,
+      "roughness": 0.15,
+      "scale": [
+        1.8,
+        1.2,
+        1.2
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "360L80_ASM_ASM_1_ASM_1_ASM_18_A_ASM",
+      "has_header": true,
+      "entity_count_estimate": 111,
+      "total_lines_estimate": 120
+    }
+  },
+  {
+    "filename": "23603104029.stp",
+    "stem": "23603104029",
+    "extension": ".stp",
+    "size_bytes": 4063740,
+    "size_formatted": "3.88 MB",
+    "modified_time": 1783391240.0,
+    "category": "电磁阀",
+    "parsed_info": {
+      "code": "23603104029",
+      "parts": [
+        "23603104029"
+      ],
+      "code_pattern": "other"
+    },
+    "geometry_params": {
+      "geometry": "box",
+      "color": "#2d5a87",
+      "metalness": 0.8,
+      "roughness": 0.15,
+      "scale": [
+        1.8,
+        1.2,
+        1.2
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "360L80_ASM_ASM_1_ASM_1_ASM_18_A_ASM",
+      "has_header": true,
+      "entity_count_estimate": 111,
+      "total_lines_estimate": 120
+    }
+  },
+  {
+    "filename": "23603104037.stp",
+    "stem": "23603104037",
+    "extension": ".stp",
+    "size_bytes": 3390683,
+    "size_formatted": "3.23 MB",
+    "modified_time": 1783391462.0,
+    "category": "电磁阀",
+    "parsed_info": {
+      "code": "23603104037",
+      "parts": [
+        "23603104037"
+      ],
+      "code_pattern": "other"
+    },
+    "geometry_params": {
+      "geometry": "box",
+      "color": "#2d5a87",
+      "metalness": 0.8,
+      "roughness": 0.15,
+      "scale": [
+        1.8,
+        1.2,
+        1.2
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "JIETOU_ASM_13_ASM_1_ASM_1_ASM_1_ASM",
+      "has_header": true,
+      "entity_count_estimate": 98,
+      "total_lines_estimate": 106
+    }
+  },
+  {
+    "filename": "23603104037.stp",
+    "stem": "23603104037",
+    "extension": ".stp",
+    "size_bytes": 3390683,
+    "size_formatted": "3.23 MB",
+    "modified_time": 1783391462.0,
+    "category": "电磁阀",
+    "parsed_info": {
+      "code": "23603104037",
+      "parts": [
+        "23603104037"
+      ],
+      "code_pattern": "other"
+    },
+    "geometry_params": {
+      "geometry": "box",
+      "color": "#2d5a87",
+      "metalness": 0.8,
+      "roughness": 0.15,
+      "scale": [
+        1.8,
+        1.2,
+        1.2
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "JIETOU_ASM_13_ASM_1_ASM_1_ASM_1_ASM",
+      "has_header": true,
+      "entity_count_estimate": 98,
+      "total_lines_estimate": 106
+    }
+  },
+  {
+    "filename": "23603104058.stp",
+    "stem": "23603104058",
+    "extension": ".stp",
+    "size_bytes": 4067279,
+    "size_formatted": "3.88 MB",
+    "modified_time": 1783391294.0,
+    "category": "电磁阀",
+    "parsed_info": {
+      "code": "23603104058",
+      "parts": [
+        "23603104058"
+      ],
+      "code_pattern": "other"
+    },
+    "geometry_params": {
+      "geometry": "box",
+      "color": "#2d5a87",
+      "metalness": 0.8,
+      "roughness": 0.15,
+      "scale": [
+        1.8,
+        1.2,
+        1.2
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "XXFA_ASM_16_ASM_1_2_3_ASM_1_ASM_ASM",
+      "has_header": true,
+      "entity_count_estimate": 101,
+      "total_lines_estimate": 109
+    }
+  },
+  {
+    "filename": "23603104058.stp",
+    "stem": "23603104058",
+    "extension": ".stp",
+    "size_bytes": 4067279,
+    "size_formatted": "3.88 MB",
+    "modified_time": 1783391294.0,
+    "category": "电磁阀",
+    "parsed_info": {
+      "code": "23603104058",
+      "parts": [
+        "23603104058"
+      ],
+      "code_pattern": "other"
+    },
+    "geometry_params": {
+      "geometry": "box",
+      "color": "#2d5a87",
+      "metalness": 0.8,
+      "roughness": 0.15,
+      "scale": [
+        1.8,
+        1.2,
+        1.2
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "XXFA_ASM_16_ASM_1_2_3_ASM_1_ASM_ASM",
+      "has_header": true,
+      "entity_count_estimate": 101,
+      "total_lines_estimate": 109
+    }
+  },
+  {
+    "filename": "2CH03003021.stp",
+    "stem": "2CH03003021",
+    "extension": ".stp",
+    "size_bytes": 3831332,
+    "size_formatted": "3.65 MB",
+    "modified_time": 1783393926.0,
+    "category": "电磁阀",
+    "parsed_info": {
+      "code": "2CH03003021",
+      "parts": [
+        "2CH03003021"
+      ],
+      "code_pattern": "numeric_prefix"
+    },
+    "geometry_params": {
+      "geometry": "box",
+      "color": "#2d5a87",
+      "metalness": 0.8,
+      "roughness": 0.15,
+      "scale": [
+        1.8,
+        1.2,
+        1.2
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "550MLKANGDUFEISHUIFA",
+      "has_header": true,
+      "entity_count_estimate": 92,
+      "total_lines_estimate": 99
+    }
+  },
+  {
+    "filename": "2CH03003021.stp",
+    "stem": "2CH03003021",
+    "extension": ".stp",
+    "size_bytes": 3831332,
+    "size_formatted": "3.65 MB",
+    "modified_time": 1783393926.0,
+    "category": "电磁阀",
+    "parsed_info": {
+      "code": "2CH03003021",
+      "parts": [
+        "2CH03003021"
+      ],
+      "code_pattern": "numeric_prefix"
+    },
+    "geometry_params": {
+      "geometry": "box",
+      "color": "#2d5a87",
+      "metalness": 0.8,
+      "roughness": 0.15,
+      "scale": [
+        1.8,
+        1.2,
+        1.2
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "550MLKANGDUFEISHUIFA",
+      "has_header": true,
+      "entity_count_estimate": 92,
+      "total_lines_estimate": 99
+    }
+  },
+  {
+    "filename": "2CH03003029.stp",
+    "stem": "2CH03003029",
+    "extension": ".stp",
+    "size_bytes": 1898371,
+    "size_formatted": "1.81 MB",
+    "modified_time": 1783393942.0,
+    "category": "电磁阀",
+    "parsed_info": {
+      "code": "2CH03003029",
+      "parts": [
+        "2CH03003029"
+      ],
+      "code_pattern": "numeric_prefix"
+    },
+    "geometry_params": {
+      "geometry": "box",
+      "color": "#2d5a87",
+      "metalness": 0.8,
+      "roughness": 0.15,
+      "scale": [
+        1.8,
+        1.2,
+        1.2
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "PVL-24-JY226_01_080001",
+      "has_header": true,
+      "entity_count_estimate": 112,
+      "total_lines_estimate": 120
+    }
+  },
+  {
+    "filename": "2CH03003029.stp",
+    "stem": "2CH03003029",
+    "extension": ".stp",
+    "size_bytes": 1898371,
+    "size_formatted": "1.81 MB",
+    "modified_time": 1783393942.0,
+    "category": "电磁阀",
+    "parsed_info": {
+      "code": "2CH03003029",
+      "parts": [
+        "2CH03003029"
+      ],
+      "code_pattern": "numeric_prefix"
+    },
+    "geometry_params": {
+      "geometry": "box",
+      "color": "#2d5a87",
+      "metalness": 0.8,
+      "roughness": 0.15,
+      "scale": [
+        1.8,
+        1.2,
+        1.2
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "PVL-24-JY226_01_080001",
+      "has_header": true,
+      "entity_count_estimate": 112,
+      "total_lines_estimate": 120
+    }
+  },
+  {
+    "filename": "23601001002.stp",
+    "stem": "23601001002",
+    "extension": ".stp",
+    "size_bytes": 41991,
+    "size_formatted": "41.01 KB",
+    "modified_time": 1783069812.0,
+    "category": "管接件",
+    "parsed_info": {
+      "code": "23601001002",
+      "parts": [
+        "23601001002"
+      ],
+      "code_pattern": "other"
+    },
+    "geometry_params": {
+      "geometry": "cylinder",
+      "color": "#7cb342",
+      "metalness": 0.6,
+      "roughness": 0.3,
+      "scale": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "20001",
+      "has_header": true,
+      "entity_count_estimate": 102,
+      "total_lines_estimate": 109
+    }
+  },
+  {
+    "filename": "23601001002.stp",
+    "stem": "23601001002",
+    "extension": ".stp",
+    "size_bytes": 41991,
+    "size_formatted": "41.01 KB",
+    "modified_time": 1783069812.0,
+    "category": "管接件",
+    "parsed_info": {
+      "code": "23601001002",
+      "parts": [
+        "23601001002"
+      ],
+      "code_pattern": "other"
+    },
+    "geometry_params": {
+      "geometry": "cylinder",
+      "color": "#7cb342",
+      "metalness": 0.6,
+      "roughness": 0.3,
+      "scale": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "20001",
+      "has_header": true,
+      "entity_count_estimate": 102,
+      "total_lines_estimate": 109
+    }
+  },
+  {
+    "filename": "23601001010.stp",
+    "stem": "23601001010",
+    "extension": ".stp",
+    "size_bytes": 175435,
+    "size_formatted": "171.32 KB",
+    "modified_time": 1782723518.0,
+    "category": "管接件",
+    "parsed_info": {
+      "code": "23601001010",
+      "parts": [
+        "23601001010"
+      ],
+      "code_pattern": "other"
+    },
+    "geometry_params": {
+      "geometry": "cylinder",
+      "color": "#7cb342",
+      "metalness": 0.6,
+      "roughness": 0.3,
+      "scale": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "23601001010",
+      "has_header": true,
+      "entity_count_estimate": 81,
+      "total_lines_estimate": 88
+    }
+  },
+  {
+    "filename": "23601001010.stp",
+    "stem": "23601001010",
+    "extension": ".stp",
+    "size_bytes": 175435,
+    "size_formatted": "171.32 KB",
+    "modified_time": 1782723518.0,
+    "category": "管接件",
+    "parsed_info": {
+      "code": "23601001010",
+      "parts": [
+        "23601001010"
+      ],
+      "code_pattern": "other"
+    },
+    "geometry_params": {
+      "geometry": "cylinder",
+      "color": "#7cb342",
+      "metalness": 0.6,
+      "roughness": 0.3,
+      "scale": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "23601001010",
+      "has_header": true,
+      "entity_count_estimate": 81,
+      "total_lines_estimate": 88
+    }
+  },
+  {
+    "filename": "23601002001.stp",
+    "stem": "23601002001",
+    "extension": ".stp",
+    "size_bytes": 871764,
+    "size_formatted": "851.33 KB",
+    "modified_time": 1782790686.0,
+    "category": "管接件",
+    "parsed_info": {
+      "code": "23601002001",
+      "parts": [
+        "23601002001"
+      ],
+      "code_pattern": "other"
+    },
+    "geometry_params": {
+      "geometry": "cylinder",
+      "color": "#7cb342",
+      "metalness": 0.6,
+      "roughness": 0.3,
+      "scale": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "MDM1803-A_ASM_ASM",
+      "has_header": true,
+      "entity_count_estimate": 85,
+      "total_lines_estimate": 94
+    }
+  },
+  {
+    "filename": "23601002001.stp",
+    "stem": "23601002001",
+    "extension": ".stp",
+    "size_bytes": 871764,
+    "size_formatted": "851.33 KB",
+    "modified_time": 1782790686.0,
+    "category": "管接件",
+    "parsed_info": {
+      "code": "23601002001",
+      "parts": [
+        "23601002001"
+      ],
+      "code_pattern": "other"
+    },
+    "geometry_params": {
+      "geometry": "cylinder",
+      "color": "#7cb342",
+      "metalness": 0.6,
+      "roughness": 0.3,
+      "scale": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "MDM1803-A_ASM_ASM",
+      "has_header": true,
+      "entity_count_estimate": 85,
+      "total_lines_estimate": 94
+    }
+  },
+  {
+    "filename": "23601002006.stp",
+    "stem": "23601002006",
+    "extension": ".stp",
+    "size_bytes": 119061,
+    "size_formatted": "116.27 KB",
+    "modified_time": 1782727462.0,
+    "category": "管接件",
+    "parsed_info": {
+      "code": "23601002006",
+      "parts": [
+        "23601002006"
+      ],
+      "code_pattern": "other"
+    },
+    "geometry_params": {
+      "geometry": "cylinder",
+      "color": "#7cb342",
+      "metalness": 0.6,
+      "roughness": 0.3,
+      "scale": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "FTY-04-014",
+      "has_header": true,
+      "entity_count_estimate": 80,
+      "total_lines_estimate": 91
+    }
+  },
+  {
+    "filename": "23601002006.stp",
+    "stem": "23601002006",
+    "extension": ".stp",
+    "size_bytes": 119061,
+    "size_formatted": "116.27 KB",
+    "modified_time": 1782727462.0,
+    "category": "管接件",
+    "parsed_info": {
+      "code": "23601002006",
+      "parts": [
+        "23601002006"
+      ],
+      "code_pattern": "other"
+    },
+    "geometry_params": {
+      "geometry": "cylinder",
+      "color": "#7cb342",
+      "metalness": 0.6,
+      "roughness": 0.3,
+      "scale": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "FTY-04-014",
+      "has_header": true,
+      "entity_count_estimate": 80,
+      "total_lines_estimate": 91
+    }
+  },
+  {
+    "filename": "23601002010.stp",
+    "stem": "23601002010",
+    "extension": ".stp",
+    "size_bytes": 818219,
+    "size_formatted": "799.04 KB",
+    "modified_time": 1782790782.0,
+    "category": "管接件",
+    "parsed_info": {
+      "code": "23601002010",
+      "parts": [
+        "23601002010"
+      ],
+      "code_pattern": "other"
+    },
+    "geometry_params": {
+      "geometry": "cylinder",
+      "color": "#7cb342",
+      "metalness": 0.6,
+      "roughness": 0.3,
+      "scale": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "MDM1805-A_ASM_ASM",
+      "has_header": true,
+      "entity_count_estimate": 82,
+      "total_lines_estimate": 91
+    }
+  },
+  {
+    "filename": "23601002010.stp",
+    "stem": "23601002010",
+    "extension": ".stp",
+    "size_bytes": 818219,
+    "size_formatted": "799.04 KB",
+    "modified_time": 1782790782.0,
+    "category": "管接件",
+    "parsed_info": {
+      "code": "23601002010",
+      "parts": [
+        "23601002010"
+      ],
+      "code_pattern": "other"
+    },
+    "geometry_params": {
+      "geometry": "cylinder",
+      "color": "#7cb342",
+      "metalness": 0.6,
+      "roughness": 0.3,
+      "scale": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "MDM1805-A_ASM_ASM",
+      "has_header": true,
+      "entity_count_estimate": 82,
+      "total_lines_estimate": 91
+    }
+  },
+  {
+    "filename": "23601004096.stp",
+    "stem": "23601004096",
+    "extension": ".stp",
+    "size_bytes": 1094405,
+    "size_formatted": "1.04 MB",
+    "modified_time": 1782798496.0,
+    "category": "管接件",
+    "parsed_info": {
+      "code": "23601004096",
+      "parts": [
+        "23601004096"
+      ],
+      "code_pattern": "other"
+    },
+    "geometry_params": {
+      "geometry": "cylinder",
+      "color": "#7cb342",
+      "metalness": 0.6,
+      "roughness": 0.3,
+      "scale": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "MDM2817-A_ASM_ASM",
+      "has_header": true,
+      "entity_count_estimate": 70,
+      "total_lines_estimate": 84
+    }
+  },
+  {
+    "filename": "23601004096.stp",
+    "stem": "23601004096",
+    "extension": ".stp",
+    "size_bytes": 1094405,
+    "size_formatted": "1.04 MB",
+    "modified_time": 1782798496.0,
+    "category": "管接件",
+    "parsed_info": {
+      "code": "23601004096",
+      "parts": [
+        "23601004096"
+      ],
+      "code_pattern": "other"
+    },
+    "geometry_params": {
+      "geometry": "cylinder",
+      "color": "#7cb342",
+      "metalness": 0.6,
+      "roughness": 0.3,
+      "scale": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "MDM2817-A_ASM_ASM",
+      "has_header": true,
+      "entity_count_estimate": 70,
+      "total_lines_estimate": 84
+    }
+  },
+  {
+    "filename": "23601004122.stp",
+    "stem": "23601004122",
+    "extension": ".stp",
+    "size_bytes": 1204143,
+    "size_formatted": "1.15 MB",
+    "modified_time": 1782798474.0,
+    "category": "管接件",
+    "parsed_info": {
+      "code": "23601004122",
+      "parts": [
+        "23601004122"
+      ],
+      "code_pattern": "other"
+    },
+    "geometry_params": {
+      "geometry": "cylinder",
+      "color": "#7cb342",
+      "metalness": 0.6,
+      "roughness": 0.3,
+      "scale": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "MDM2817-B_ASM_ASM",
+      "has_header": true,
+      "entity_count_estimate": 95,
+      "total_lines_estimate": 102
+    }
+  },
+  {
+    "filename": "23601004122.stp",
+    "stem": "23601004122",
+    "extension": ".stp",
+    "size_bytes": 1204143,
+    "size_formatted": "1.15 MB",
+    "modified_time": 1782798474.0,
+    "category": "管接件",
+    "parsed_info": {
+      "code": "23601004122",
+      "parts": [
+        "23601004122"
+      ],
+      "code_pattern": "other"
+    },
+    "geometry_params": {
+      "geometry": "cylinder",
+      "color": "#7cb342",
+      "metalness": 0.6,
+      "roughness": 0.3,
+      "scale": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "MDM2817-B_ASM_ASM",
+      "has_header": true,
+      "entity_count_estimate": 95,
+      "total_lines_estimate": 102
+    }
+  },
+  {
+    "filename": "23601005001.stp",
+    "stem": "23601005001",
+    "extension": ".stp",
+    "size_bytes": 55139,
+    "size_formatted": "53.85 KB",
+    "modified_time": 1782789518.0,
+    "category": "管接件",
+    "parsed_info": {
+      "code": "23601005001",
+      "parts": [
+        "23601005001"
+      ],
+      "code_pattern": "other"
+    },
+    "geometry_params": {
+      "geometry": "cylinder",
+      "color": "#7cb342",
+      "metalness": 0.6,
+      "roughness": 0.3,
+      "scale": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "FTY-04-011",
+      "has_header": true,
+      "entity_count_estimate": 125,
+      "total_lines_estimate": 132
+    }
+  },
+  {
+    "filename": "23601005001.stp",
+    "stem": "23601005001",
+    "extension": ".stp",
+    "size_bytes": 55139,
+    "size_formatted": "53.85 KB",
+    "modified_time": 1782789518.0,
+    "category": "管接件",
+    "parsed_info": {
+      "code": "23601005001",
+      "parts": [
+        "23601005001"
+      ],
+      "code_pattern": "other"
+    },
+    "geometry_params": {
+      "geometry": "cylinder",
+      "color": "#7cb342",
+      "metalness": 0.6,
+      "roughness": 0.3,
+      "scale": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "FTY-04-011",
+      "has_header": true,
+      "entity_count_estimate": 125,
+      "total_lines_estimate": 132
+    }
+  },
+  {
+    "filename": "23601005021.stp",
+    "stem": "23601005021",
+    "extension": ".stp",
+    "size_bytes": 90055,
+    "size_formatted": "87.94 KB",
+    "modified_time": 1782789466.0,
+    "category": "管接件",
+    "parsed_info": {
+      "code": "23601005021",
+      "parts": [
+        "23601005021"
+      ],
+      "code_pattern": "other"
+    },
+    "geometry_params": {
+      "geometry": "cylinder",
+      "color": "#7cb342",
+      "metalness": 0.6,
+      "roughness": 0.3,
+      "scale": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "FTY-04-013",
+      "has_header": true,
+      "entity_count_estimate": 110,
+      "total_lines_estimate": 117
+    }
+  },
+  {
+    "filename": "23601005021.stp",
+    "stem": "23601005021",
+    "extension": ".stp",
+    "size_bytes": 90055,
+    "size_formatted": "87.94 KB",
+    "modified_time": 1782789466.0,
+    "category": "管接件",
+    "parsed_info": {
+      "code": "23601005021",
+      "parts": [
+        "23601005021"
+      ],
+      "code_pattern": "other"
+    },
+    "geometry_params": {
+      "geometry": "cylinder",
+      "color": "#7cb342",
+      "metalness": 0.6,
+      "roughness": 0.3,
+      "scale": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "FTY-04-013",
+      "has_header": true,
+      "entity_count_estimate": 110,
+      "total_lines_estimate": 117
+    }
+  },
+  {
+    "filename": "23601005023.stp",
+    "stem": "23601005023",
+    "extension": ".stp",
+    "size_bytes": 686045,
+    "size_formatted": "669.97 KB",
+    "modified_time": 1782801468.0,
+    "category": "管接件",
+    "parsed_info": {
+      "code": "23601005023",
+      "parts": [
+        "23601005023"
+      ],
+      "code_pattern": "other"
+    },
+    "geometry_params": {
+      "geometry": "cylinder",
+      "color": "#7cb342",
+      "metalness": 0.6,
+      "roughness": 0.3,
+      "scale": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "ASM0003_ASM",
+      "has_header": true,
+      "entity_count_estimate": 71,
+      "total_lines_estimate": 78
+    }
+  },
+  {
+    "filename": "23601005023.stp",
+    "stem": "23601005023",
+    "extension": ".stp",
+    "size_bytes": 686045,
+    "size_formatted": "669.97 KB",
+    "modified_time": 1782801468.0,
+    "category": "管接件",
+    "parsed_info": {
+      "code": "23601005023",
+      "parts": [
+        "23601005023"
+      ],
+      "code_pattern": "other"
+    },
+    "geometry_params": {
+      "geometry": "cylinder",
+      "color": "#7cb342",
+      "metalness": 0.6,
+      "roughness": 0.3,
+      "scale": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "ASM0003_ASM",
+      "has_header": true,
+      "entity_count_estimate": 71,
+      "total_lines_estimate": 78
+    }
+  },
+  {
+    "filename": "23601012001.stp",
+    "stem": "23601012001",
+    "extension": ".stp",
+    "size_bytes": 85503,
+    "size_formatted": "83.50 KB",
+    "modified_time": 1782727562.0,
+    "category": "管接件",
+    "parsed_info": {
+      "code": "23601012001",
+      "parts": [
+        "23601012001"
+      ],
+      "code_pattern": "other"
+    },
+    "geometry_params": {
+      "geometry": "cylinder",
+      "color": "#7cb342",
+      "metalness": 0.6,
+      "roughness": 0.3,
+      "scale": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "FTY-04-009",
+      "has_header": true,
+      "entity_count_estimate": 88,
+      "total_lines_estimate": 95
+    }
+  },
+  {
+    "filename": "23601012001.stp",
+    "stem": "23601012001",
+    "extension": ".stp",
+    "size_bytes": 85503,
+    "size_formatted": "83.50 KB",
+    "modified_time": 1782727562.0,
+    "category": "管接件",
+    "parsed_info": {
+      "code": "23601012001",
+      "parts": [
+        "23601012001"
+      ],
+      "code_pattern": "other"
+    },
+    "geometry_params": {
+      "geometry": "cylinder",
+      "color": "#7cb342",
+      "metalness": 0.6,
+      "roughness": 0.3,
+      "scale": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "FTY-04-009",
+      "has_header": true,
+      "entity_count_estimate": 88,
+      "total_lines_estimate": 95
+    }
+  },
+  {
+    "filename": "23601012007.stp",
+    "stem": "23601012007",
+    "extension": ".stp",
+    "size_bytes": 98157,
+    "size_formatted": "95.86 KB",
+    "modified_time": 1782789860.0,
+    "category": "管接件",
+    "parsed_info": {
+      "code": "23601012007",
+      "parts": [
+        "23601012007"
+      ],
+      "code_pattern": "other"
+    },
+    "geometry_params": {
+      "geometry": "cylinder",
+      "color": "#7cb342",
+      "metalness": 0.6,
+      "roughness": 0.3,
+      "scale": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "FTY-04-010",
+      "has_header": true,
+      "entity_count_estimate": 82,
+      "total_lines_estimate": 89
+    }
+  },
+  {
+    "filename": "23601012007.stp",
+    "stem": "23601012007",
+    "extension": ".stp",
+    "size_bytes": 98157,
+    "size_formatted": "95.86 KB",
+    "modified_time": 1782789860.0,
+    "category": "管接件",
+    "parsed_info": {
+      "code": "23601012007",
+      "parts": [
+        "23601012007"
+      ],
+      "code_pattern": "other"
+    },
+    "geometry_params": {
+      "geometry": "cylinder",
+      "color": "#7cb342",
+      "metalness": 0.6,
+      "roughness": 0.3,
+      "scale": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "FTY-04-010",
+      "has_header": true,
+      "entity_count_estimate": 82,
+      "total_lines_estimate": 89
+    }
+  },
+  {
+    "filename": "23601012008.stp",
+    "stem": "23601012008",
+    "extension": ".stp",
+    "size_bytes": 1460188,
+    "size_formatted": "1.39 MB",
+    "modified_time": 1782790016.0,
+    "category": "管接件",
+    "parsed_info": {
+      "code": "23601012008",
+      "parts": [
+        "23601012008"
+      ],
+      "code_pattern": "other"
+    },
+    "geometry_params": {
+      "geometry": "cylinder",
+      "color": "#7cb342",
+      "metalness": 0.6,
+      "roughness": 0.3,
+      "scale": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "MDM1818-C_ASM_ASM",
+      "has_header": true,
+      "entity_count_estimate": 70,
+      "total_lines_estimate": 83
+    }
+  },
+  {
+    "filename": "23601012008.stp",
+    "stem": "23601012008",
+    "extension": ".stp",
+    "size_bytes": 1460188,
+    "size_formatted": "1.39 MB",
+    "modified_time": 1782790016.0,
+    "category": "管接件",
+    "parsed_info": {
+      "code": "23601012008",
+      "parts": [
+        "23601012008"
+      ],
+      "code_pattern": "other"
+    },
+    "geometry_params": {
+      "geometry": "cylinder",
+      "color": "#7cb342",
+      "metalness": 0.6,
+      "roughness": 0.3,
+      "scale": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "MDM1818-C_ASM_ASM",
+      "has_header": true,
+      "entity_count_estimate": 70,
+      "total_lines_estimate": 83
+    }
+  },
+  {
+    "filename": "23601012010.stp",
+    "stem": "23601012010",
+    "extension": ".stp",
+    "size_bytes": 718040,
+    "size_formatted": "701.21 KB",
+    "modified_time": 1782806814.0,
+    "category": "管接件",
+    "parsed_info": {
+      "code": "23601012010",
+      "parts": [
+        "23601012010"
+      ],
+      "code_pattern": "other"
+    },
+    "geometry_params": {
+      "geometry": "cylinder",
+      "color": "#7cb342",
+      "metalness": 0.6,
+      "roughness": 0.3,
+      "scale": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "MDM1818-A_ASM_ASM",
+      "has_header": true,
+      "entity_count_estimate": 88,
+      "total_lines_estimate": 97
+    }
+  },
+  {
+    "filename": "23601012010.stp",
+    "stem": "23601012010",
+    "extension": ".stp",
+    "size_bytes": 718040,
+    "size_formatted": "701.21 KB",
+    "modified_time": 1782806814.0,
+    "category": "管接件",
+    "parsed_info": {
+      "code": "23601012010",
+      "parts": [
+        "23601012010"
+      ],
+      "code_pattern": "other"
+    },
+    "geometry_params": {
+      "geometry": "cylinder",
+      "color": "#7cb342",
+      "metalness": 0.6,
+      "roughness": 0.3,
+      "scale": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "MDM1818-A_ASM_ASM",
+      "has_header": true,
+      "entity_count_estimate": 88,
+      "total_lines_estimate": 97
+    }
+  },
+  {
+    "filename": "23601013005.stp",
+    "stem": "23601013005",
+    "extension": ".stp",
+    "size_bytes": 81451,
+    "size_formatted": "79.54 KB",
+    "modified_time": 1782727510.0,
+    "category": "管接件",
+    "parsed_info": {
+      "code": "23601013005",
+      "parts": [
+        "23601013005"
+      ],
+      "code_pattern": "other"
+    },
+    "geometry_params": {
+      "geometry": "cylinder",
+      "color": "#7cb342",
+      "metalness": 0.6,
+      "roughness": 0.3,
+      "scale": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "FTY-04-018",
+      "has_header": true,
+      "entity_count_estimate": 82,
+      "total_lines_estimate": 89
+    }
+  },
+  {
+    "filename": "23601013005.stp",
+    "stem": "23601013005",
+    "extension": ".stp",
+    "size_bytes": 81451,
+    "size_formatted": "79.54 KB",
+    "modified_time": 1782727510.0,
+    "category": "管接件",
+    "parsed_info": {
+      "code": "23601013005",
+      "parts": [
+        "23601013005"
+      ],
+      "code_pattern": "other"
+    },
+    "geometry_params": {
+      "geometry": "cylinder",
+      "color": "#7cb342",
+      "metalness": 0.6,
+      "roughness": 0.3,
+      "scale": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "FTY-04-018",
+      "has_header": true,
+      "entity_count_estimate": 82,
+      "total_lines_estimate": 89
+    }
+  },
+  {
+    "filename": "23601203003.stp",
+    "stem": "23601203003",
+    "extension": ".stp",
+    "size_bytes": 755624,
+    "size_formatted": "737.91 KB",
+    "modified_time": 1782789374.0,
+    "category": "管接件",
+    "parsed_info": {
+      "code": "23601203003",
+      "parts": [
+        "23601203003"
+      ],
+      "code_pattern": "other"
+    },
+    "geometry_params": {
+      "geometry": "cylinder",
+      "color": "#7cb342",
+      "metalness": 0.6,
+      "roughness": 0.3,
+      "scale": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "1812-A_1",
+      "has_header": true,
+      "entity_count_estimate": 110,
+      "total_lines_estimate": 118
+    }
+  },
+  {
+    "filename": "23601203003.stp",
+    "stem": "23601203003",
+    "extension": ".stp",
+    "size_bytes": 755624,
+    "size_formatted": "737.91 KB",
+    "modified_time": 1782789374.0,
+    "category": "管接件",
+    "parsed_info": {
+      "code": "23601203003",
+      "parts": [
+        "23601203003"
+      ],
+      "code_pattern": "other"
+    },
+    "geometry_params": {
+      "geometry": "cylinder",
+      "color": "#7cb342",
+      "metalness": 0.6,
+      "roughness": 0.3,
+      "scale": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "1812-A_1",
+      "has_header": true,
+      "entity_count_estimate": 110,
+      "total_lines_estimate": 118
+    }
+  },
+  {
+    "filename": "23601208295.stp",
+    "stem": "23601208295",
+    "extension": ".stp",
+    "size_bytes": 124492,
+    "size_formatted": "121.57 KB",
+    "modified_time": 1782723560.0,
+    "category": "管接件",
+    "parsed_info": {
+      "code": "23601208295",
+      "parts": [
+        "23601208295"
+      ],
+      "code_pattern": "other"
+    },
+    "geometry_params": {
+      "geometry": "cylinder",
+      "color": "#7cb342",
+      "metalness": 0.6,
+      "roughness": 0.3,
+      "scale": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "3FEN0001",
+      "has_header": true,
+      "entity_count_estimate": 114,
+      "total_lines_estimate": 122
+    }
+  },
+  {
+    "filename": "23601208295.stp",
+    "stem": "23601208295",
+    "extension": ".stp",
+    "size_bytes": 124492,
+    "size_formatted": "121.57 KB",
+    "modified_time": 1782723560.0,
+    "category": "管接件",
+    "parsed_info": {
+      "code": "23601208295",
+      "parts": [
+        "23601208295"
+      ],
+      "code_pattern": "other"
+    },
+    "geometry_params": {
+      "geometry": "cylinder",
+      "color": "#7cb342",
+      "metalness": 0.6,
+      "roughness": 0.3,
+      "scale": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "3FEN0001",
+      "has_header": true,
+      "entity_count_estimate": 114,
+      "total_lines_estimate": 122
+    }
+  },
+  {
+    "filename": "23601232001.stp",
+    "stem": "23601232001",
+    "extension": ".stp",
+    "size_bytes": 48964,
+    "size_formatted": "47.82 KB",
+    "modified_time": 1782720878.0,
+    "category": "管接件",
+    "parsed_info": {
+      "code": "23601232001",
+      "parts": [
+        "23601232001"
+      ],
+      "code_pattern": "other"
+    },
+    "geometry_params": {
+      "geometry": "cylinder",
+      "color": "#7cb342",
+      "metalness": 0.6,
+      "roughness": 0.3,
+      "scale": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "FTY-04-027",
+      "has_header": true,
+      "entity_count_estimate": 108,
+      "total_lines_estimate": 115
+    }
+  },
+  {
+    "filename": "23601232001.stp",
+    "stem": "23601232001",
+    "extension": ".stp",
+    "size_bytes": 48964,
+    "size_formatted": "47.82 KB",
+    "modified_time": 1782720878.0,
+    "category": "管接件",
+    "parsed_info": {
+      "code": "23601232001",
+      "parts": [
+        "23601232001"
+      ],
+      "code_pattern": "other"
+    },
+    "geometry_params": {
+      "geometry": "cylinder",
+      "color": "#7cb342",
+      "metalness": 0.6,
+      "roughness": 0.3,
+      "scale": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "FTY-04-027",
+      "has_header": true,
+      "entity_count_estimate": 108,
+      "total_lines_estimate": 115
+    }
+  },
+  {
+    "filename": "23601232002.stp",
+    "stem": "23601232002",
+    "extension": ".stp",
+    "size_bytes": 32679,
+    "size_formatted": "31.91 KB",
+    "modified_time": 1782803578.0,
+    "category": "管接件",
+    "parsed_info": {
+      "code": "23601232002",
+      "parts": [
+        "23601232002"
+      ],
+      "code_pattern": "other"
+    },
+    "geometry_params": {
+      "geometry": "cylinder",
+      "color": "#7cb342",
+      "metalness": 0.6,
+      "roughness": 0.3,
+      "scale": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "PRT0007",
+      "has_header": true,
+      "entity_count_estimate": 117,
+      "total_lines_estimate": 124
+    }
+  },
+  {
+    "filename": "23601232002.stp",
+    "stem": "23601232002",
+    "extension": ".stp",
+    "size_bytes": 32679,
+    "size_formatted": "31.91 KB",
+    "modified_time": 1782803578.0,
+    "category": "管接件",
+    "parsed_info": {
+      "code": "23601232002",
+      "parts": [
+        "23601232002"
+      ],
+      "code_pattern": "other"
+    },
+    "geometry_params": {
+      "geometry": "cylinder",
+      "color": "#7cb342",
+      "metalness": 0.6,
+      "roughness": 0.3,
+      "scale": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "PRT0007",
+      "has_header": true,
+      "entity_count_estimate": 117,
+      "total_lines_estimate": 124
+    }
+  },
+  {
+    "filename": "2BJ01001520.stp",
+    "stem": "2BJ01001520",
+    "extension": ".stp",
+    "size_bytes": 1581757,
+    "size_formatted": "1.51 MB",
+    "modified_time": 1782790382.0,
+    "category": "管接件",
+    "parsed_info": {
+      "code": "2BJ01001520",
+      "parts": [
+        "2BJ01001520"
+      ],
+      "code_pattern": "numeric_prefix"
+    },
+    "geometry_params": {
+      "geometry": "cylinder",
+      "color": "#7cb342",
+      "metalness": 0.6,
+      "roughness": 0.3,
+      "scale": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "MDM1803-D_ASM_ASM",
+      "has_header": true,
+      "entity_count_estimate": 62,
+      "total_lines_estimate": 70
+    }
+  },
+  {
+    "filename": "2BJ01001520.stp",
+    "stem": "2BJ01001520",
+    "extension": ".stp",
+    "size_bytes": 1581757,
+    "size_formatted": "1.51 MB",
+    "modified_time": 1782790382.0,
+    "category": "管接件",
+    "parsed_info": {
+      "code": "2BJ01001520",
+      "parts": [
+        "2BJ01001520"
+      ],
+      "code_pattern": "numeric_prefix"
+    },
+    "geometry_params": {
+      "geometry": "cylinder",
+      "color": "#7cb342",
+      "metalness": 0.6,
+      "roughness": 0.3,
+      "scale": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "MDM1803-D_ASM_ASM",
+      "has_header": true,
+      "entity_count_estimate": 62,
+      "total_lines_estimate": 70
+    }
+  },
+  {
+    "filename": "2BJ01001521.stp",
+    "stem": "2BJ01001521",
+    "extension": ".stp",
+    "size_bytes": 113971,
+    "size_formatted": "111.30 KB",
+    "modified_time": 1782889110.0,
+    "category": "管接件",
+    "parsed_info": {
+      "code": "2BJ01001521",
+      "parts": [
+        "2BJ01001521"
+      ],
+      "code_pattern": "numeric_prefix"
+    },
+    "geometry_params": {
+      "geometry": "cylinder",
+      "color": "#7cb342",
+      "metalness": 0.6,
+      "roughness": 0.3,
+      "scale": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "PRT0002",
+      "has_header": true,
+      "entity_count_estimate": 118,
+      "total_lines_estimate": 125
+    }
+  },
+  {
+    "filename": "2BJ01001521.stp",
+    "stem": "2BJ01001521",
+    "extension": ".stp",
+    "size_bytes": 113971,
+    "size_formatted": "111.30 KB",
+    "modified_time": 1782889110.0,
+    "category": "管接件",
+    "parsed_info": {
+      "code": "2BJ01001521",
+      "parts": [
+        "2BJ01001521"
+      ],
+      "code_pattern": "numeric_prefix"
+    },
+    "geometry_params": {
+      "geometry": "cylinder",
+      "color": "#7cb342",
+      "metalness": 0.6,
+      "roughness": 0.3,
+      "scale": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "PRT0002",
+      "has_header": true,
+      "entity_count_estimate": 118,
+      "total_lines_estimate": 125
+    }
+  },
+  {
+    "filename": "2CH01001013.stp",
+    "stem": "2CH01001013",
+    "extension": ".stp",
+    "size_bytes": 164631,
+    "size_formatted": "160.77 KB",
+    "modified_time": 1783406568.0,
+    "category": "管接件",
+    "parsed_info": {
+      "code": "2CH01001013",
+      "parts": [
+        "2CH01001013"
+      ],
+      "code_pattern": "numeric_prefix"
+    },
+    "geometry_params": {
+      "geometry": "cylinder",
+      "color": "#7cb342",
+      "metalness": 0.6,
+      "roughness": 0.3,
+      "scale": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "2WANGUANJIA",
+      "has_header": true,
+      "entity_count_estimate": 120,
+      "total_lines_estimate": 127
+    }
+  },
+  {
+    "filename": "2CH01001013.stp",
+    "stem": "2CH01001013",
+    "extension": ".stp",
+    "size_bytes": 164631,
+    "size_formatted": "160.77 KB",
+    "modified_time": 1783406568.0,
+    "category": "管接件",
+    "parsed_info": {
+      "code": "2CH01001013",
+      "parts": [
+        "2CH01001013"
+      ],
+      "code_pattern": "numeric_prefix"
+    },
+    "geometry_params": {
+      "geometry": "cylinder",
+      "color": "#7cb342",
+      "metalness": 0.6,
+      "roughness": 0.3,
+      "scale": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "2WANGUANJIA",
+      "has_header": true,
+      "entity_count_estimate": 120,
+      "total_lines_estimate": 127
+    }
+  },
+  {
+    "filename": "2CH01002007.stp",
+    "stem": "2CH01002007",
+    "extension": ".stp",
+    "size_bytes": 311983,
+    "size_formatted": "304.67 KB",
+    "modified_time": 1782801094.0,
+    "category": "管接件",
+    "parsed_info": {
+      "code": "2CH01002007",
+      "parts": [
+        "2CH01002007"
+      ],
+      "code_pattern": "numeric_prefix"
+    },
+    "geometry_params": {
+      "geometry": "cylinder",
+      "color": "#7cb342",
+      "metalness": 0.6,
+      "roughness": 0.3,
+      "scale": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "NL0404",
+      "has_header": true,
+      "entity_count_estimate": 65,
+      "total_lines_estimate": 72
+    }
+  },
+  {
+    "filename": "2CH01002007.stp",
+    "stem": "2CH01002007",
+    "extension": ".stp",
+    "size_bytes": 311983,
+    "size_formatted": "304.67 KB",
+    "modified_time": 1782801094.0,
+    "category": "管接件",
+    "parsed_info": {
+      "code": "2CH01002007",
+      "parts": [
+        "2CH01002007"
+      ],
+      "code_pattern": "numeric_prefix"
+    },
+    "geometry_params": {
+      "geometry": "cylinder",
+      "color": "#7cb342",
+      "metalness": 0.6,
+      "roughness": 0.3,
+      "scale": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "NL0404",
+      "has_header": true,
+      "entity_count_estimate": 65,
+      "total_lines_estimate": 72
+    }
+  },
+  {
+    "filename": "2CH01002008.stp",
+    "stem": "2CH01002008",
+    "extension": ".stp",
+    "size_bytes": 766903,
+    "size_formatted": "748.93 KB",
+    "modified_time": 1782805524.0,
+    "category": "管接件",
+    "parsed_info": {
+      "code": "2CH01002008",
+      "parts": [
+        "2CH01002008"
+      ],
+      "code_pattern": "numeric_prefix"
+    },
+    "geometry_params": {
+      "geometry": "cylinder",
+      "color": "#7cb342",
+      "metalness": 0.6,
+      "roughness": 0.3,
+      "scale": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "PRT0004_5",
+      "has_header": true,
+      "entity_count_estimate": 113,
+      "total_lines_estimate": 120
+    }
+  },
+  {
+    "filename": "2CH01002008.stp",
+    "stem": "2CH01002008",
+    "extension": ".stp",
+    "size_bytes": 766903,
+    "size_formatted": "748.93 KB",
+    "modified_time": 1782805524.0,
+    "category": "管接件",
+    "parsed_info": {
+      "code": "2CH01002008",
+      "parts": [
+        "2CH01002008"
+      ],
+      "code_pattern": "numeric_prefix"
+    },
+    "geometry_params": {
+      "geometry": "cylinder",
+      "color": "#7cb342",
+      "metalness": 0.6,
+      "roughness": 0.3,
+      "scale": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "PRT0004_5",
+      "has_header": true,
+      "entity_count_estimate": 113,
+      "total_lines_estimate": 120
+    }
+  },
+  {
+    "filename": "2CH01002009.stp",
+    "stem": "2CH01002009",
+    "extension": ".stp",
+    "size_bytes": 248538,
+    "size_formatted": "242.71 KB",
+    "modified_time": 1782801108.0,
+    "category": "管接件",
+    "parsed_info": {
+      "code": "2CH01002009",
+      "parts": [
+        "2CH01002009"
+      ],
+      "code_pattern": "numeric_prefix"
+    },
+    "geometry_params": {
+      "geometry": "cylinder",
+      "color": "#7cb342",
+      "metalness": 0.6,
+      "roughness": 0.3,
+      "scale": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "NI0404",
+      "has_header": true,
+      "entity_count_estimate": 78,
+      "total_lines_estimate": 86
+    }
+  },
+  {
+    "filename": "2CH01002009.stp",
+    "stem": "2CH01002009",
+    "extension": ".stp",
+    "size_bytes": 248538,
+    "size_formatted": "242.71 KB",
+    "modified_time": 1782801108.0,
+    "category": "管接件",
+    "parsed_info": {
+      "code": "2CH01002009",
+      "parts": [
+        "2CH01002009"
+      ],
+      "code_pattern": "numeric_prefix"
+    },
+    "geometry_params": {
+      "geometry": "cylinder",
+      "color": "#7cb342",
+      "metalness": 0.6,
+      "roughness": 0.3,
+      "scale": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "NI0404",
+      "has_header": true,
+      "entity_count_estimate": 78,
+      "total_lines_estimate": 86
+    }
+  },
+  {
+    "filename": "2CH01002013.stp",
+    "stem": "2CH01002013",
+    "extension": ".stp",
+    "size_bytes": 848503,
+    "size_formatted": "828.62 KB",
+    "modified_time": 1782790068.0,
+    "category": "管接件",
+    "parsed_info": {
+      "code": "2CH01002013",
+      "parts": [
+        "2CH01002013"
+      ],
+      "code_pattern": "numeric_prefix"
+    },
+    "geometry_params": {
+      "geometry": "cylinder",
+      "color": "#7cb342",
+      "metalness": 0.6,
+      "roughness": 0.3,
+      "scale": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "MDM1808-A_ASM_ASM",
+      "has_header": true,
+      "entity_count_estimate": 84,
+      "total_lines_estimate": 94
+    }
+  },
+  {
+    "filename": "2CH01002013.stp",
+    "stem": "2CH01002013",
+    "extension": ".stp",
+    "size_bytes": 848503,
+    "size_formatted": "828.62 KB",
+    "modified_time": 1782790068.0,
+    "category": "管接件",
+    "parsed_info": {
+      "code": "2CH01002013",
+      "parts": [
+        "2CH01002013"
+      ],
+      "code_pattern": "numeric_prefix"
+    },
+    "geometry_params": {
+      "geometry": "cylinder",
+      "color": "#7cb342",
+      "metalness": 0.6,
+      "roughness": 0.3,
+      "scale": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "MDM1808-A_ASM_ASM",
+      "has_header": true,
+      "entity_count_estimate": 84,
+      "total_lines_estimate": 94
+    }
+  },
+  {
+    "filename": "2CH01002016.stp",
+    "stem": "2CH01002016",
+    "extension": ".stp",
+    "size_bytes": 54559,
+    "size_formatted": "53.28 KB",
+    "modified_time": 1782789552.0,
+    "category": "管接件",
+    "parsed_info": {
+      "code": "2CH01002016",
+      "parts": [
+        "2CH01002016"
+      ],
+      "code_pattern": "numeric_prefix"
+    },
+    "geometry_params": {
+      "geometry": "cylinder",
+      "color": "#7cb342",
+      "metalness": 0.6,
+      "roughness": 0.3,
+      "scale": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "FTY-04-017",
+      "has_header": true,
+      "entity_count_estimate": 80,
+      "total_lines_estimate": 87
+    }
+  },
+  {
+    "filename": "2CH01002016.stp",
+    "stem": "2CH01002016",
+    "extension": ".stp",
+    "size_bytes": 54559,
+    "size_formatted": "53.28 KB",
+    "modified_time": 1782789552.0,
+    "category": "管接件",
+    "parsed_info": {
+      "code": "2CH01002016",
+      "parts": [
+        "2CH01002016"
+      ],
+      "code_pattern": "numeric_prefix"
+    },
+    "geometry_params": {
+      "geometry": "cylinder",
+      "color": "#7cb342",
+      "metalness": 0.6,
+      "roughness": 0.3,
+      "scale": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "FTY-04-017",
+      "has_header": true,
+      "entity_count_estimate": 80,
+      "total_lines_estimate": 87
+    }
+  },
+  {
+    "filename": "2CH01002018.stp",
+    "stem": "2CH01002018",
+    "extension": ".stp",
+    "size_bytes": 1568615,
+    "size_formatted": "1.50 MB",
+    "modified_time": 1782790212.0,
+    "category": "管接件",
+    "parsed_info": {
+      "code": "2CH01002018",
+      "parts": [
+        "2CH01002018"
+      ],
+      "code_pattern": "numeric_prefix"
+    },
+    "geometry_params": {
+      "geometry": "cylinder",
+      "color": "#7cb342",
+      "metalness": 0.6,
+      "roughness": 0.3,
+      "scale": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "MDM1803-C_ASM_ASM",
+      "has_header": true,
+      "entity_count_estimate": 117,
+      "total_lines_estimate": 124
+    }
+  },
+  {
+    "filename": "2CH01002018.stp",
+    "stem": "2CH01002018",
+    "extension": ".stp",
+    "size_bytes": 1568615,
+    "size_formatted": "1.50 MB",
+    "modified_time": 1782790212.0,
+    "category": "管接件",
+    "parsed_info": {
+      "code": "2CH01002018",
+      "parts": [
+        "2CH01002018"
+      ],
+      "code_pattern": "numeric_prefix"
+    },
+    "geometry_params": {
+      "geometry": "cylinder",
+      "color": "#7cb342",
+      "metalness": 0.6,
+      "roughness": 0.3,
+      "scale": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "MDM1803-C_ASM_ASM",
+      "has_header": true,
+      "entity_count_estimate": 117,
+      "total_lines_estimate": 124
+    }
+  },
+  {
+    "filename": "2CH01002019.stp",
+    "stem": "2CH01002019",
+    "extension": ".stp",
+    "size_bytes": 1626124,
+    "size_formatted": "1.55 MB",
+    "modified_time": 1782790302.0,
+    "category": "管接件",
+    "parsed_info": {
+      "code": "2CH01002019",
+      "parts": [
+        "2CH01002019"
+      ],
+      "code_pattern": "numeric_prefix"
+    },
+    "geometry_params": {
+      "geometry": "cylinder",
+      "color": "#7cb342",
+      "metalness": 0.6,
+      "roughness": 0.3,
+      "scale": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "MDM1803-G_ASM_ASM",
+      "has_header": true,
+      "entity_count_estimate": 114,
+      "total_lines_estimate": 121
+    }
+  },
+  {
+    "filename": "2CH01002019.stp",
+    "stem": "2CH01002019",
+    "extension": ".stp",
+    "size_bytes": 1626124,
+    "size_formatted": "1.55 MB",
+    "modified_time": 1782790302.0,
+    "category": "管接件",
+    "parsed_info": {
+      "code": "2CH01002019",
+      "parts": [
+        "2CH01002019"
+      ],
+      "code_pattern": "numeric_prefix"
+    },
+    "geometry_params": {
+      "geometry": "cylinder",
+      "color": "#7cb342",
+      "metalness": 0.6,
+      "roughness": 0.3,
+      "scale": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "MDM1803-G_ASM_ASM",
+      "has_header": true,
+      "entity_count_estimate": 114,
+      "total_lines_estimate": 121
+    }
+  },
+  {
+    "filename": "2CH01002020.stp",
+    "stem": "2CH01002020",
+    "extension": ".stp",
+    "size_bytes": 98157,
+    "size_formatted": "95.86 KB",
+    "modified_time": 1782804420.0,
+    "category": "管接件",
+    "parsed_info": {
+      "code": "2CH01002020",
+      "parts": [
+        "2CH01002020"
+      ],
+      "code_pattern": "numeric_prefix"
+    },
+    "geometry_params": {
+      "geometry": "cylinder",
+      "color": "#7cb342",
+      "metalness": 0.6,
+      "roughness": 0.3,
+      "scale": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "FTY-04-010",
+      "has_header": true,
+      "entity_count_estimate": 82,
+      "total_lines_estimate": 89
+    }
+  },
+  {
+    "filename": "2CH01002020.stp",
+    "stem": "2CH01002020",
+    "extension": ".stp",
+    "size_bytes": 98157,
+    "size_formatted": "95.86 KB",
+    "modified_time": 1782804420.0,
+    "category": "管接件",
+    "parsed_info": {
+      "code": "2CH01002020",
+      "parts": [
+        "2CH01002020"
+      ],
+      "code_pattern": "numeric_prefix"
+    },
+    "geometry_params": {
+      "geometry": "cylinder",
+      "color": "#7cb342",
+      "metalness": 0.6,
+      "roughness": 0.3,
+      "scale": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "FTY-04-010",
+      "has_header": true,
+      "entity_count_estimate": 82,
+      "total_lines_estimate": 89
+    }
+  },
+  {
+    "filename": "2CH01002021.stp",
+    "stem": "2CH01002021",
+    "extension": ".stp",
+    "size_bytes": 686023,
+    "size_formatted": "669.94 KB",
+    "modified_time": 1782798600.0,
+    "category": "管接件",
+    "parsed_info": {
+      "code": "2CH01002021",
+      "parts": [
+        "2CH01002021"
+      ],
+      "code_pattern": "numeric_prefix"
+    },
+    "geometry_params": {
+      "geometry": "cylinder",
+      "color": "#7cb342",
+      "metalness": 0.6,
+      "roughness": 0.3,
+      "scale": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "MDM1814-C_ASM_ASM",
+      "has_header": true,
+      "entity_count_estimate": 71,
+      "total_lines_estimate": 78
+    }
+  },
+  {
+    "filename": "2CH01002021.stp",
+    "stem": "2CH01002021",
+    "extension": ".stp",
+    "size_bytes": 686023,
+    "size_formatted": "669.94 KB",
+    "modified_time": 1782798600.0,
+    "category": "管接件",
+    "parsed_info": {
+      "code": "2CH01002021",
+      "parts": [
+        "2CH01002021"
+      ],
+      "code_pattern": "numeric_prefix"
+    },
+    "geometry_params": {
+      "geometry": "cylinder",
+      "color": "#7cb342",
+      "metalness": 0.6,
+      "roughness": 0.3,
+      "scale": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "MDM1814-C_ASM_ASM",
+      "has_header": true,
+      "entity_count_estimate": 71,
+      "total_lines_estimate": 78
+    }
+  },
+  {
+    "filename": "2CH01002022.stp",
+    "stem": "2CH01002022",
+    "extension": ".stp",
+    "size_bytes": 349203,
+    "size_formatted": "341.02 KB",
+    "modified_time": 1782801166.0,
+    "category": "管接件",
+    "parsed_info": {
+      "code": "2CH01002022",
+      "parts": [
+        "2CH01002022"
+      ],
+      "code_pattern": "numeric_prefix"
+    },
+    "geometry_params": {
+      "geometry": "cylinder",
+      "color": "#7cb342",
+      "metalness": 0.6,
+      "roughness": 0.3,
+      "scale": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "NL0406",
+      "has_header": true,
+      "entity_count_estimate": 64,
+      "total_lines_estimate": 71
+    }
+  },
+  {
+    "filename": "2CH01002022.stp",
+    "stem": "2CH01002022",
+    "extension": ".stp",
+    "size_bytes": 349203,
+    "size_formatted": "341.02 KB",
+    "modified_time": 1782801166.0,
+    "category": "管接件",
+    "parsed_info": {
+      "code": "2CH01002022",
+      "parts": [
+        "2CH01002022"
+      ],
+      "code_pattern": "numeric_prefix"
+    },
+    "geometry_params": {
+      "geometry": "cylinder",
+      "color": "#7cb342",
+      "metalness": 0.6,
+      "roughness": 0.3,
+      "scale": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "NL0406",
+      "has_header": true,
+      "entity_count_estimate": 64,
+      "total_lines_estimate": 71
+    }
+  },
+  {
+    "filename": "2CH01002024.stp",
+    "stem": "2CH01002024",
+    "extension": ".stp",
+    "size_bytes": 1663406,
+    "size_formatted": "1.59 MB",
+    "modified_time": 1782807344.0,
+    "category": "管接件",
+    "parsed_info": {
+      "code": "2CH01002024",
+      "parts": [
+        "2CH01002024"
+      ],
+      "code_pattern": "numeric_prefix"
+    },
+    "geometry_params": {
+      "geometry": "cylinder",
+      "color": "#7cb342",
+      "metalness": 0.6,
+      "roughness": 0.3,
+      "scale": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "PL0606",
+      "has_header": true,
+      "entity_count_estimate": 84,
+      "total_lines_estimate": 91
+    }
+  },
+  {
+    "filename": "2CH01002024.stp",
+    "stem": "2CH01002024",
+    "extension": ".stp",
+    "size_bytes": 1663406,
+    "size_formatted": "1.59 MB",
+    "modified_time": 1782807344.0,
+    "category": "管接件",
+    "parsed_info": {
+      "code": "2CH01002024",
+      "parts": [
+        "2CH01002024"
+      ],
+      "code_pattern": "numeric_prefix"
+    },
+    "geometry_params": {
+      "geometry": "cylinder",
+      "color": "#7cb342",
+      "metalness": 0.6,
+      "roughness": 0.3,
+      "scale": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "PL0606",
+      "has_header": true,
+      "entity_count_estimate": 84,
+      "total_lines_estimate": 91
+    }
+  },
+  {
+    "filename": "2CH01002025.stp",
+    "stem": "2CH01002025",
+    "extension": ".stp",
+    "size_bytes": 505414,
+    "size_formatted": "493.57 KB",
+    "modified_time": 1782807518.0,
+    "category": "管接件",
+    "parsed_info": {
+      "code": "2CH01002025",
+      "parts": [
+        "2CH01002025"
+      ],
+      "code_pattern": "numeric_prefix"
+    },
+    "geometry_params": {
+      "geometry": "cylinder",
+      "color": "#7cb342",
+      "metalness": 0.6,
+      "roughness": 0.3,
+      "scale": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "FTY-04-009_2_1_1_1_1_1_0_0_0__2",
+      "has_header": true,
+      "entity_count_estimate": 122,
+      "total_lines_estimate": 130
+    }
+  },
+  {
+    "filename": "2CH01002025.stp",
+    "stem": "2CH01002025",
+    "extension": ".stp",
+    "size_bytes": 505414,
+    "size_formatted": "493.57 KB",
+    "modified_time": 1782807518.0,
+    "category": "管接件",
+    "parsed_info": {
+      "code": "2CH01002025",
+      "parts": [
+        "2CH01002025"
+      ],
+      "code_pattern": "numeric_prefix"
+    },
+    "geometry_params": {
+      "geometry": "cylinder",
+      "color": "#7cb342",
+      "metalness": 0.6,
+      "roughness": 0.3,
+      "scale": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "FTY-04-009_2_1_1_1_1_1_0_0_0__2",
+      "has_header": true,
+      "entity_count_estimate": 122,
+      "total_lines_estimate": 130
+    }
+  },
+  {
+    "filename": "2CH01002026.stp",
+    "stem": "2CH01002026",
+    "extension": ".stp",
+    "size_bytes": 58298,
+    "size_formatted": "56.93 KB",
+    "modified_time": 1782804450.0,
+    "category": "管接件",
+    "parsed_info": {
+      "code": "2CH01002026",
+      "parts": [
+        "2CH01002026"
+      ],
+      "code_pattern": "numeric_prefix"
+    },
+    "geometry_params": {
+      "geometry": "cylinder",
+      "color": "#7cb342",
+      "metalness": 0.6,
+      "roughness": 0.3,
+      "scale": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "ERFEN-ZT_1_1_1",
+      "has_header": true,
+      "entity_count_estimate": 82,
+      "total_lines_estimate": 89
+    }
+  },
+  {
+    "filename": "2CH01002026.stp",
+    "stem": "2CH01002026",
+    "extension": ".stp",
+    "size_bytes": 58298,
+    "size_formatted": "56.93 KB",
+    "modified_time": 1782804450.0,
+    "category": "管接件",
+    "parsed_info": {
+      "code": "2CH01002026",
+      "parts": [
+        "2CH01002026"
+      ],
+      "code_pattern": "numeric_prefix"
+    },
+    "geometry_params": {
+      "geometry": "cylinder",
+      "color": "#7cb342",
+      "metalness": 0.6,
+      "roughness": 0.3,
+      "scale": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "ERFEN-ZT_1_1_1",
+      "has_header": true,
+      "entity_count_estimate": 82,
+      "total_lines_estimate": 89
+    }
+  },
+  {
+    "filename": "2CH01002027.stp",
+    "stem": "2CH01002027",
+    "extension": ".stp",
+    "size_bytes": 56693,
+    "size_formatted": "55.36 KB",
+    "modified_time": 1782804494.0,
+    "category": "管接件",
+    "parsed_info": {
+      "code": "2CH01002027",
+      "parts": [
+        "2CH01002027"
+      ],
+      "code_pattern": "numeric_prefix"
+    },
+    "geometry_params": {
+      "geometry": "cylinder",
+      "color": "#7cb342",
+      "metalness": 0.6,
+      "roughness": 0.3,
+      "scale": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "FTY-04-009",
+      "has_header": true,
+      "entity_count_estimate": 83,
+      "total_lines_estimate": 90
+    }
+  },
+  {
+    "filename": "2CH01002027.stp",
+    "stem": "2CH01002027",
+    "extension": ".stp",
+    "size_bytes": 56693,
+    "size_formatted": "55.36 KB",
+    "modified_time": 1782804494.0,
+    "category": "管接件",
+    "parsed_info": {
+      "code": "2CH01002027",
+      "parts": [
+        "2CH01002027"
+      ],
+      "code_pattern": "numeric_prefix"
+    },
+    "geometry_params": {
+      "geometry": "cylinder",
+      "color": "#7cb342",
+      "metalness": 0.6,
+      "roughness": 0.3,
+      "scale": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "FTY-04-009",
+      "has_header": true,
+      "entity_count_estimate": 83,
+      "total_lines_estimate": 90
+    }
+  },
+  {
+    "filename": "2CH01002031.stp",
+    "stem": "2CH01002031",
+    "extension": ".stp",
+    "size_bytes": 54560,
+    "size_formatted": "53.28 KB",
+    "modified_time": 1782804528.0,
+    "category": "管接件",
+    "parsed_info": {
+      "code": "2CH01002031",
+      "parts": [
+        "2CH01002031"
+      ],
+      "code_pattern": "numeric_prefix"
+    },
+    "geometry_params": {
+      "geometry": "cylinder",
+      "color": "#7cb342",
+      "metalness": 0.6,
+      "roughness": 0.3,
+      "scale": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "FTY-04-017",
+      "has_header": true,
+      "entity_count_estimate": 80,
+      "total_lines_estimate": 87
+    }
+  },
+  {
+    "filename": "2CH01002031.stp",
+    "stem": "2CH01002031",
+    "extension": ".stp",
+    "size_bytes": 54560,
+    "size_formatted": "53.28 KB",
+    "modified_time": 1782804528.0,
+    "category": "管接件",
+    "parsed_info": {
+      "code": "2CH01002031",
+      "parts": [
+        "2CH01002031"
+      ],
+      "code_pattern": "numeric_prefix"
+    },
+    "geometry_params": {
+      "geometry": "cylinder",
+      "color": "#7cb342",
+      "metalness": 0.6,
+      "roughness": 0.3,
+      "scale": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "FTY-04-017",
+      "has_header": true,
+      "entity_count_estimate": 80,
+      "total_lines_estimate": 87
+    }
+  },
+  {
+    "filename": "2CH01003008.stp",
+    "stem": "2CH01003008",
+    "extension": ".stp",
+    "size_bytes": 41628,
+    "size_formatted": "40.65 KB",
+    "modified_time": 1783069774.0,
+    "category": "管接件",
+    "parsed_info": {
+      "code": "2CH01003008",
+      "parts": [
+        "2CH01003008"
+      ],
+      "code_pattern": "numeric_prefix"
+    },
+    "geometry_params": {
+      "geometry": "cylinder",
+      "color": "#7cb342",
+      "metalness": 0.6,
+      "roughness": 0.3,
+      "scale": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "2_50001",
+      "has_header": true,
+      "entity_count_estimate": 101,
+      "total_lines_estimate": 108
+    }
+  },
+  {
+    "filename": "2CH01003008.stp",
+    "stem": "2CH01003008",
+    "extension": ".stp",
+    "size_bytes": 41628,
+    "size_formatted": "40.65 KB",
+    "modified_time": 1783069774.0,
+    "category": "管接件",
+    "parsed_info": {
+      "code": "2CH01003008",
+      "parts": [
+        "2CH01003008"
+      ],
+      "code_pattern": "numeric_prefix"
+    },
+    "geometry_params": {
+      "geometry": "cylinder",
+      "color": "#7cb342",
+      "metalness": 0.6,
+      "roughness": 0.3,
+      "scale": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "2_50001",
+      "has_header": true,
+      "entity_count_estimate": 101,
+      "total_lines_estimate": 108
+    }
+  },
+  {
+    "filename": "2CH01018006.stp",
+    "stem": "2CH01018006",
+    "extension": ".stp",
+    "size_bytes": 33544,
+    "size_formatted": "32.76 KB",
+    "modified_time": 1782889196.0,
+    "category": "管接件",
+    "parsed_info": {
+      "code": "2CH01018006",
+      "parts": [
+        "2CH01018006"
+      ],
+      "code_pattern": "numeric_prefix"
+    },
+    "geometry_params": {
+      "geometry": "cylinder",
+      "color": "#7cb342",
+      "metalness": 0.6,
+      "roughness": 0.3,
+      "scale": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "23601232001",
+      "has_header": true,
+      "entity_count_estimate": 113,
+      "total_lines_estimate": 120
+    }
+  },
+  {
+    "filename": "2CH01018006.stp",
+    "stem": "2CH01018006",
+    "extension": ".stp",
+    "size_bytes": 33544,
+    "size_formatted": "32.76 KB",
+    "modified_time": 1782889196.0,
+    "category": "管接件",
+    "parsed_info": {
+      "code": "2CH01018006",
+      "parts": [
+        "2CH01018006"
+      ],
+      "code_pattern": "numeric_prefix"
+    },
+    "geometry_params": {
+      "geometry": "cylinder",
+      "color": "#7cb342",
+      "metalness": 0.6,
+      "roughness": 0.3,
+      "scale": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "23601232001",
+      "has_header": true,
+      "entity_count_estimate": 113,
+      "total_lines_estimate": 120
+    }
+  },
+  {
+    "filename": "2DL01001006.stp",
+    "stem": "2DL01001006",
+    "extension": ".stp",
+    "size_bytes": 1035500,
+    "size_formatted": "1011.23 KB",
+    "modified_time": 1782790732.0,
+    "category": "管接件",
+    "parsed_info": {
+      "code": "2DL01001006",
+      "parts": [
+        "2DL01001006"
+      ],
+      "code_pattern": "numeric_prefix"
+    },
+    "geometry_params": {
+      "geometry": "cylinder",
+      "color": "#7cb342",
+      "metalness": 0.6,
+      "roughness": 0.3,
+      "scale": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "MDM1803-B_ASM_ASM",
+      "has_header": true,
+      "entity_count_estimate": 117,
+      "total_lines_estimate": 124
+    }
+  },
+  {
+    "filename": "2DL01001006.stp",
+    "stem": "2DL01001006",
+    "extension": ".stp",
+    "size_bytes": 1035500,
+    "size_formatted": "1011.23 KB",
+    "modified_time": 1782790732.0,
+    "category": "管接件",
+    "parsed_info": {
+      "code": "2DL01001006",
+      "parts": [
+        "2DL01001006"
+      ],
+      "code_pattern": "numeric_prefix"
+    },
+    "geometry_params": {
+      "geometry": "cylinder",
+      "color": "#7cb342",
+      "metalness": 0.6,
+      "roughness": 0.3,
+      "scale": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "MDM1803-B_ASM_ASM",
+      "has_header": true,
+      "entity_count_estimate": 117,
+      "total_lines_estimate": 124
+    }
+  },
+  {
+    "filename": "2DL01001008.stp",
+    "stem": "2DL01001008",
+    "extension": ".stp",
+    "size_bytes": 1628376,
+    "size_formatted": "1.55 MB",
+    "modified_time": 1782789790.0,
+    "category": "管接件",
+    "parsed_info": {
+      "code": "2DL01001008",
+      "parts": [
+        "2DL01001008"
+      ],
+      "code_pattern": "numeric_prefix"
+    },
+    "geometry_params": {
+      "geometry": "cylinder",
+      "color": "#7cb342",
+      "metalness": 0.6,
+      "roughness": 0.3,
+      "scale": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "3_0001_ASM",
+      "has_header": true,
+      "entity_count_estimate": 75,
+      "total_lines_estimate": 90
+    }
+  },
+  {
+    "filename": "2DL01001008.stp",
+    "stem": "2DL01001008",
+    "extension": ".stp",
+    "size_bytes": 1628376,
+    "size_formatted": "1.55 MB",
+    "modified_time": 1782789790.0,
+    "category": "管接件",
+    "parsed_info": {
+      "code": "2DL01001008",
+      "parts": [
+        "2DL01001008"
+      ],
+      "code_pattern": "numeric_prefix"
+    },
+    "geometry_params": {
+      "geometry": "cylinder",
+      "color": "#7cb342",
+      "metalness": 0.6,
+      "roughness": 0.3,
+      "scale": [
+        0.8,
+        1.2,
+        0.8
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "3_0001_ASM",
+      "has_header": true,
+      "entity_count_estimate": 75,
+      "total_lines_estimate": 90
+    }
+  },
+  {
+    "filename": "28806001084.stp",
+    "stem": "28806001084",
+    "extension": ".stp",
+    "size_bytes": 1360211,
+    "size_formatted": "1.30 MB",
+    "modified_time": 1782894664.0,
+    "category": "螺钉",
+    "parsed_info": {
+      "code": "28806001084",
+      "parts": [
+        "28806001084"
+      ],
+      "code_pattern": "other"
+    },
+    "geometry_params": {
+      "geometry": "screw",
+      "color": "#888888",
+      "metalness": 0.95,
+      "roughness": 0.05,
+      "scale": [
+        0.6,
+        1.6,
+        0.6
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "GB818_M5X25",
+      "has_header": true,
+      "entity_count_estimate": 67,
+      "total_lines_estimate": 103
+    }
+  },
+  {
+    "filename": "28806001084.stp",
+    "stem": "28806001084",
+    "extension": ".stp",
+    "size_bytes": 1360211,
+    "size_formatted": "1.30 MB",
+    "modified_time": 1782894664.0,
+    "category": "螺钉",
+    "parsed_info": {
+      "code": "28806001084",
+      "parts": [
+        "28806001084"
+      ],
+      "code_pattern": "other"
+    },
+    "geometry_params": {
+      "geometry": "screw",
+      "color": "#888888",
+      "metalness": 0.95,
+      "roughness": 0.05,
+      "scale": [
+        0.6,
+        1.6,
+        0.6
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "GB818_M5X25",
+      "has_header": true,
+      "entity_count_estimate": 67,
+      "total_lines_estimate": 103
+    }
+  },
+  {
+    "filename": "28806001187.stp",
+    "stem": "28806001187",
+    "extension": ".stp",
+    "size_bytes": 867949,
+    "size_formatted": "847.61 KB",
+    "modified_time": 1782895016.0,
+    "category": "螺钉",
+    "parsed_info": {
+      "code": "28806001187",
+      "parts": [
+        "28806001187"
+      ],
+      "code_pattern": "other"
+    },
+    "geometry_params": {
+      "geometry": "screw",
+      "color": "#888888",
+      "metalness": 0.95,
+      "roughness": 0.05,
+      "scale": [
+        0.6,
+        1.6,
+        0.6
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "GB818_M5X16",
+      "has_header": true,
+      "entity_count_estimate": 67,
+      "total_lines_estimate": 103
+    }
+  },
+  {
+    "filename": "28806001187.stp",
+    "stem": "28806001187",
+    "extension": ".stp",
+    "size_bytes": 867949,
+    "size_formatted": "847.61 KB",
+    "modified_time": 1782895016.0,
+    "category": "螺钉",
+    "parsed_info": {
+      "code": "28806001187",
+      "parts": [
+        "28806001187"
+      ],
+      "code_pattern": "other"
+    },
+    "geometry_params": {
+      "geometry": "screw",
+      "color": "#888888",
+      "metalness": 0.95,
+      "roughness": 0.05,
+      "scale": [
+        0.6,
+        1.6,
+        0.6
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "GB818_M5X16",
+      "has_header": true,
+      "entity_count_estimate": 67,
+      "total_lines_estimate": 103
+    }
+  },
+  {
+    "filename": "28806002012.stp",
+    "stem": "28806002012",
+    "extension": ".stp",
+    "size_bytes": 306706,
+    "size_formatted": "299.52 KB",
+    "modified_time": 1782876868.0,
+    "category": "螺钉",
+    "parsed_info": {
+      "code": "28806002012",
+      "parts": [
+        "28806002012"
+      ],
+      "code_pattern": "other"
+    },
+    "geometry_params": {
+      "geometry": "screw",
+      "color": "#888888",
+      "metalness": 0.95,
+      "roughness": 0.05,
+      "scale": [
+        0.6,
+        1.6,
+        0.6
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "_GB_T845-2017_16450001",
+      "has_header": true,
+      "entity_count_estimate": 75,
+      "total_lines_estimate": 85
+    }
+  },
+  {
+    "filename": "28806002012.stp",
+    "stem": "28806002012",
+    "extension": ".stp",
+    "size_bytes": 306706,
+    "size_formatted": "299.52 KB",
+    "modified_time": 1782876868.0,
+    "category": "螺钉",
+    "parsed_info": {
+      "code": "28806002012",
+      "parts": [
+        "28806002012"
+      ],
+      "code_pattern": "other"
+    },
+    "geometry_params": {
+      "geometry": "screw",
+      "color": "#888888",
+      "metalness": 0.95,
+      "roughness": 0.05,
+      "scale": [
+        0.6,
+        1.6,
+        0.6
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "_GB_T845-2017_16450001",
+      "has_header": true,
+      "entity_count_estimate": 75,
+      "total_lines_estimate": 85
+    }
+  },
+  {
+    "filename": "28806002019.stp",
+    "stem": "28806002019",
+    "extension": ".stp",
+    "size_bytes": 312288,
+    "size_formatted": "304.97 KB",
+    "modified_time": 1782886034.0,
+    "category": "螺钉",
+    "parsed_info": {
+      "code": "28806002019",
+      "parts": [
+        "28806002019"
+      ],
+      "code_pattern": "other"
+    },
+    "geometry_params": {
+      "geometry": "screw",
+      "color": "#888888",
+      "metalness": 0.95,
+      "roughness": 0.05,
+      "scale": [
+        0.6,
+        1.6,
+        0.6
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "28806002312",
+      "has_header": true,
+      "entity_count_estimate": 77,
+      "total_lines_estimate": 84
+    }
+  },
+  {
+    "filename": "28806002019.stp",
+    "stem": "28806002019",
+    "extension": ".stp",
+    "size_bytes": 312288,
+    "size_formatted": "304.97 KB",
+    "modified_time": 1782886034.0,
+    "category": "螺钉",
+    "parsed_info": {
+      "code": "28806002019",
+      "parts": [
+        "28806002019"
+      ],
+      "code_pattern": "other"
+    },
+    "geometry_params": {
+      "geometry": "screw",
+      "color": "#888888",
+      "metalness": 0.95,
+      "roughness": 0.05,
+      "scale": [
+        0.6,
+        1.6,
+        0.6
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "28806002312",
+      "has_header": true,
+      "entity_count_estimate": 77,
+      "total_lines_estimate": 84
+    }
+  },
+  {
+    "filename": "28806002039.stp",
+    "stem": "28806002039",
+    "extension": ".stp",
+    "size_bytes": 317709,
+    "size_formatted": "310.26 KB",
+    "modified_time": 1782885966.0,
+    "category": "螺钉",
+    "parsed_info": {
+      "code": "28806002039",
+      "parts": [
+        "28806002039"
+      ],
+      "code_pattern": "other"
+    },
+    "geometry_params": {
+      "geometry": "screw",
+      "color": "#888888",
+      "metalness": 0.95,
+      "roughness": 0.05,
+      "scale": [
+        0.6,
+        1.6,
+        0.6
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "_GB_T845-2017_16450004",
+      "has_header": true,
+      "entity_count_estimate": 75,
+      "total_lines_estimate": 85
+    }
+  },
+  {
+    "filename": "28806002039.stp",
+    "stem": "28806002039",
+    "extension": ".stp",
+    "size_bytes": 317709,
+    "size_formatted": "310.26 KB",
+    "modified_time": 1782885966.0,
+    "category": "螺钉",
+    "parsed_info": {
+      "code": "28806002039",
+      "parts": [
+        "28806002039"
+      ],
+      "code_pattern": "other"
+    },
+    "geometry_params": {
+      "geometry": "screw",
+      "color": "#888888",
+      "metalness": 0.95,
+      "roughness": 0.05,
+      "scale": [
+        0.6,
+        1.6,
+        0.6
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "_GB_T845-2017_16450004",
+      "has_header": true,
+      "entity_count_estimate": 75,
+      "total_lines_estimate": 85
+    }
+  },
+  {
+    "filename": "28806002048.stp",
+    "stem": "28806002048",
+    "extension": ".stp",
+    "size_bytes": 293251,
+    "size_formatted": "286.38 KB",
+    "modified_time": 1782885730.0,
+    "category": "螺钉",
+    "parsed_info": {
+      "code": "28806002048",
+      "parts": [
+        "28806002048"
+      ],
+      "code_pattern": "other"
+    },
+    "geometry_params": {
+      "geometry": "screw",
+      "color": "#888888",
+      "metalness": 0.95,
+      "roughness": 0.05,
+      "scale": [
+        0.6,
+        1.6,
+        0.6
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "_GB_T845-2017_16450002",
+      "has_header": true,
+      "entity_count_estimate": 74,
+      "total_lines_estimate": 83
+    }
+  },
+  {
+    "filename": "28806002048.stp",
+    "stem": "28806002048",
+    "extension": ".stp",
+    "size_bytes": 293251,
+    "size_formatted": "286.38 KB",
+    "modified_time": 1782885730.0,
+    "category": "螺钉",
+    "parsed_info": {
+      "code": "28806002048",
+      "parts": [
+        "28806002048"
+      ],
+      "code_pattern": "other"
+    },
+    "geometry_params": {
+      "geometry": "screw",
+      "color": "#888888",
+      "metalness": 0.95,
+      "roughness": 0.05,
+      "scale": [
+        0.6,
+        1.6,
+        0.6
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "_GB_T845-2017_16450002",
+      "has_header": true,
+      "entity_count_estimate": 74,
+      "total_lines_estimate": 83
+    }
+  },
+  {
+    "filename": "28806002076.stp",
+    "stem": "28806002076",
+    "extension": ".stp",
+    "size_bytes": 311179,
+    "size_formatted": "303.89 KB",
+    "modified_time": 1782885862.0,
+    "category": "螺钉",
+    "parsed_info": {
+      "code": "28806002076",
+      "parts": [
+        "28806002076"
+      ],
+      "code_pattern": "other"
+    },
+    "geometry_params": {
+      "geometry": "screw",
+      "color": "#888888",
+      "metalness": 0.95,
+      "roughness": 0.05,
+      "scale": [
+        0.6,
+        1.6,
+        0.6
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "_GB_T845-2017_16450003",
+      "has_header": true,
+      "entity_count_estimate": 75,
+      "total_lines_estimate": 85
+    }
+  },
+  {
+    "filename": "28806002076.stp",
+    "stem": "28806002076",
+    "extension": ".stp",
+    "size_bytes": 311179,
+    "size_formatted": "303.89 KB",
+    "modified_time": 1782885862.0,
+    "category": "螺钉",
+    "parsed_info": {
+      "code": "28806002076",
+      "parts": [
+        "28806002076"
+      ],
+      "code_pattern": "other"
+    },
+    "geometry_params": {
+      "geometry": "screw",
+      "color": "#888888",
+      "metalness": 0.95,
+      "roughness": 0.05,
+      "scale": [
+        0.6,
+        1.6,
+        0.6
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "_GB_T845-2017_16450003",
+      "has_header": true,
+      "entity_count_estimate": 75,
+      "total_lines_estimate": 85
+    }
+  },
+  {
+    "filename": "28806002250.stp",
+    "stem": "28806002250",
+    "extension": ".stp",
+    "size_bytes": 304673,
+    "size_formatted": "297.53 KB",
+    "modified_time": 1782893126.0,
+    "category": "螺钉",
+    "parsed_info": {
+      "code": "28806002250",
+      "parts": [
+        "28806002250"
+      ],
+      "code_pattern": "other"
+    },
+    "geometry_params": {
+      "geometry": "screw",
+      "color": "#888888",
+      "metalness": 0.95,
+      "roughness": 0.05,
+      "scale": [
+        0.6,
+        1.6,
+        0.6
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "_GB_T845-2017_16450005",
+      "has_header": true,
+      "entity_count_estimate": 75,
+      "total_lines_estimate": 85
+    }
+  },
+  {
+    "filename": "28806002250.stp",
+    "stem": "28806002250",
+    "extension": ".stp",
+    "size_bytes": 304673,
+    "size_formatted": "297.53 KB",
+    "modified_time": 1782893126.0,
+    "category": "螺钉",
+    "parsed_info": {
+      "code": "28806002250",
+      "parts": [
+        "28806002250"
+      ],
+      "code_pattern": "other"
+    },
+    "geometry_params": {
+      "geometry": "screw",
+      "color": "#888888",
+      "metalness": 0.95,
+      "roughness": 0.05,
+      "scale": [
+        0.6,
+        1.6,
+        0.6
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "_GB_T845-2017_16450005",
+      "has_header": true,
+      "entity_count_estimate": 75,
+      "total_lines_estimate": 85
+    }
+  },
+  {
+    "filename": "28806002312.stp",
+    "stem": "28806002312",
+    "extension": ".stp",
+    "size_bytes": 309870,
+    "size_formatted": "302.61 KB",
+    "modified_time": 1782885364.0,
+    "category": "螺钉",
+    "parsed_info": {
+      "code": "28806002312",
+      "parts": [
+        "28806002312"
+      ],
+      "code_pattern": "other"
+    },
+    "geometry_params": {
+      "geometry": "screw",
+      "color": "#888888",
+      "metalness": 0.95,
+      "roughness": 0.05,
+      "scale": [
+        0.6,
+        1.6,
+        0.6
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "_GB_T845-2017_16510001",
+      "has_header": true,
+      "entity_count_estimate": 75,
+      "total_lines_estimate": 85
+    }
+  },
+  {
+    "filename": "28806002312.stp",
+    "stem": "28806002312",
+    "extension": ".stp",
+    "size_bytes": 309870,
+    "size_formatted": "302.61 KB",
+    "modified_time": 1782885364.0,
+    "category": "螺钉",
+    "parsed_info": {
+      "code": "28806002312",
+      "parts": [
+        "28806002312"
+      ],
+      "code_pattern": "other"
+    },
+    "geometry_params": {
+      "geometry": "screw",
+      "color": "#888888",
+      "metalness": 0.95,
+      "roughness": 0.05,
+      "scale": [
+        0.6,
+        1.6,
+        0.6
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "_GB_T845-2017_16510001",
+      "has_header": true,
+      "entity_count_estimate": 75,
+      "total_lines_estimate": 85
+    }
+  },
+  {
+    "filename": "28806006013.stp",
+    "stem": "28806006013",
+    "extension": ".stp",
+    "size_bytes": 958115,
+    "size_formatted": "935.66 KB",
+    "modified_time": 1782894862.0,
+    "category": "螺钉",
+    "parsed_info": {
+      "code": "28806006013",
+      "parts": [
+        "28806006013"
+      ],
+      "code_pattern": "other"
+    },
+    "geometry_params": {
+      "geometry": "screw",
+      "color": "#888888",
+      "metalness": 0.95,
+      "roughness": 0.05,
+      "scale": [
+        0.6,
+        1.6,
+        0.6
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "GBT_6170_M5",
+      "has_header": true,
+      "entity_count_estimate": 62,
+      "total_lines_estimate": 69
+    }
+  },
+  {
+    "filename": "28806006013.stp",
+    "stem": "28806006013",
+    "extension": ".stp",
+    "size_bytes": 958115,
+    "size_formatted": "935.66 KB",
+    "modified_time": 1782894862.0,
+    "category": "螺钉",
+    "parsed_info": {
+      "code": "28806006013",
+      "parts": [
+        "28806006013"
+      ],
+      "code_pattern": "other"
+    },
+    "geometry_params": {
+      "geometry": "screw",
+      "color": "#888888",
+      "metalness": 0.95,
+      "roughness": 0.05,
+      "scale": [
+        0.6,
+        1.6,
+        0.6
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "GBT_6170_M5",
+      "has_header": true,
+      "entity_count_estimate": 62,
+      "total_lines_estimate": 69
+    }
+  },
+  {
+    "filename": "23603101051gyd.stp",
+    "stem": "23603101051gyd",
+    "extension": ".stp",
+    "size_bytes": 10431493,
+    "size_formatted": "9.95 MB",
+    "modified_time": 1778548660.0,
+    "category": "适配器",
+    "parsed_info": {
+      "code": "23603101051gyd",
+      "parts": [
+        "23603101051gyd"
+      ],
+      "code_pattern": "numeric_prefix"
+    },
+    "geometry_params": {
+      "geometry": "cone",
+      "color": "#ff7043",
+      "metalness": 0.7,
+      "roughness": 0.25,
+      "scale": [
+        1.0,
+        1.5,
+        1.0
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "CMA72-DG_ASM_18_ASM_1_ASM",
+      "has_header": true,
+      "entity_count_estimate": 89,
+      "total_lines_estimate": 96
+    }
+  },
+  {
+    "filename": "23603101051gyd.stp",
+    "stem": "23603101051gyd",
+    "extension": ".stp",
+    "size_bytes": 10431493,
+    "size_formatted": "9.95 MB",
+    "modified_time": 1778548660.0,
+    "category": "适配器",
+    "parsed_info": {
+      "code": "23603101051gyd",
+      "parts": [
+        "23603101051gyd"
+      ],
+      "code_pattern": "numeric_prefix"
+    },
+    "geometry_params": {
+      "geometry": "cone",
+      "color": "#ff7043",
+      "metalness": 0.7,
+      "roughness": 0.25,
+      "scale": [
+        1.0,
+        1.5,
+        1.0
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "CMA72-DG_ASM_18_ASM_1_ASM",
+      "has_header": true,
+      "entity_count_estimate": 89,
+      "total_lines_estimate": 96
+    }
+  },
+  {
+    "filename": "23603101051yw.stp",
+    "stem": "23603101051yw",
+    "extension": ".stp",
+    "size_bytes": 7963299,
+    "size_formatted": "7.59 MB",
+    "modified_time": 1782983742.0,
+    "category": "适配器",
+    "parsed_info": {
+      "code": "23603101051yw",
+      "parts": [
+        "23603101051yw"
+      ],
+      "code_pattern": "numeric_prefix"
+    },
+    "geometry_params": {
+      "geometry": "cone",
+      "color": "#ff7043",
+      "metalness": 0.7,
+      "roughness": 0.25,
+      "scale": [
+        1.0,
+        1.5,
+        1.0
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "_JYW-RP1627C-3D-240001_ASM",
+      "has_header": true,
+      "entity_count_estimate": 70,
+      "total_lines_estimate": 78
+    }
+  },
+  {
+    "filename": "23603101051yw.stp",
+    "stem": "23603101051yw",
+    "extension": ".stp",
+    "size_bytes": 7963299,
+    "size_formatted": "7.59 MB",
+    "modified_time": 1782983742.0,
+    "category": "适配器",
+    "parsed_info": {
+      "code": "23603101051yw",
+      "parts": [
+        "23603101051yw"
+      ],
+      "code_pattern": "numeric_prefix"
+    },
+    "geometry_params": {
+      "geometry": "cone",
+      "color": "#ff7043",
+      "metalness": 0.7,
+      "roughness": 0.25,
+      "scale": [
+        1.0,
+        1.5,
+        1.0
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "_JYW-RP1627C-3D-240001_ASM",
+      "has_header": true,
+      "entity_count_estimate": 70,
+      "total_lines_estimate": 78
+    }
+  },
+  {
+    "filename": "23603101053gyd.stp",
+    "stem": "23603101053gyd",
+    "extension": ".stp",
+    "size_bytes": 15683459,
+    "size_formatted": "14.96 MB",
+    "modified_time": 1778549224.0,
+    "category": "适配器",
+    "parsed_info": {
+      "code": "23603101053gyd",
+      "parts": [
+        "23603101053gyd"
+      ],
+      "code_pattern": "numeric_prefix"
+    },
+    "geometry_params": {
+      "geometry": "cone",
+      "color": "#ff7043",
+      "metalness": 0.7,
+      "roughness": 0.25,
+      "scale": [
+        1.0,
+        1.5,
+        1.0
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "_JYW-RP1616-24V-2A0001_ASM",
+      "has_header": true,
+      "entity_count_estimate": 97,
+      "total_lines_estimate": 104
+    }
+  },
+  {
+    "filename": "23603101053gyd.stp",
+    "stem": "23603101053gyd",
+    "extension": ".stp",
+    "size_bytes": 15683459,
+    "size_formatted": "14.96 MB",
+    "modified_time": 1778549224.0,
+    "category": "适配器",
+    "parsed_info": {
+      "code": "23603101053gyd",
+      "parts": [
+        "23603101053gyd"
+      ],
+      "code_pattern": "numeric_prefix"
+    },
+    "geometry_params": {
+      "geometry": "cone",
+      "color": "#ff7043",
+      "metalness": 0.7,
+      "roughness": 0.25,
+      "scale": [
+        1.0,
+        1.5,
+        1.0
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "_JYW-RP1616-24V-2A0001_ASM",
+      "has_header": true,
+      "entity_count_estimate": 97,
+      "total_lines_estimate": 104
+    }
+  },
+  {
+    "filename": "23603101053hy.stp",
+    "stem": "23603101053hy",
+    "extension": ".stp",
+    "size_bytes": 9865464,
+    "size_formatted": "9.41 MB",
+    "modified_time": 1782983308.0,
+    "category": "适配器",
+    "parsed_info": {
+      "code": "23603101053hy",
+      "parts": [
+        "23603101053hy"
+      ],
+      "code_pattern": "numeric_prefix"
+    },
+    "geometry_params": {
+      "geometry": "cone",
+      "color": "#ff7043",
+      "metalness": 0.7,
+      "roughness": 0.25,
+      "scale": [
+        1.0,
+        1.5,
+        1.0
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "ASM0001_ASM",
+      "has_header": true,
+      "entity_count_estimate": 102,
+      "total_lines_estimate": 109
+    }
+  },
+  {
+    "filename": "23603101053hy.stp",
+    "stem": "23603101053hy",
+    "extension": ".stp",
+    "size_bytes": 9865464,
+    "size_formatted": "9.41 MB",
+    "modified_time": 1782983308.0,
+    "category": "适配器",
+    "parsed_info": {
+      "code": "23603101053hy",
+      "parts": [
+        "23603101053hy"
+      ],
+      "code_pattern": "numeric_prefix"
+    },
+    "geometry_params": {
+      "geometry": "cone",
+      "color": "#ff7043",
+      "metalness": 0.7,
+      "roughness": 0.25,
+      "scale": [
+        1.0,
+        1.5,
+        1.0
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "ASM0001_ASM",
+      "has_header": true,
+      "entity_count_estimate": 102,
+      "total_lines_estimate": 109
+    }
+  },
+  {
+    "filename": "23603101053yw.stp",
+    "stem": "23603101053yw",
+    "extension": ".stp",
+    "size_bytes": 17568598,
+    "size_formatted": "16.75 MB",
+    "modified_time": 1782983296.0,
+    "category": "适配器",
+    "parsed_info": {
+      "code": "23603101053yw",
+      "parts": [
+        "23603101053yw"
+      ],
+      "code_pattern": "numeric_prefix"
+    },
+    "geometry_params": {
+      "geometry": "cone",
+      "color": "#ff7043",
+      "metalness": 0.7,
+      "roughness": 0.25,
+      "scale": [
+        1.0,
+        1.5,
+        1.0
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "_JYW-RP1616-3D-24V0001_ASM",
+      "has_header": true,
+      "entity_count_estimate": 84,
+      "total_lines_estimate": 92
+    }
+  },
+  {
+    "filename": "23603101053yw.stp",
+    "stem": "23603101053yw",
+    "extension": ".stp",
+    "size_bytes": 17568598,
+    "size_formatted": "16.75 MB",
+    "modified_time": 1782983296.0,
+    "category": "适配器",
+    "parsed_info": {
+      "code": "23603101053yw",
+      "parts": [
+        "23603101053yw"
+      ],
+      "code_pattern": "numeric_prefix"
+    },
+    "geometry_params": {
+      "geometry": "cone",
+      "color": "#ff7043",
+      "metalness": 0.7,
+      "roughness": 0.25,
+      "scale": [
+        1.0,
+        1.5,
+        1.0
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "_JYW-RP1616-3D-24V0001_ASM",
+      "has_header": true,
+      "entity_count_estimate": 84,
+      "total_lines_estimate": 92
+    }
+  },
+  {
+    "filename": "2CH03001001gyd.stp",
+    "stem": "2CH03001001gyd",
+    "extension": ".stp",
+    "size_bytes": 19103459,
+    "size_formatted": "18.22 MB",
+    "modified_time": 1782978136.0,
+    "category": "适配器",
+    "parsed_info": {
+      "code": "2CH03001001gyd",
+      "parts": [
+        "2CH03001001gyd"
+      ],
+      "code_pattern": "numeric_prefix"
+    },
+    "geometry_params": {
+      "geometry": "cone",
+      "color": "#ff7043",
+      "metalness": 0.7,
+      "roughness": 0.25,
+      "scale": [
+        1.0,
+        1.5,
+        1.0
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "CA130-DEF2_ASM_66_ASM_1_ASM_ASM",
+      "has_header": true,
+      "entity_count_estimate": 105,
+      "total_lines_estimate": 113
+    }
+  },
+  {
+    "filename": "2CH03001001gyd.stp",
+    "stem": "2CH03001001gyd",
+    "extension": ".stp",
+    "size_bytes": 19103459,
+    "size_formatted": "18.22 MB",
+    "modified_time": 1782978136.0,
+    "category": "适配器",
+    "parsed_info": {
+      "code": "2CH03001001gyd",
+      "parts": [
+        "2CH03001001gyd"
+      ],
+      "code_pattern": "numeric_prefix"
+    },
+    "geometry_params": {
+      "geometry": "cone",
+      "color": "#ff7043",
+      "metalness": 0.7,
+      "roughness": 0.25,
+      "scale": [
+        1.0,
+        1.5,
+        1.0
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "CA130-DEF2_ASM_66_ASM_1_ASM_ASM",
+      "has_header": true,
+      "entity_count_estimate": 105,
+      "total_lines_estimate": 113
+    }
+  },
+  {
+    "filename": "2CH03001003gyd.stp",
+    "stem": "2CH03001003gyd",
+    "extension": ".stp",
+    "size_bytes": 19103459,
+    "size_formatted": "18.22 MB",
+    "modified_time": 1782978154.0,
+    "category": "适配器",
+    "parsed_info": {
+      "code": "2CH03001003gyd",
+      "parts": [
+        "2CH03001003gyd"
+      ],
+      "code_pattern": "numeric_prefix"
+    },
+    "geometry_params": {
+      "geometry": "cone",
+      "color": "#ff7043",
+      "metalness": 0.7,
+      "roughness": 0.25,
+      "scale": [
+        1.0,
+        1.5,
+        1.0
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "CA130-DEF2_ASM_66_ASM_1_ASM_ASM",
+      "has_header": true,
+      "entity_count_estimate": 105,
+      "total_lines_estimate": 113
+    }
+  },
+  {
+    "filename": "2CH03001003gyd.stp",
+    "stem": "2CH03001003gyd",
+    "extension": ".stp",
+    "size_bytes": 19103459,
+    "size_formatted": "18.22 MB",
+    "modified_time": 1782978154.0,
+    "category": "适配器",
+    "parsed_info": {
+      "code": "2CH03001003gyd",
+      "parts": [
+        "2CH03001003gyd"
+      ],
+      "code_pattern": "numeric_prefix"
+    },
+    "geometry_params": {
+      "geometry": "cone",
+      "color": "#ff7043",
+      "metalness": 0.7,
+      "roughness": 0.25,
+      "scale": [
+        1.0,
+        1.5,
+        1.0
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "CA130-DEF2_ASM_66_ASM_1_ASM_ASM",
+      "has_header": true,
+      "entity_count_estimate": 105,
+      "total_lines_estimate": 113
+    }
+  },
+  {
+    "filename": "2CH03001008gyd.stp",
+    "stem": "2CH03001008gyd",
+    "extension": ".stp",
+    "size_bytes": 19103602,
+    "size_formatted": "18.22 MB",
+    "modified_time": 1782978850.0,
+    "category": "适配器",
+    "parsed_info": {
+      "code": "2CH03001008gyd",
+      "parts": [
+        "2CH03001008gyd"
+      ],
+      "code_pattern": "numeric_prefix"
+    },
+    "geometry_params": {
+      "geometry": "cone",
+      "color": "#ff7043",
+      "metalness": 0.7,
+      "roughness": 0.25,
+      "scale": [
+        1.0,
+        1.5,
+        1.0
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "CA130-DEF2_ASM_66_ASM_1_ASM_1_2_ASM",
+      "has_header": true,
+      "entity_count_estimate": 105,
+      "total_lines_estimate": 113
+    }
+  },
+  {
+    "filename": "2CH03001008gyd.stp",
+    "stem": "2CH03001008gyd",
+    "extension": ".stp",
+    "size_bytes": 19103602,
+    "size_formatted": "18.22 MB",
+    "modified_time": 1782978850.0,
+    "category": "适配器",
+    "parsed_info": {
+      "code": "2CH03001008gyd",
+      "parts": [
+        "2CH03001008gyd"
+      ],
+      "code_pattern": "numeric_prefix"
+    },
+    "geometry_params": {
+      "geometry": "cone",
+      "color": "#ff7043",
+      "metalness": 0.7,
+      "roughness": 0.25,
+      "scale": [
+        1.0,
+        1.5,
+        1.0
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "CA130-DEF2_ASM_66_ASM_1_ASM_1_2_ASM",
+      "has_header": true,
+      "entity_count_estimate": 105,
+      "total_lines_estimate": 113
+    }
+  },
+  {
+    "filename": "2CH03001011hy.stp",
+    "stem": "2CH03001011hy",
+    "extension": ".stp",
+    "size_bytes": 12533381,
+    "size_formatted": "11.95 MB",
+    "modified_time": 1782963196.0,
+    "category": "适配器",
+    "parsed_info": {
+      "code": "2CH03001011hy",
+      "parts": [
+        "2CH03001011hy"
+      ],
+      "code_pattern": "numeric_prefix"
+    },
+    "geometry_params": {
+      "geometry": "cone",
+      "color": "#ff7043",
+      "metalness": 0.7,
+      "roughness": 0.25,
+      "scale": [
+        1.0,
+        1.5,
+        1.0
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "120W_050B-3D_2_1_1_1_1_1",
+      "has_header": true,
+      "entity_count_estimate": 81,
+      "total_lines_estimate": 90
+    }
+  },
+  {
+    "filename": "2CH03001011hy.stp",
+    "stem": "2CH03001011hy",
+    "extension": ".stp",
+    "size_bytes": 12533381,
+    "size_formatted": "11.95 MB",
+    "modified_time": 1782963196.0,
+    "category": "适配器",
+    "parsed_info": {
+      "code": "2CH03001011hy",
+      "parts": [
+        "2CH03001011hy"
+      ],
+      "code_pattern": "numeric_prefix"
+    },
+    "geometry_params": {
+      "geometry": "cone",
+      "color": "#ff7043",
+      "metalness": 0.7,
+      "roughness": 0.25,
+      "scale": [
+        1.0,
+        1.5,
+        1.0
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "120W_050B-3D_2_1_1_1_1_1",
+      "has_header": true,
+      "entity_count_estimate": 81,
+      "total_lines_estimate": 90
+    }
+  },
+  {
+    "filename": "2CH03001012gyd.stp",
+    "stem": "2CH03001012gyd",
+    "extension": ".stp",
+    "size_bytes": 6966684,
+    "size_formatted": "6.64 MB",
+    "modified_time": 1782984020.0,
+    "category": "适配器",
+    "parsed_info": {
+      "code": "2CH03001012gyd",
+      "parts": [
+        "2CH03001012gyd"
+      ],
+      "code_pattern": "numeric_prefix"
+    },
+    "geometry_params": {
+      "geometry": "cone",
+      "color": "#ff7043",
+      "metalness": 0.7,
+      "roughness": 0.25,
+      "scale": [
+        1.0,
+        1.5,
+        1.0
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "_JYW-RP1623-3D--240001_ASM",
+      "has_header": true,
+      "entity_count_estimate": 73,
+      "total_lines_estimate": 81
+    }
+  },
+  {
+    "filename": "2CH03001012gyd.stp",
+    "stem": "2CH03001012gyd",
+    "extension": ".stp",
+    "size_bytes": 6966684,
+    "size_formatted": "6.64 MB",
+    "modified_time": 1782984020.0,
+    "category": "适配器",
+    "parsed_info": {
+      "code": "2CH03001012gyd",
+      "parts": [
+        "2CH03001012gyd"
+      ],
+      "code_pattern": "numeric_prefix"
+    },
+    "geometry_params": {
+      "geometry": "cone",
+      "color": "#ff7043",
+      "metalness": 0.7,
+      "roughness": 0.25,
+      "scale": [
+        1.0,
+        1.5,
+        1.0
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "_JYW-RP1623-3D--240001_ASM",
+      "has_header": true,
+      "entity_count_estimate": 73,
+      "total_lines_estimate": 81
+    }
+  },
+  {
+    "filename": "2CH03001012hy.stp",
+    "stem": "2CH03001012hy",
+    "extension": ".stp",
+    "size_bytes": 7258615,
+    "size_formatted": "6.92 MB",
+    "modified_time": 1782978370.0,
+    "category": "适配器",
+    "parsed_info": {
+      "code": "2CH03001012hy",
+      "parts": [
+        "2CH03001012hy"
+      ],
+      "code_pattern": "numeric_prefix"
+    },
+    "geometry_params": {
+      "geometry": "cone",
+      "color": "#ff7043",
+      "metalness": 0.7,
+      "roughness": 0.25,
+      "scale": [
+        1.0,
+        1.5,
+        1.0
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "ADMI20BC34EFGF4Z_ASM",
+      "has_header": true,
+      "entity_count_estimate": 71,
+      "total_lines_estimate": 78
+    }
+  },
+  {
+    "filename": "2CH03001012hy.stp",
+    "stem": "2CH03001012hy",
+    "extension": ".stp",
+    "size_bytes": 7258615,
+    "size_formatted": "6.92 MB",
+    "modified_time": 1782978370.0,
+    "category": "适配器",
+    "parsed_info": {
+      "code": "2CH03001012hy",
+      "parts": [
+        "2CH03001012hy"
+      ],
+      "code_pattern": "numeric_prefix"
+    },
+    "geometry_params": {
+      "geometry": "cone",
+      "color": "#ff7043",
+      "metalness": 0.7,
+      "roughness": 0.25,
+      "scale": [
+        1.0,
+        1.5,
+        1.0
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "ADMI20BC34EFGF4Z_ASM",
+      "has_header": true,
+      "entity_count_estimate": 71,
+      "total_lines_estimate": 78
+    }
+  },
+  {
+    "filename": "2CH03001012yw.stp",
+    "stem": "2CH03001012yw",
+    "extension": ".stp",
+    "size_bytes": 6874513,
+    "size_formatted": "6.56 MB",
+    "modified_time": 1782984106.0,
+    "category": "适配器",
+    "parsed_info": {
+      "code": "2CH03001012yw",
+      "parts": [
+        "2CH03001012yw"
+      ],
+      "code_pattern": "numeric_prefix"
+    },
+    "geometry_params": {
+      "geometry": "cone",
+      "color": "#ff7043",
+      "metalness": 0.7,
+      "roughness": 0.25,
+      "scale": [
+        1.0,
+        1.5,
+        1.0
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "_JYW-RP1623-3D-24V0001_ASM",
+      "has_header": true,
+      "entity_count_estimate": 80,
+      "total_lines_estimate": 89
+    }
+  },
+  {
+    "filename": "2CH03001012yw.stp",
+    "stem": "2CH03001012yw",
+    "extension": ".stp",
+    "size_bytes": 6874513,
+    "size_formatted": "6.56 MB",
+    "modified_time": 1782984106.0,
+    "category": "适配器",
+    "parsed_info": {
+      "code": "2CH03001012yw",
+      "parts": [
+        "2CH03001012yw"
+      ],
+      "code_pattern": "numeric_prefix"
+    },
+    "geometry_params": {
+      "geometry": "cone",
+      "color": "#ff7043",
+      "metalness": 0.7,
+      "roughness": 0.25,
+      "scale": [
+        1.0,
+        1.5,
+        1.0
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "_JYW-RP1623-3D-24V0001_ASM",
+      "has_header": true,
+      "entity_count_estimate": 80,
+      "total_lines_estimate": 89
+    }
+  },
+  {
+    "filename": "2CH03001013hy.stp",
+    "stem": "2CH03001013hy",
+    "extension": ".stp",
+    "size_bytes": 17842822,
+    "size_formatted": "17.02 MB",
+    "modified_time": 1782955292.0,
+    "category": "适配器",
+    "parsed_info": {
+      "code": "2CH03001013hy",
+      "parts": [
+        "2CH03001013hy"
+      ],
+      "code_pattern": "numeric_prefix"
+    },
+    "geometry_params": {
+      "geometry": "cone",
+      "color": "#ff7043",
+      "metalness": 0.7,
+      "roughness": 0.25,
+      "scale": [
+        1.0,
+        1.5,
+        1.0
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "L164_24V_6A_3D_SR__1",
+      "has_header": true,
+      "entity_count_estimate": 91,
+      "total_lines_estimate": 104
+    }
+  },
+  {
+    "filename": "2CH03001013hy.stp",
+    "stem": "2CH03001013hy",
+    "extension": ".stp",
+    "size_bytes": 17842822,
+    "size_formatted": "17.02 MB",
+    "modified_time": 1782955292.0,
+    "category": "适配器",
+    "parsed_info": {
+      "code": "2CH03001013hy",
+      "parts": [
+        "2CH03001013hy"
+      ],
+      "code_pattern": "numeric_prefix"
+    },
+    "geometry_params": {
+      "geometry": "cone",
+      "color": "#ff7043",
+      "metalness": 0.7,
+      "roughness": 0.25,
+      "scale": [
+        1.0,
+        1.5,
+        1.0
+      ]
+    },
+    "step_header": {
+      "FILE_NAME": "L164_24V_6A_3D_SR__1",
+      "has_header": true,
+      "entity_count_estimate": 91,
+      "total_lines_estimate": 104
+    }
+  }
+]

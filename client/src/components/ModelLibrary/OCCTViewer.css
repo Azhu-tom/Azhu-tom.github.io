@@ -1,0 +1,240 @@
+/* ==================== CAD Model Viewer - 稳定版样式 ==================== */
+
+.cmv-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 360px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+}
+
+/* 主容器 */
+.cmv-canvas-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 360px;
+  border-radius: 10px;
+  overflow: hidden;
+  cursor: grab;
+  background-color: #f8fafc;
+  border: 1px solid rgba(148, 163, 184, 0.25);
+  transition: border-color 0.3s ease;
+}
+.cmv-canvas-container:hover {
+  border-color: rgba(148, 163, 184, 0.45);
+}
+.cmv-canvas-container:active {
+  cursor: grabbing;
+}
+
+/* ==================== 加载状态 ==================== */
+.cmv-loading-overlay {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(145deg, #f1f5f9 0%, #e2e8f0 50%, #f1f5f9 100%);
+  z-index: 10;
+  gap: 14px;
+}
+
+/* 旋转动画 */
+.cmv-spinner {
+  width: 42px;
+  height: 42px;
+  border: 3px solid rgba(148, 163, 184, 0.2);
+  border-top-color: #475569;
+  border-radius: 50%;
+  animation: cmv-spin 0.8s linear infinite;
+}
+
+@keyframes cmv-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* 进度条 */
+.cmv-progress-bar {
+  width: 180px;
+  height: 5px;
+  background: rgba(0, 0, 0, 0.08);
+  border-radius: 3px;
+  overflow: hidden;
+}
+.cmv-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #475569, #64748b);
+  border-radius: 3px;
+  transition: width 0.3s ease;
+}
+
+/* 加载文字 */
+.cmv-loading-text {
+  color: #64748b;
+  font-size: 12.5px;
+  letter-spacing: 0.5px;
+}
+
+/* ==================== 控制栏 ==================== */
+.cmv-controls-bar {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: flex;
+  gap: 6px;
+  z-index: 5;
+}
+
+.cmv-ctrl-btn {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 5px 11px;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(148, 163, 184, 0.3);
+  border-radius: 6px;
+  color: #475569;
+  font-size: 11.5px;
+  cursor: pointer;
+  backdrop-filter: blur(12px);
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.cmv-ctrl-btn:hover {
+  background: rgba(255, 255, 255, 1);
+  border-color: #94a3b8;
+  color: #1e293b;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.cmv-ctrl-btn.active {
+  background: rgba(148, 163, 184, 0.15);
+  border-color: #64748b;
+  color: #334155;
+  font-weight: 600;
+}
+
+/* ==================== 模型信息栏 ==================== */
+.cmv-info-bar {
+  position: absolute;
+  bottom: 32px;
+  left: 10px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 5px 13px;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(148, 163, 184, 0.25);
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  z-index: 5;
+}
+
+.cmv-info-type {
+  color: #334155;
+  font-size: 11.5px;
+  font-weight: 600;
+}
+
+.cmv-info-detail {
+  color: #64748b;
+  font-size: 11px;
+}
+
+/* ==================== 底部提示栏 ==================== */
+.cmv-hint-bar {
+  text-align: center;
+  padding: 7px 0;
+  color: #94a3b8;
+  font-size: 11px;
+  background: transparent;
+  letter-spacing: 0.3px;
+  border-top: 1px solid rgba(148, 163, 184, 0.15);
+}
+
+/* ==================== 错误状态 ==================== */
+.cmv-container {
+  width: 100%;
+  border-radius: 10px;
+  overflow: hidden;
+  background: linear-gradient(145deg, #f1f5f9, #e2e8f0);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+}
+
+.cmv-error-overlay {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 280px;
+  padding: 40px 24px;
+  text-align: center;
+  gap: 12px;
+}
+
+.cmv-error-icon {
+  font-size: 44px;
+  line-height: 1;
+}
+
+.cmv-error-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #dc2626;
+  margin-top: 4px;
+}
+
+.cmv-error-msg {
+  color: #ef4444;
+  font-size: 12.5px;
+  max-width: 320px;
+  line-height: 1.55;
+  word-break: break-word;
+}
+
+.cmv-retry-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 8px;
+  padding: 8px 22px;
+  background: #475569;
+  border: none;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.cmv-retry-btn:hover {
+  background: #334155;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+}
+
+/* ==================== 响应式适配 ==================== */
+@media (max-width: 768px) {
+  .cmv-controls-bar {
+    top: 6px;
+    right: 6px;
+    gap: 4px;
+  }
+  .cmv-ctrl-btn {
+    padding: 4px 8px;
+    font-size: 10.5px;
+  }
+  .cmv-info-bar {
+    bottom: 28px;
+    left: 6px;
+    padding: 4px 10px;
+  }
+  .cmv-hint-bar {
+    font-size: 10px;
+    padding: 6px 0;
+  }
+}

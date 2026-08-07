@@ -1,0 +1,47 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+build/
+
+# Environment variables
+.env
+.env.local
+
+# Logs
+logs/
+*.log
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Uploads (临时上传文件)
+server/uploads/
+
+# 本地工作记忆（含 API key 等敏感信息，私有不传）
+.workbuddy/
+
+# 临时测试目录
+_tmp_bom_test/
+
+# 历史/便携版（独立项目，不随本仓库分发）
+结构工程师AI助手_0710版本一/
+水家电产品开发AI助手_便携版/
+
+# 通用件模型库资料（87 个 STP 模型，用 Git LFS 单独上传）
+通用件模型库资料/
+
+# 临时数据文件
+test_bom_backup.xlsx
+净水机产品设计规范20260629.xlsx
+
+# 父目录的启动脚本
+启动网站.bat
