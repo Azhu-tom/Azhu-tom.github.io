@@ -1,21 +1,22 @@
 # GitHub Pages 自动部署工作流
-# 每次推送 main 分支 → 自动构建 + 部署到 Pages
+# 每次推送 main → 自动构建 → 复制到 docs/ → GitHub Pages 服务 docs/
 name: Deploy to GitHub Pages
 
 on:
   push:
     branches: [ main ]
-  workflow_dispatch:  # 允许手动触发
+  workflow_dispatch:
 
-# 权限设置（GitHub Pages 所需）
+# 权限设置
 permissions:
-  contents: read
+  contents: write   # 需要 write 才能 push docs/ 目录
   pages: write
   id-token: write
 
+# 防止并发部署
 concurrency:
   group: 'pages'
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   build-and-deploy:
@@ -42,24 +43,44 @@ jobs:
         run: |
           REPO="${{ github.event.repository.name }}"
           if [[ "$REPO" == *.github.io ]]; then
-            # 用户级 Pages 仓库（如 azhu-tom.github.io）→ 根 URL
             echo "base=/" >> $GITHUB_OUTPUT
           else
-            # 项目级 Pages 仓库 → 子路径
             echo "base=/$REPO/" >> $GITHUB_OUTPUT
           fi
 
-      - name: Build (with GitHub Pages base path)
+      - name: Build
         run: cd client && npm run build
         env:
-          # 用户级仓库 base=/  → https://用户名.github.io/
-          # 项目级仓库 base=/仓库名/ → https://用户名.github.io/仓库名/
           VITE_BASE_PATH: ${{ steps.detect-base.outputs.base }}
 
-      - name: Upload artifact
+      - name: Copy dist to docs/
+        run: |
+          rm -rf docs
+          mkdir -p docs
+          cp -r client/dist/* docs/
+          # 创建 .nojekyll 防止 Jekyll 忽略带下划线的文件
+          touch docs/.nojekyll
+          echo "✅ docs/ ready: $(find docs -type f | wc -l) files"
+
+      - name: Commit docs/
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "actions@github.com"
+          git add docs/
+          if git diff --cached --quiet; then
+            echo "No changes"
+          else
+            git commit -m "ci: deploy build artifacts to docs/"
+            git push
+          fi
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload Pages artifact (backup)
         uses: actions/upload-pages-artifact@v3
         with:
-          path: client/dist
+          path: docs
 
       - name: Deploy to GitHub Pages
         id: deployment
