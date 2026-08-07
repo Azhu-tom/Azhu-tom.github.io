@@ -37,12 +37,24 @@ jobs:
       - name: Install dependencies
         run: cd client && npm ci
 
+      - name: Detect base path
+        id: detect-base
+        run: |
+          REPO="${{ github.event.repository.name }}"
+          if [[ "$REPO" == *.github.io ]]; then
+            # 用户级 Pages 仓库（如 azhu-tom.github.io）→ 根 URL
+            echo "base=/" >> $GITHUB_OUTPUT
+          else
+            # 项目级 Pages 仓库 → 子路径
+            echo "base=/$REPO/" >> $GITHUB_OUTPUT
+          fi
+
       - name: Build (with GitHub Pages base path)
         run: cd client && npm run build
         env:
-          # GitHub Pages 自动注入仓库名作为 base path
-          # https://用户名.github.io/仓库名/ 需要 /仓库名/ 作为 base
-          VITE_BASE_PATH: /${{ github.event.repository.name }}/
+          # 用户级仓库 base=/  → https://用户名.github.io/
+          # 项目级仓库 base=/仓库名/ → https://用户名.github.io/仓库名/
+          VITE_BASE_PATH: ${{ steps.detect-base.outputs.base }}
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
