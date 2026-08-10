@@ -106,18 +106,32 @@ export default function CADModelViewer({
   const occtRef = useRef(null)  // occt-import-js 单例
   const occtReadyRef = useRef(false)  // WASM 已加载
 
-  // 初始化 occt-import-js（只加载一次 WASM）
+  // 初始化 occt-import-js（设置 wasm 路径，等待运行时就绪）
   const ensureOCCT = useCallback(async () => {
     if (occtRef.current && occtReadyRef.current) return occtRef.current
     try {
       const mod = await import('occt-import-js')
-      const OCCT = mod.OCCT || mod.default
-      const occt = new OCCT()
-      await occt.loadWasm('/wasm/occt-import-js.wasm')
-      occtRef.current = occt
+      // occt-import-js 是 Emscripten Module，不是 class
+      const occtModule = (mod && mod.default) ? mod.default : mod
+
+      // 关键：设置 locateFile 让 wasm 从 /wasm/ 加载
+      occtModule.locateFile = (path) => {
+        if (path.endsWith('.wasm')) return `/wasm/${path}`
+        return path
+      }
+
+      // 等待运行时初始化完成
+      if (!occtModule.calledRun) {
+        await new Promise((resolve, reject) => {
+          occtModule.onRuntimeInitialized = resolve
+          setTimeout(() => reject(new Error('OCCT WASM 初始化超时')), 30000)
+        })
+      }
+
+      occtRef.current = occtModule
       occtReadyRef.current = true
       console.log('[CADModelViewer] occt-import-js WASM loaded')
-      return occt
+      return occtModule
     } catch (err) {
       console.error('[CADModelViewer] OCCT init failed:', err)
       throw err
