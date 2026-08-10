@@ -1,14 +1,14 @@
 /**
- * CADModelViewer - 真实STP模型3D查看器（稳定版）
+ * CADModelViewer - 真实STP模型3D查看器（前端WASM版）
  *
  * 双模式渲染：
- * 1. **真实STP模式**：从后端API获取OCCT解析的真实网格数据 → Three.js精确渲染
+ * 1. **真实STP模式**：用 occt-import-js (WASM) 在浏览器端直接解析 STP → Three.js精确渲染
  * 2. **占位模式**：无STP文件或解析失败时，显示按类别生成的几何体占位
  *
  * 技术架构：
- * - 后端: occt-import-js (OpenCASCADE WASM) 在Node.js中解析STP → JSON网格数据
- * - 前端: Three.js 根据JSON重建BufferGeometry → PBR材质渲染
- * - 缓存: 后端自动缓存解析结果，首次慢(<10s)，后续秒回(0ms)
+ * - 解析: occt-import-js (OpenCASCADE WASM) 纯前端运行，无需后端
+ * - 渲染: Three.js 根据几何数据重建BufferGeometry → PBR材质渲染
+ * - 兼容: 仍支持旧版后端 API（向后兼容）
  */
 
 import React, { useRef, useEffect, useState, useCallback } from 'react'
@@ -102,33 +102,112 @@ export default function CADModelViewer({
 
   const geoConfig = GEO_CONFIG[modelType] || GEO_CONFIG.default
 
-  // ==================== 加载STP数据 ====================
+  // ==================== 加载STP数据（纯前端 WASM）====================
+  const occtRef = useRef(null)  // occt-import-js 单例
+  const occtReadyRef = useRef(false)  // WASM 已加载
+
+  // 初始化 occt-import-js（只加载一次 WASM）
+  const ensureOCCT = useCallback(async () => {
+    if (occtRef.current && occtReadyRef.current) return occtRef.current
+    try {
+      const mod = await import('occt-import-js')
+      const OCCT = mod.OCCT || mod.default
+      const occt = new OCCT()
+      await occt.loadWasm('/wasm/occt-import-js.wasm')
+      occtRef.current = occt
+      occtReadyRef.current = true
+      console.log('[CADModelViewer] occt-import-js WASM loaded')
+      return occt
+    } catch (err) {
+      console.error('[CADModelViewer] OCCT init failed:', err)
+      throw err
+    }
+  }, [])
+
+  // 加载真实模型：先尝试后端 API，失败则回退到前端 WASM
   const loadRealMeshData = useCallback(async (onProgress) => {
     if (!fileName) return null
+
+    // 路径 1: 尝试后端 API（开发环境兼容）
     try {
-      if (onProgress) onProgress(20)
       const apiUrl = `/api/stp-parse/${encodeURIComponent(fileName)}`
-      console.log(`[CADModelViewer] Fetching: ${apiUrl}`)
-      
-      const response = await fetch(apiUrl)
-      if (!response.ok) {
-        throw new Error(`HTTP ${response.status}: ${response.statusText}`)
+      const response = await fetch(apiUrl, { signal: AbortSignal.timeout(3000) })
+      if (response.ok) {
+        const data = await response.json()
+        if (data.success && data.meshes && data.meshes.length > 0) {
+          if (onProgress) onProgress(90)
+          return data
+        }
       }
-      
-      if (onProgress) onProgress(60)
-      const data = await response.json()
-      
-      if (!data.success || !data.meshes || data.meshes.length === 0) {
-        throw new Error(data.error || 'STP解析结果为空')
+    } catch (_) { /* 继续 fallback */ }
+
+    // 路径 2: 浏览器端 occt-import-js 直接解析（GitHub Pages 部署关键）
+    try {
+      if (onProgress) onProgress(15)
+      const occt = await ensureOCCT()
+      if (onProgress) onProgress(40)
+
+      // 构造 STP 文件 URL（前端 public 目录或模型下载 API）
+      const stpUrls = [
+        `/models/${encodeURIComponent(fileName)}`,
+        `/api/models/download-stp/${encodeURIComponent(fileName)}`,
+        `/api/models/download/${encodeURIComponent(fileName)}`,
+      ]
+
+      let stpBuffer = null
+      let lastErr = null
+      for (const url of stpUrls) {
+        try {
+          const resp = await fetch(url)
+          if (resp.ok) {
+            stpBuffer = await resp.arrayBuffer()
+            break
+          }
+        } catch (e) {
+          lastErr = e
+        }
+      }
+      if (!stpBuffer) {
+        throw new Error(`STP 文件下载失败: ${lastErr?.message || '所有 URL 都不可用'}`)
       }
 
-      if (onProgress) onProgress(90)
-      return data
+      if (onProgress) onProgress(70)
+      // 解析 STP 文件
+      const result = occt.ReadStepFile(new Uint8Array(stpBuffer), {
+        linearPrecision: 0.01,    // 几何精度
+        angularPrecision: 0.5,
+        linearTolerance: 0.1,
+        angularTolerance: 0.5,
+      })
+
+      if (!result || !result.meshes || result.meshes.length === 0) {
+        throw new Error('STP 解析结果为空（无 mesh 数据）')
+      }
+
+      if (onProgress) onProgress(95)
+      console.log(`[CADModelViewer] WASM 解析成功: ${result.meshes.length} 个 mesh`)
+
+      // 转换格式：occt-import-js 格式 → Three.js BufferGeometry 格式
+      //   WASM:  { vertices: Float32Array, normals: Float32Array, indices: Uint32Array }
+      //   TJS:   { attributes: { position: {array}, normal: {array} }, index: {...} }
+      const convertedMeshes = result.meshes.map(m => ({
+        attributes: {
+          position: { array: m.vertices || m.attributes?.position?.array || [] },
+          normal: { array: m.normals || m.attributes?.normal?.array || [] },
+        },
+        index: { array: m.indices || m.attributes?.index?.array || [] },
+      }))
+
+      return {
+        success: true,
+        meshes: convertedMeshes,
+        source: 'wasm',
+      }
     } catch (err) {
-      console.warn('[CADModelViewer] STP API error:', err.message)
+      console.warn('[CADModelViewer] WASM 解析失败:', err.message)
       return null
     }
-  }, [fileName])
+  }, [fileName, ensureOCCT])
 
   // ==================== 构建真实模型 ====================
   // CAD导出的STP常包含离群顶点（辅助几何/坐标标记），需要IQR检测清理
