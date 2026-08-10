@@ -106,24 +106,23 @@ export default function CADModelViewer({
   const occtRef = useRef(null)  // occt-import-js 单例
   const occtReadyRef = useRef(false)  // WASM 已加载
 
-  // 初始化 occt-import-js：用 <script> 加载 UMD 版本（解决 ESM 动态加载的 wasm 路径问题）
+  // 初始化 occt-import-js：用 blob URL 绕过 wasm 路径解析
   const ensureOCCT = useCallback(async () => {
     if (occtRef.current && occtReadyRef.current) return occtRef.current
     try {
-      // 1. 预加载 wasm 字节
-      let wasmBinary = null
-      try {
-        const wasmResp = await fetch('/wasm/occt-import-js.wasm')
-        if (wasmResp.ok) {
-          wasmBinary = new Uint8Array(await wasmResp.arrayBuffer())
-          console.log(`[CADModelViewer] WASM 预加载完成: ${wasmBinary.byteLength} bytes`)
-        }
-      } catch (wasmErr) {
-        console.warn('[CADModelViewer] WASM 预加载失败:', wasmErr.message)
+      // 1. 预加载 wasm 字节（必须成功，否则无法继续）
+      const wasmResp = await fetch('/wasm/occt-import-js.wasm')
+      if (!wasmResp.ok) {
+        throw new Error(`WASM 预加载失败: HTTP ${wasmResp.status}`)
       }
+      const wasmBinary = new Uint8Array(await wasmResp.arrayBuffer())
+      console.log(`[CADModelViewer] WASM 预加载完成: ${wasmBinary.byteLength} bytes`)
 
-      // 2. 通过 <script> 标签加载 occt-import-js.js（UMD）
-      //    这样 document.currentScript 能正确设置，wasm 路径才能解析
+      // 2. 把 wasm 字节转 blob URL（让 Emscripten 直接从这个 URL 拿 wasm）
+      const wasmBlob = new Blob([wasmBinary], { type: 'application/wasm' })
+      const wasmBlobUrl = URL.createObjectURL(wasmBlob)
+
+      // 3. 通过 <script> 标签加载 occt-import-js.js（UMD）
       if (!window.occtimportjs) {
         await new Promise((resolve, reject) => {
           const script = document.createElement('script')
@@ -139,12 +138,10 @@ export default function CADModelViewer({
         throw new Error('occt-import-js 未暴露到 window.occtimportjs')
       }
 
-      // 3. 调用工厂函数创建 Module 实例（传入 wasmBinary）
-      const occtModule = window.occtimportjs({ wasmBinary })
-
-      // 4. 设置 locateFile（备用）
+      // 4. 创建 Module 实例 + locateFile 返回 blob URL（关键：避免 fetch 404）
+      const occtModule = window.occtimportjs({})
       occtModule.locateFile = (path) => {
-        if (path.endsWith('.wasm')) return `/wasm/${path}`
+        if (path.endsWith('.wasm')) return wasmBlobUrl
         return path
       }
 
@@ -155,7 +152,6 @@ export default function CADModelViewer({
           occtModule.onRuntimeInitialized = () => {
             if (!resolved) { resolved = true; resolve() }
           }
-          // 兜底：3 秒内还没初始化就主动 resolve
           setTimeout(() => {
             if (!resolved && occtModule.calledRun) {
               resolved = true
