@@ -106,11 +106,11 @@ export default function CADModelViewer({
   const occtRef = useRef(null)  // occt-import-js 单例
   const occtReadyRef = useRef(false)  // WASM 已加载
 
-  // 初始化 occt-import-js（预加载 wasm + locateFile 备用）
+  // 初始化 occt-import-js：用 <script> 加载 UMD 版本（解决 ESM 动态加载的 wasm 路径问题）
   const ensureOCCT = useCallback(async () => {
     if (occtRef.current && occtReadyRef.current) return occtRef.current
     try {
-      // 1. 预加载 wasm（避免运行时的 fetch 路径问题）
+      // 1. 预加载 wasm 字节
       let wasmBinary = null
       try {
         const wasmResp = await fetch('/wasm/occt-import-js.wasm')
@@ -122,16 +122,27 @@ export default function CADModelViewer({
         console.warn('[CADModelViewer] WASM 预加载失败:', wasmErr.message)
       }
 
-      // 2. 加载 occt-import-js 模块
-      const mod = await import('occt-import-js')
-      const occtModule = (mod && mod.default) ? mod.default : mod
-
-      // 3. 设置 wasmBinary（直接使用预加载的字节，避免 fetch）
-      if (wasmBinary) {
-        occtModule.wasmBinary = wasmBinary
+      // 2. 通过 <script> 标签加载 occt-import-js.js（UMD）
+      //    这样 document.currentScript 能正确设置，wasm 路径才能解析
+      if (!window.occtimportjs) {
+        await new Promise((resolve, reject) => {
+          const script = document.createElement('script')
+          script.src = '/wasm/occt-import-js.js'
+          script.async = false
+          script.onload = () => resolve()
+          script.onerror = () => reject(new Error('occt-import-js.js 加载失败'))
+          document.head.appendChild(script)
+        })
       }
 
-      // 4. 设置 locateFile（备用路径：未设置 wasmBinary 时使用）
+      if (!window.occtimportjs) {
+        throw new Error('occt-import-js 未暴露到 window.occtimportjs')
+      }
+
+      // 3. 调用工厂函数创建 Module 实例（传入 wasmBinary）
+      const occtModule = window.occtimportjs({ wasmBinary })
+
+      // 4. 设置 locateFile（备用）
       occtModule.locateFile = (path) => {
         if (path.endsWith('.wasm')) return `/wasm/${path}`
         return path
@@ -144,21 +155,25 @@ export default function CADModelViewer({
           occtModule.onRuntimeInitialized = () => {
             if (!resolved) { resolved = true; resolve() }
           }
-          // 兜底：5 秒内还没初始化好就主动 resolve（防止卡死）
+          // 兜底：3 秒内还没初始化就主动 resolve
           setTimeout(() => {
             if (!resolved && occtModule.calledRun) {
               resolved = true
               resolve()
             }
-          }, 5000)
-          // 错误处理
-          occtModule.onAbort = reject
+          }, 3000)
+          occtModule.onAbort = (reason) => {
+            if (!resolved) {
+              resolved = true
+              reject(new Error('OCCT WASM abort: ' + reason))
+            }
+          }
         })
       }
 
       occtRef.current = occtModule
       occtReadyRef.current = true
-      console.log('[CADModelViewer] occt-import-js 初始化完成')
+      console.log('[CADModelViewer] occt-import-js 初始化完成 (calledRun=' + occtModule.calledRun + ')')
       return occtModule
     } catch (err) {
       console.error('[CADModelViewer] OCCT init failed:', err)

@@ -17,3 +17,6 @@ if (typeof exports === 'object' && typeof module === 'object')
   module.exports = occtimportjs;
 else if (typeof define === 'function' && define['amd'])
   define([], () => occtimportjs);
+
+// Patched: 暴露到 window 以便动态加载
+if (typeof window !== "undefined") window.occtimportjs = occtimportjs;
