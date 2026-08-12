@@ -16,6 +16,11 @@ import './HandbookLibrary.css'
 import { toast } from '../../utils/toast'
 import * as XLSX from 'xlsx'
 
+// 自动检测 API URL：GitHub Pages 部署时指向 Render 后端，本地开发用 proxy
+const API_BASE = (typeof window !== 'undefined' && window.location.hostname.includes('github.io'))
+  ? 'https://structural-engineer-ai-api.onrender.com'
+  : ''
+
 // ==================== 手册分类定义 ====================
 const HANDBOOK_CATEGORIES = [
   { id: 'gb', name: '国家标准', icon: '🏛️', desc: 'GB/T 国标规范' },
@@ -82,7 +87,8 @@ export default function HandbookLibrary({ onClose }) {
         order: 'desc',
         limit: '100'
       })
-      const res = await fetch(`/api/handbook/list?${params}`)
+      const listUrl = `${API_BASE}/api/handbook/list?${params}`
+      const res = await fetch(listUrl)
       const data = await res.json()
       if (data.success) {
         setBooks(data.data || [])
@@ -109,7 +115,7 @@ export default function HandbookLibrary({ onClose }) {
 
   // ---- 加载收藏列表 ----
   useEffect(() => {
-    fetch('/api/handbook/favorites/list')
+    fetch(`${API_BASE}/api/handbook/favorites/list`)
       .then(r => r.json())
       .then(d => { if (d.success) setFavorites(d.data || []) })
       .catch(() => {})
@@ -148,7 +154,7 @@ export default function HandbookLibrary({ onClose }) {
           })
           xhr.onload = () => resolve()
           xhr.onerror = () => reject(new Error('上传失败'))
-          xhr.open('POST', '/api/handbook/upload')
+          xhr.open('POST', `${API_BASE}/api/handbook/upload`)
           xhr.send(form)
         })
 
@@ -174,7 +180,7 @@ export default function HandbookLibrary({ onClose }) {
     try {
       const isFav = favorites.some(f => f.bookId === bookId)
       const method = isFav ? 'DELETE' : 'POST'
-      await fetch(`/api/handbook/${bookId}/favorite`, { method })
+      await fetch(`${API_BASE}/api/handbook/${bookId}/favorite`, { method })
       
       if (isFav) {
         setFavorites(prev => prev.filter(f => f.bookId !== bookId))
@@ -213,7 +219,7 @@ export default function HandbookLibrary({ onClose }) {
     if (!previewBook || !showPreviewModal) return
 
     const ext = String(previewBook.fileType || '').toLowerCase()
-    const downloadUrl = `/api/handbook/download/${previewBook.id}`
+    const downloadUrl = `${API_BASE}/api/handbook/download/${previewBook.id}`
     setPreviewUrl(downloadUrl)
 
     // 文本类：fetch + 文本/表格解析
@@ -258,7 +264,7 @@ export default function HandbookLibrary({ onClose }) {
 
   // ---- 下载文件 ----
   const handleDownload = async (book) => {
-    window.open(`/api/handbook/download/${book.id}`, '_blank')
+    window.open(`${API_BASE}/api/handbook/download/${book.id}`, '_blank')
   }
 
   // ---- 删除文件 ----
@@ -266,7 +272,7 @@ export default function HandbookLibrary({ onClose }) {
     if (!window.confirm(`确定要删除「${book.title}」吗？`)) return
 
     try {
-      await fetch(`/api/handbook/${book.id}`, { method: 'DELETE' })
+      await fetch(`${API_BASE}/api/handbook/${book.id}`, { method: 'DELETE' })
       setBooks(prev => prev.filter(b => b.id !== book.id))
       setFavorites(prev => prev.filter(f => f.bookId !== book.id))
       toast.success(`已删除「${book.title}」`)
