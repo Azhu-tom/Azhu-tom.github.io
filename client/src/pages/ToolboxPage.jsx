@@ -4,6 +4,7 @@ import BOMPanel from '../components/Toolbox/BOMPanel'
 import WaterAppliancePanel from '../components/Toolbox/WaterAppliancePanel'
 import HandbookLibrary from '../components/Toolbox/HandbookLibrary'
 import ProblemSolverPanel from '../components/Toolbox/ProblemSolverPanel'
+import PackagingPanel from '../components/Toolbox/PackagingPanel'
 import './ToolboxPage.css'
 
 function ToolboxPage() {
@@ -12,6 +13,7 @@ function ToolboxPage() {
   const [showWA, setShowWA] = useState(false)   // 水家电设计选型参考
   const [showHandbook, setShowHandbook] = useState(false)   // 结构高频数据库
   const [showSolver, setShowSolver] = useState(false)   // 开发问题解决助手
+  const [showPackaging, setShowPackaging] = useState(false)   // 包装工程 AI 工具
 
   // 读取角色：管理员可编辑知识库
   const [canEdit] = useState(() => {
@@ -72,6 +74,16 @@ function ToolboxPage() {
       gradient: 'linear-gradient(135deg, #a855f7 0%, #7c3aed 100%)',
       features: ['历史经验检索', 'RAG相似匹配', '根因+方案'],
       interactive: true,
+    },
+    {
+      id: 'packaging',
+      title: '包装工程',
+      description: '连接盒创 HeChuang 包装全链路AI工作台，支持包装选材推荐、码托装柜优化、纸箱/彩盒成本预估（iframe嵌入）。',
+      icon: '📦',
+      color: '#f97316',
+      gradient: 'linear-gradient(135deg, #f97316 0%, #ea580c 100%)',
+      features: ['选材推荐', '码托装柜', '成本预估'],
+      interactive: true,
     }
   ]
 
@@ -81,6 +93,7 @@ function ToolboxPage() {
     if (toolId === 'water-appliance') setShowWA(true)
     if (toolId === 'database') setShowHandbook(true)
     if (toolId === 'problem-solver') setShowSolver(true)
+    if (toolId === 'packaging') setShowPackaging(true)
   }
 
   return (
@@ -155,6 +168,7 @@ function ToolboxPage() {
       {showWA && <WaterAppliancePanel onClose={() => setShowWA(false)} />}
       {showHandbook && <HandbookLibrary onClose={() => setShowHandbook(false)} />}
       {showSolver && <ProblemSolverPanel onClose={() => setShowSolver(false)} canEdit={canEdit} />}
+      {showPackaging && <PackagingPanel onClose={() => setShowPackaging(false)} />}
     </div>
   )
 }
