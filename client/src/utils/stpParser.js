@@ -4,24 +4,19 @@
  * 用途：辅助 DFM 评估（无完整几何引擎时的启发式判断）
  */
 
-const FEATURE_KEYWORDS = {
-  thin:        { label: '薄壁', weight: 0.8, risk: 'shrink_warp' },
-  rib:         { label: '骨位', weight: 0.7, risk: 'warp' },
-  boss:        { label: '凸台',   weight: 0.4, risk: 'sink' },
-  undercut:    { label: '倒扣',   weight: 0.9, risk: 'eject' },
-  hole:        { label: '孔系',   weight: 0.3, risk: 'core_shift' },
-  hollow:      { label: '空腔',   weight: 0.5, risk: 'flow' },
-  boss_in:     { label: '内凸台', weight: 0.6, risk: 'sink' },
-  rib_cross:   { label: '交叉骨', weight: 0.7, risk: 'weld' },
-  sharp:       { label: '尖角',   weight: 0.5, risk: 'stress' },
-  fillet:      { label: '圆角',   weight: -0.4, risk: null },  // 圆角是好特征
-  draft:       { label: '拔模角', weight: -0.3, risk: null },
-  boss_thin:   { label: '凸台薄', weight: 0.8, risk: 'sink' },
-  boss_height: { label: '高凸台', weight: 0.7, risk: 'sink' },
-  long_core:   { label: '长型芯', weight: 0.6, risk: 'core_shift' },
-  boss_h:      { label: '高骨位', weight: 0.7, risk: 'sink' },
-  boss_w:      { label: '宽骨位', weight: 0.5, risk: 'weld' },
+import { getFeatureRules, getRemedyRules, getDefectTitleRules } from './dfmRules'
+
+// 特征关键词规则（从 dfmRules 规则中心读取，支持插件化扩展）
+// 转换为 { keyword: { label, weight, risk } } 结构（向后兼容）
+function buildFeatureKeywordMap() {
+  const map = {}
+  for (const rule of getFeatureRules()) {
+    map[rule.keyword] = { label: rule.label, weight: rule.weight, risk: rule.risk }
+  }
+  return map
 }
+
+const FEATURE_KEYWORDS = buildFeatureKeywordMap()
 
 /**
  * 解析 STP/STEP 文件
@@ -301,32 +296,8 @@ export function generateDefectList(parsed) {
   // 2. 特征识别
   for (const f of features) {
     if (f.weight <= 0) continue
-    const remedies = {
-      shrink_warp: '减薄区域壁厚均匀化，控制在 1.5-3mm 之间；增加冷却水路',
-      warp: '骨位深度控制在壁厚 0.6 倍以内；增加反向冷却',
-      sink: '凸台/骨位根部加 R 角 ≥ R0.5；降低局部壁厚',
-      eject: '增加斜顶/滑块机构；考虑油缸抽芯方案',
-      flow: '合理布置浇口位置；增加排气槽',
-      stress: '尖角处加 R 角 ≥ R0.3；CAE 应力分析',
-      core_shift: '增加型芯支撑；考虑镶嵌结构',
-      weld: '调整浇口位置远离熔接区域；提高模温',
-    }
-    const t = {
-      thin:     { title: '薄壁风险', desc: '文件含' },
-      rib:      { title: '骨位风险', desc: '检测到骨位结构' },
-      boss:     { title: '凸台缩痕', desc: '壁厚突变' },
-      undercut: { title: '倒扣特征', desc: '需要特殊脱模机构' },
-      hole:     { title: '孔系偏心', desc: '多孔结构' },
-      hollow:   { title: '空腔填充', desc: '空腔结构' },
-      boss_in:  { title: '内凸台缩痕', desc: '背面可见凸台' },
-      rib_cross:{ title: '交叉骨位', desc: '多骨位交叉' },
-      sharp:    { title: '尖角应力', desc: '尖角位置' },
-      boss_thin:{ title: '薄壁凸台', desc: '凸台根部过薄' },
-      boss_height: { title: '高凸台', desc: '凸台过高' },
-      long_core:{ title: '长型芯', desc: '长型芯容易偏心' },
-      boss_h:   { title: '高骨位', desc: '骨位偏高' },
-      boss_w:   { title: '宽骨位', desc: '骨位偏宽' },
-    }[f.keyword]
+    const remedies = getRemedyRules()
+    const t = getDefectTitleRules()[f.keyword]
     if (!t) continue
     list.push({
       type: f.keyword,
@@ -641,4 +612,86 @@ function earClipPolygon(vertexIds, coordMap) {
   }
 
   return triangles
+}
+
+/**
+ * 基于三角面片法线分析识别倒扣特征（v2.6）
+ * 原理：倒扣面 = 法线指向开模方向负方向的面（需要斜顶/滑块脱模）
+ * 开模方向假设为 +Z（模型默认 Z 轴朝上，法线朝 -Z 即朝下的面）
+ *
+ * @param {object} parsed parseStpFile 的返回结果
+ * @returns {object|null} { hasUndercut, undercutFaceCount, totalFaceCount, undercutRatio, confidence }
+ */
+export function detectUndercuts(parsed) {
+  if (!parsed || !parsed.faces || !parsed.faces.faces || parsed.faces.faces.length === 0) {
+    return null
+  }
+  if (!parsed.topology || !parsed.topology.vertices || parsed.topology.vertices.length === 0) {
+    return null
+  }
+
+  // 构建顶点坐标映射
+  const coordMap = new Map()
+  for (const v of parsed.topology.vertices) {
+    coordMap.set(v.id, { x: v.x, y: v.y, z: v.z })
+  }
+
+  const triangles = parsed.faces.faces
+  const undercutFaces = []
+  const totalFaces = triangles.length
+  let minZ = Infinity
+  let maxZ = -Infinity
+  // v2.6: 记录倒扣面中心坐标（用于 3D 标注）
+  const undercutPositions = []
+
+  for (const tri of triangles) {
+    if (!Array.isArray(tri) || tri.length < 3) continue
+    const p0 = coordMap.get(tri[0])
+    const p1 = coordMap.get(tri[1])
+    const p2 = coordMap.get(tri[2])
+    if (!p0 || !p1 || !p2) continue
+
+    for (const p of [p0, p1, p2]) {
+      if (p.z < minZ) minZ = p.z
+      if (p.z > maxZ) maxZ = p.z
+    }
+
+    // 计算面法线（叉积）
+    const v1 = { x: p1.x - p0.x, y: p1.y - p0.y, z: p1.z - p0.z }
+    const v2 = { x: p2.x - p0.x, y: p2.y - p0.y, z: p2.z - p0.z }
+    const nx = v1.y * v2.z - v1.z * v2.y
+    const ny = v1.z * v2.x - v1.x * v2.z
+    const nz = v1.x * v2.y - v1.y * v2.x
+    const len = Math.sqrt(nx * nx + ny * ny + nz * nz)
+    if (len < 1e-12) continue
+
+    // 归一化后的法线 Z 分量
+    const nzNorm = nz / len
+
+    // 倒扣判断：法线指向 -Z（朝下），z 分量 < -0.5
+    if (nzNorm < -0.5) {
+      const avgZ = (p0.z + p1.z + p2.z) / 3
+      const cx = (p0.x + p1.x + p2.x) / 3
+      const cy = (p0.y + p1.y + p2.y) / 3
+      undercutFaces.push({ avgZ, nzNorm })
+      // 采样记录位置（最多 20 个，避免标注点过多）
+      if (undercutPositions.length < 20) {
+        undercutPositions.push({ x: cx, y: cy, z: avgZ })
+      }
+    }
+  }
+
+  const undercutRatio = undercutFaces.length / Math.max(1, totalFaces)
+  const hasUndercut = undercutRatio > 0.05  // 超过 5% 的面朝下 → 判定有倒扣
+
+  return {
+    hasUndercut,
+    undercutFaceCount: undercutFaces.length,
+    totalFaceCount: totalFaces,
+    undercutRatio: Math.round(undercutRatio * 100) / 100,
+    minZ: Math.round(minZ * 100) / 100,
+    maxZ: Math.round(maxZ * 100) / 100,
+    undercutPositions,
+    confidence: hasUndercut ? Math.min(0.95, 0.6 + undercutRatio * 2) : 0.3,
+  }
 }

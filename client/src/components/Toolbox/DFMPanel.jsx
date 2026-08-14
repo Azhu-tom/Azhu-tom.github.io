@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef, useCallback, Suspense, lazy } from 'react'
 import './DFMPanel.css'
-import { parseStpFile, suggestFeaturesFromParse, generateDefectList, bboxToDimensions } from '../../utils/stpParser'
+import { parseStpFile, suggestFeaturesFromParse, generateDefectList, bboxToDimensions, detectUndercuts } from '../../utils/stpParser'
 import { resolvePlugin } from '../../utils/fileViewerPlugin'
 import DFM3DViewer from './DFM3DViewer'
 
@@ -401,9 +401,19 @@ export default function DFMPanel({ onClose }) {
     deepRib: false      // 深骨位
   })
 
+  // v2.6: 模具配置（成本多维度扩展）
+  const [moldConfig, setMoldConfig] = useState({
+    steel: 'P20',           // 钢料牌号：P20 / NAK80 / S136 / H13
+    cavity: 1,              // 模腔数：1 / 2 / 4 / 8
+    hotRunner: false,       // 热流道
+    cooling: 'standard',    // 冷却：standard / deep / conformal
+    precision: 'standard',  // 精度：standard / high
+  })
+
   const [result, setResult] = useState(null)
   const [warnings, setWarnings] = useState([])
   const [evaluating, setEvaluating] = useState(false)
+  const [evalStage, setEvalStage] = useState('')   // 评估进度阶段文本
 
   // ===== v2.0 模型导入状态 =====
   const [modelFile, setModelFile] = useState(null)        // 上传的文件
@@ -412,6 +422,7 @@ export default function DFMPanel({ onClose }) {
   const [modelError, setModelError] = useState(null)
   const [autoFeatures, setAutoFeatures] = useState([])    // 自动识别的特征建议
   const [defects, setDefects] = useState([])              // 缺陷识别清单
+  const [undercutPositions, setUndercutPositions] = useState([])  // 倒扣面坐标（3D标注用）
   const [activeReportTab, setActiveReportTab] = useState('overview') // overview|defects|report
   const fileInputRef = useRef(null)
 
@@ -513,7 +524,25 @@ export default function DFMPanel({ onClose }) {
       }))
 
       // 生成缺陷识别清单
-      setDefects(generateDefectList(parsed))
+      const baseDefects = generateDefectList(parsed)
+
+      // v2.6: 面法线倒扣识别（几何级检测，比关键词匹配更准确）
+      const undercutResult = detectUndercuts(parsed)
+      if (undercutResult && undercutResult.hasUndercut) {
+        // 检测到几何倒扣 → 追加缺陷 + 自动勾选倒扣
+        setStructuralFeat(prev => ({ ...prev, undercut: true }))
+        setUndercutPositions(undercutResult.undercutPositions || [])
+        baseDefects.push({
+          type: 'undercut_geometry',
+          severity: 'high',
+          title: '几何倒扣特征',
+          desc: `检测到 ${undercutResult.undercutFaceCount}/${undercutResult.totalFaceCount} 个面法线朝下（倒扣），占 ${(undercutResult.undercutRatio * 100).toFixed(1)}%（识别置信度 ${Math.round(undercutResult.confidence * 100)}%）`,
+          location: '需斜顶/滑块脱模区域',
+          remedy: '增加斜顶/滑块机构，或调整分型面位置避开倒扣面',
+          positions: undercutResult.undercutPositions || [],
+        })
+      }
+      setDefects(baseDefects)
 
       // 尝试从文件名提取尺寸（如 "100x50x30.stp" 模式）
       const dimMatch = file.name.match(/(\d{2,4})\s*[xX×*]\s*(\d{2,4})\s*[xX×*]\s*(\d{2,4})/)
@@ -595,8 +624,19 @@ export default function DFMPanel({ onClose }) {
 
     setEvaluating(true)
 
+    // v2.6: 多阶段评估进度展示
+    const stages = ['解析几何特征', '计算基础成本', '评估工艺复杂度', '识别制造缺陷', '生成 DFM 报告']
+    let stageIdx = 0
+    setEvalStage(stages[0])
+    const stageTimer = setInterval(() => {
+      stageIdx++
+      if (stageIdx < stages.length) setEvalStage(stages[stageIdx])
+    }, 150)
+
     // 模拟计算延迟（提升用户体验）
     setTimeout(() => {
+      clearInterval(stageTimer)
+      setEvalStage('')
       // ====== 第一步: 计算基础价格 ======
       const volume = L * W * H  // mm³
 
@@ -639,12 +679,35 @@ export default function DFMPanel({ onClose }) {
       if (H > 300) sizeFactor += 0.20              // 超高产品
       if (L / W > 3 || W / L > 3) sizeFactor += 0.10  // 长宽比过大
 
-      // ====== 第四步: 计算最终价格区间 ======
-      const estimatedPrice = basePrice * complexityMultiplier * sizeFactor
+      // ====== v2.6: 模具配置维度（钢料/多腔/热流道/冷却/精度）======
+      // 钢料牌号系数（镜面钢/耐腐蚀钢价格显著更高）
+      const steelFactors = { P20: 1.0, NAK80: 1.5, S136: 1.8, H13: 1.3 }
+      const steelFactor = steelFactors[moldConfig.steel] || 1.0
 
-      // 价格区间: ±20% 浮动（反映市场波动和供应商差异）
-      const priceLow = Math.round(estimatedPrice * 0.8)
-      const priceHigh = Math.round(estimatedPrice * 1.2)
+      // 多腔系数（模腔越多模具费越高，但单件成本摊薄——此处仅计模具费）
+      const cavityFactors = { 1: 1.0, 2: 1.5, 4: 2.2, 8: 3.5 }
+      const cavityFactor = cavityFactors[moldConfig.cavity] || 1.0
+
+      // 热流道（热流道系统成本高，但减少料柄浪费）
+      const hotRunnerFactor = moldConfig.hotRunner ? 1.4 : 1.0
+
+      // 冷却水路
+      const coolingFactors = { standard: 1.0, deep: 1.15, conformal: 1.35 }
+      const coolingFactor = coolingFactors[moldConfig.cooling] || 1.0
+
+      // 精度等级
+      const precisionFactors = { standard: 1.0, high: 1.3 }
+      const precisionFactor = precisionFactors[moldConfig.precision] || 1.0
+
+      // 综合模具配置系数
+      const moldConfigFactor = steelFactor * cavityFactor * hotRunnerFactor * coolingFactor * precisionFactor
+
+      // ====== 第四步: 计算最终价格区间 ======
+      const estimatedPrice = basePrice * complexityMultiplier * sizeFactor * moldConfigFactor
+
+      // 价格区间: ±10% 浮动（引入多维度后模型更精确，区间收窄）
+      const priceLow = Math.round(estimatedPrice * 0.9)
+      const priceHigh = Math.round(estimatedPrice * 1.1)
       const priceMid = Math.round(estimatedPrice)
 
       // 格式化显示（万元以下显示元，以上显示万元）
@@ -658,6 +721,13 @@ export default function DFMPanel({ onClose }) {
       // ====== v2.0: 成本影响因素说明 ======
       const costFactors = []
       costFactors.push({ name: '产品体积', impact: `${(volume / 1000).toFixed(1)} cm³`, note: volume < 100000 ? '中小型件，模具钢料成本低' : '较大型件，钢料成本上升' })
+      // v2.6: 模具配置维度
+      const steelNames = { P20: 'P20 预硬钢', NAK80: 'NAK80 镜面钢', S136: 'S136 耐腐蚀钢', H13: 'H13 热作钢' }
+      costFactors.push({ name: '钢料牌号', impact: steelNames[moldConfig.steel] || moldConfig.steel, note: `钢料系数 ×${steelFactor}` })
+      if (moldConfig.cavity > 1) costFactors.push({ name: '模腔数', impact: `${moldConfig.cavity} 腔`, note: `多腔模费用 ×${cavityFactor}，单件成本摊薄` })
+      if (moldConfig.hotRunner) costFactors.push({ name: '热流道', impact: '+40%', note: '热流道系统，减少料柄浪费但模具成本上升' })
+      if (moldConfig.cooling !== 'standard') costFactors.push({ name: '冷却水路', impact: moldConfig.cooling === 'conformal' ? '+35%' : '+15%', note: moldConfig.cooling === 'conformal' ? '随形冷却，3D打印水路' : '深孔钻冷却水路' })
+      if (moldConfig.precision === 'high') costFactors.push({ name: '精度等级', impact: '+30%', note: '高精度模具（公差 ±0.02）需更高加工精度' })
       if (surfaceReq.highGloss) costFactors.push({ name: '高光面', impact: '+25%', note: '需镜面级抛光，模具钢等级提升' })
       if (surfaceReq.texture) costFactors.push({ name: '皮纹面', impact: '+10%', note: '蚀纹工艺费用' })
       if (structuralFeat.undercut) costFactors.push({ name: '倒扣特征', impact: '+30%', note: '需斜顶/滑块机构，增加零件与装配工时' })
@@ -681,6 +751,7 @@ export default function DFMPanel({ onClose }) {
         baseCoefficient,
         complexityMultiplier: complexityMultiplier.toFixed(2),
         sizeFactor: sizeFactor.toFixed(2),
+        moldConfigFactor: moldConfigFactor.toFixed(2),
         modelComplexityFactor,
         riskLevel: (defects.filter(d => d.severity === 'high').length > 1 || warnings.length > 2) ? 'HIGH' : (defects.length > 0 || warnings.length > 0) ? 'MEDIUM' : 'LOW',
         recommendations: generateRecommendations({ L, W, H, volume }, surfaceReq, structuralFeat),
@@ -854,11 +925,148 @@ export default function DFMPanel({ onClose }) {
     }
   }
 
+  // ==================== 导出报告（打印为 PDF） ====================
+  const exportReport = () => {
+    if (!result || !result.success) return
+
+    const d = result.dimensions
+    const r = result.dfmReport
+    const now = new Date()
+    const ts = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')} ${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`
+    const modelName = modelMeta?.title || modelMeta?.name || '未导入模型'
+
+    const esc = (s) => String(s ?? '').replace(/[&<>]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c]))
+
+    const severityColor = { high: '#dc2626', medium: '#d97706', low: '#16a34a', info: '#2563eb' }
+    const levelColor = { green: '#16a34a', blue: '#2563eb', orange: '#d97706', red: '#dc2626' }
+
+    // 风险点表格
+    const riskRows = (r?.risks || []).map(rk => `
+      <tr>
+        <td style="color:${severityColor[rk.severity] || '#333'}">${['high', 'medium', 'low', 'info'].indexOf(rk.severity) >= 0 ? { high: '高', medium: '中', low: '低', info: '提示' }[rk.severity] : esc(rk.severity)}</td>
+        <td>${esc(rk.title)}</td>
+        <td>${esc(rk.desc)}</td>
+        <td>${esc(rk.remedy)}</td>
+      </tr>`).join('')
+
+    // 成本因素
+    const costFactorRows = (result.costFactors || []).map(cf => `
+      <tr><td>${esc(cf.name)}</td><td>${esc(cf.impact)}</td><td>${esc(cf.note)}</td></tr>`).join('')
+
+    // 工艺可行性
+    const processRows = (r?.processFeasibility || []).map(pf => `
+      <tr><td>${esc(pf.process)}</td><td>${esc(pf.verdict)}</td><td>${esc(pf.desc)}</td></tr>`).join('')
+
+    // 改进建议
+    const improvementItems = (r?.improvements || []).map(im => `
+      <li><strong>${esc(im.target)}</strong>：${esc(im.suggestion)}</li>`).join('')
+
+    // 工程师建议
+    const recItems = (result.recommendations || []).map(rec => `<li>${esc(rec)}</li>`).join('')
+
+    const html = `<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>DFM 评估报告 - ${esc(modelName)}</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: "Microsoft YaHei", "PingFang SC", sans-serif; color: #1f2937; padding: 40px; max-width: 900px; margin: 0 auto; font-size: 13px; line-height: 1.6; }
+  .header { border-bottom: 3px solid #0ea5e9; padding-bottom: 16px; margin-bottom: 24px; }
+  .header h1 { font-size: 24px; color: #0f172a; }
+  .header .sub { color: #64748b; font-size: 12px; margin-top: 4px; }
+  .meta-grid { display: flex; gap: 24px; flex-wrap: wrap; margin: 16px 0; }
+  .meta-item { font-size: 12px; color: #475569; }
+  .meta-item b { color: #1f2937; }
+  .score-banner { display: flex; align-items: center; gap: 20px; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 20px; margin-bottom: 20px; }
+  .score-num { font-size: 48px; font-weight: 700; color: ${levelColor[r?.level?.color] || '#0ea5e9'}; }
+  .score-info b { font-size: 16px; }
+  .score-info p { color: #64748b; font-size: 12px; margin-top: 4px; }
+  h2 { font-size: 16px; color: #0f172a; margin: 24px 0 12px; padding-left: 10px; border-left: 4px solid #0ea5e9; }
+  table { width: 100%; border-collapse: collapse; margin: 8px 0; font-size: 12px; }
+  th, td { border: 1px solid #e2e8f0; padding: 8px 10px; text-align: left; vertical-align: top; }
+  th { background: #f1f5f9; font-weight: 600; color: #334155; }
+  ul { padding-left: 20px; margin: 8px 0; }
+  li { margin: 6px 0; }
+  .price-box { background: #f0f9ff; border: 1px solid #bae6fd; border-radius: 8px; padding: 16px 20px; margin: 12px 0; }
+  .price-box .range { font-size: 20px; font-weight: 700; color: #0369a1; }
+  .footer { margin-top: 32px; padding-top: 12px; border-top: 1px solid #e2e8f0; color: #94a3b8; font-size: 11px; text-align: center; }
+  @media print { body { padding: 20px; } .no-print { display: none; } }
+  .toolbar { position: fixed; top: 16px; right: 16px; display: flex; gap: 8px; }
+  .toolbar button { padding: 10px 18px; border: none; border-radius: 6px; cursor: pointer; font-size: 13px; font-weight: 600; }
+  .btn-print { background: #0ea5e9; color: #fff; }
+  .btn-close { background: #e2e8f0; color: #475569; }
+</style>
+</head>
+<body>
+  <div class="toolbar no-print">
+    <button class="btn-print" onclick="window.print()">🖨️ 打印 / 另存为 PDF</button>
+    <button class="btn-close" onclick="window.close()">关闭</button>
+  </div>
+
+  <div class="header">
+    <h1>DFM 可制造性评估报告</h1>
+    <div class="sub">结构工程师AI助手 · 模具初评模块</div>
+    <div class="meta-grid">
+      <span class="meta-item">产品名称：<b>${esc(modelName)}</b></span>
+      <span class="meta-item">评估时间：<b>${ts}</b></span>
+      <span class="meta-item">尺寸：<b>${d.L} × ${d.W} × ${d.H} mm</b></span>
+      <span class="meta-item">体积：<b>${(d.volume / 1000).toFixed(1)} cm³</b></span>
+    </div>
+  </div>
+
+  ${r?.level ? `
+  <div class="score-banner">
+    <div class="score-num">${r.score}</div>
+    <div class="score-info">
+      <b>可制造性评分：${esc(r.level.text)}</b>
+      <p>${esc(r.level.desc)}</p>
+    </div>
+  </div>` : ''}
+
+  <div class="price-box">
+    <div>预估模具费用</div>
+    <div class="range">¥${result.priceRange.low.toLocaleString()} ~ ¥${result.priceRange.high.toLocaleString()}</div>
+    <div style="color:#0369a1;font-size:12px;margin-top:4px;">中值 ¥${result.priceRange.mid.toLocaleString()}（复杂度倍率 ×${result.complexityMultiplier}）</div>
+  </div>
+
+  <h2>一、缺陷识别清单</h2>
+  ${(r?.risks || []).length ? `<table><thead><tr><th style="width:60px">等级</th><th style="width:120px">风险点</th><th>说明</th><th>改进建议</th></tr></thead><tbody>${riskRows}</tbody></table>` : '<p>未识别到明显制造缺陷</p>'}
+
+  <h2>二、工艺可行性</h2>
+  <table><thead><tr><th style="width:120px">工艺</th><th style="width:160px">结论</th><th>说明</th></tr></thead><tbody>${processRows}</tbody></table>
+
+  <h2>三、改进建议</h2>
+  <ul>${improvementItems || '<li>无需额外改进</li>'}</ul>
+
+  <h2>四、成本明细</h2>
+  <table><thead><tr><th style="width:140px">因素</th><th style="width:120px">影响</th><th>说明</th></tr></thead><tbody>${costFactorRows}</tbody></table>
+
+  <h2>五、工程师建议</h2>
+  <ul>${recItems}</ul>
+
+  <div class="footer">本报告由 AI 自动生成，仅供参考，实际以模具供应商正式报价为准</div>
+
+  <script>setTimeout(() => window.print(), 300);</script>
+</body>
+</html>`
+
+    const w = window.open('', '_blank')
+    if (!w) {
+      console.warn('[DFM] 导出报告失败：浏览器拦截了弹窗')
+      window.alert('请允许浏览器弹出窗口以导出报告')
+      return
+    }
+    w.document.write(html)
+    w.document.close()
+  }
+
   // ==================== 重置功能 ====================
   const handleReset = () => {
     setDimensions({ length: '', width: '', height: '' })
     setSurfaceReq({ highGloss: false, texture: false })
     setStructuralFeat({ undercut: false, deepRib: false })
+    setMoldConfig({ steel: 'P20', cavity: 1, hotRunner: false, cooling: 'standard', precision: 'standard' })
     setResult(null)
     setWarnings([])
     setModelFile(null)
@@ -941,10 +1149,10 @@ export default function DFMPanel({ onClose }) {
                   {(() => {
                     const ext = modelFile?.name?.split('.').pop() || ''
                     const { pluginId } = resolvePlugin(ext, modelMeta)
-                    if (pluginId === 'renderer-3d') return <DFM3DViewer meta={modelMeta} />
+                    if (pluginId === 'renderer-3d') return <DFM3DViewer meta={modelMeta} file={modelFile} />
                     if (pluginId === 'renderer-canvas') return <BboxPreview meta={modelMeta} />
                     // 降级
-                    if (modelMeta?.faces?.faces?.length > 0) return <DFM3DViewer meta={modelMeta} />
+                    if (modelMeta?.faces?.faces?.length > 0) return <DFM3DViewer meta={modelMeta} file={modelFile} />
                     return <BboxPreview meta={modelMeta} />
                   })()}
 
@@ -1079,6 +1287,81 @@ export default function DFMPanel({ onClose }) {
               </div>
             </div>
 
+            {/* 模具配置（v2.6 成本多维度） */}
+            <div className="dfm-input-group">
+              <label className="dfm-group-label">
+                <span className="label-icon">⚙️</span> 模具配置
+              </label>
+
+              <div className="mold-config-grid">
+                <div className="mold-config-item">
+                  <span className="mold-config-label">钢料牌号</span>
+                  <select
+                    className="mold-config-select"
+                    value={moldConfig.steel}
+                    onChange={e => setMoldConfig(prev => ({ ...prev, steel: e.target.value }))}
+                  >
+                    <option value="P20">P20 预硬钢</option>
+                    <option value="NAK80">NAK80 镜面钢</option>
+                    <option value="S136">S136 耐腐蚀钢</option>
+                    <option value="H13">H13 热作钢</option>
+                  </select>
+                </div>
+
+                <div className="mold-config-item">
+                  <span className="mold-config-label">模腔数</span>
+                  <select
+                    className="mold-config-select"
+                    value={moldConfig.cavity}
+                    onChange={e => setMoldConfig(prev => ({ ...prev, cavity: parseInt(e.target.value) }))}
+                  >
+                    <option value="1">1 腔</option>
+                    <option value="2">2 腔</option>
+                    <option value="4">4 腔</option>
+                    <option value="8">8 腔</option>
+                  </select>
+                </div>
+
+                <div className="mold-config-item">
+                  <span className="mold-config-label">冷却水路</span>
+                  <select
+                    className="mold-config-select"
+                    value={moldConfig.cooling}
+                    onChange={e => setMoldConfig(prev => ({ ...prev, cooling: e.target.value }))}
+                  >
+                    <option value="standard">普通冷却</option>
+                    <option value="deep">深孔钻冷却</option>
+                    <option value="conformal">随形冷却(3D打印)</option>
+                  </select>
+                </div>
+
+                <div className="mold-config-item">
+                  <span className="mold-config-label">精度等级</span>
+                  <select
+                    className="mold-config-select"
+                    value={moldConfig.precision}
+                    onChange={e => setMoldConfig(prev => ({ ...prev, precision: e.target.value }))}
+                  >
+                    <option value="standard">普通（±0.05）</option>
+                    <option value="high">精密（±0.02）</option>
+                  </select>
+                </div>
+              </div>
+
+              <div className="checkbox-group">
+                <label className={`checkbox-item ${moldConfig.hotRunner ? 'checked' : ''}`}>
+                  <input
+                    type="checkbox"
+                    checked={moldConfig.hotRunner}
+                    onChange={e => setMoldConfig(prev => ({ ...prev, hotRunner: e.target.checked }))}
+                  />
+                  <span className="checkmark"></span>
+                  <span className="checkbox-label-text">热流道</span>
+                  <span className="checkbox-hint">减少料柄浪费，模具成本+40%</span>
+                </label>
+              </div>
+            </div>
+
             {/* 操作按钮 */}
             <div className="dfm-action-buttons">
               <button
@@ -1089,7 +1372,7 @@ export default function DFMPanel({ onClose }) {
                 {evaluating ? (
                   <>
                     <span className="spinner"></span>
-                    评估中...
+                    {evalStage || '评估中...'}
                   </>
                 ) : (
                   <>🚀 开始评估</>
@@ -1155,6 +1438,13 @@ export default function DFMPanel({ onClose }) {
                         </div>
                         <span>高: ¥{result.priceRange.high.toLocaleString()}</span>
                       </div>
+                    </div>
+
+                    {/* 导出报告按钮 */}
+                    <div className="dfm-export-row">
+                      <button className="btn-export-report" onClick={exportReport}>
+                        📄 导出报告（PDF）
+                      </button>
                     </div>
 
                     {/* v2.0: Tab 导航 */}
@@ -1268,6 +1558,19 @@ export default function DFMPanel({ onClose }) {
                                   <span className="dfm-defect-location">{d.location}</span>
                                 </div>
                                 <p className="dfm-defect-desc">{d.desc}</p>
+                                {d.positions && d.positions.length > 0 && (
+                                  <div className="dfm-defect-positions">
+                                    <span className="dfm-pos-label">📍 倒扣位置（共 {d.positions.length} 处采样）：</span>
+                                    <div className="dfm-pos-chips">
+                                      {d.positions.slice(0, 8).map((p, pi) => (
+                                        <span key={pi} className="dfm-pos-chip" title={`坐标 (${p.x.toFixed(1)}, ${p.y.toFixed(1)}, ${p.z.toFixed(1)})`}>
+                                          ({p.x.toFixed(0)}, {p.y.toFixed(0)}, {p.z.toFixed(0)})
+                                        </span>
+                                      ))}
+                                      {d.positions.length > 8 && <span className="dfm-pos-more">+{d.positions.length - 8}</span>}
+                                    </div>
+                                  </div>
+                                )}
                                 <div className="dfm-defect-remedy">
                                   <span className="dfm-remedy-label">改进建议：</span>
                                   <span className="dfm-remedy-text">{d.remedy}</span>
