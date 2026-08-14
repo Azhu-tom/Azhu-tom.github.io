@@ -213,15 +213,27 @@ export default function CADModelViewer({
         try {
           const resp = await fetch(url)
           if (resp.ok) {
-            stpBuffer = await resp.arrayBuffer()
-            break
+            // 关键：检查响应是否是 STP 文件（避免 GitHub Pages SPA fallback 返回 HTML）
+            const contentType = resp.headers.get('content-type') || ''
+            const buffer = await resp.arrayBuffer()
+            // 检查 STP 文件魔数（STEP 文件开头是 "ISO-10303-21"）
+            const bytes = new Uint8Array(buffer.slice(0, 20))
+            const header = new TextDecoder('utf-8').decode(bytes)
+            const isStep = header.includes('ISO-10303-21')
+            if (isStep) {
+              stpBuffer = buffer
+              break
+            } else {
+              console.warn(`[CADModelViewer] URL ${url} 返回的不是 STP (Content-Type: ${contentType})`)
+              lastErr = new Error(`URL ${url} 返回非 STP 内容`)
+            }
           }
         } catch (e) {
           lastErr = e
         }
       }
       if (!stpBuffer) {
-        throw new Error(`STP 文件下载失败: ${lastErr?.message || '所有 URL 都不可用'}`)
+        throw new Error(`STP 文件下载失败: ${lastErr?.message || '所有 URL 都不可用或返回非 STP 内容'}`)
       }
 
       if (onProgress) onProgress(70)

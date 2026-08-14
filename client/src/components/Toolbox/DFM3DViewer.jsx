@@ -21,7 +21,7 @@ registerPlugin({
   version: '2.7.0',
   component: null,
   defaultOptions: {
-    roughness: 0.45,
+    roughness: 0.6,
     metalness: 0.2,
     wireframeOpacity: 0.2,
     ambientLight: 0.45,
@@ -43,59 +43,62 @@ const COLORS = {
   grid: 0x1e293b,
 }
 
-// ==================== OCCT WASM 加载（与通用件模型库一致） ====================
+// ==================== OCCT WASM 加载（正确 API：occtimportjs() 返回 Promise） ====================
 let occtModuleCache = null
 
 async function ensureOCCT() {
   if (occtModuleCache && occtModuleCache.ready) return occtModuleCache
 
-  try {
-    // 1. 预加载 wasm 字节（避免运行时的 fetch 路径问题）
-    let wasmBinary = null
+  // 15 秒总超时保护（避免无限转圈）
+  const timeoutPromise = new Promise((_, reject) => {
+    setTimeout(() => reject(new Error('OCCT WASM 初始化超时（15秒）')), 15000)
+  })
+
+  const initPromise = (async () => {
     try {
+      // 1. 预加载 wasm 字节 + Blob URL
       const wasmResp = await fetch('/wasm/occt-import-js.wasm')
-      if (wasmResp.ok) {
-        wasmBinary = new Uint8Array(await wasmResp.arrayBuffer())
+      if (!wasmResp.ok) throw new Error(`WASM 预加载失败: HTTP ${wasmResp.status}`)
+      const wasmBinary = new Uint8Array(await wasmResp.arrayBuffer())
+      console.log(`[DFM3DViewer] WASM 预加载完成: ${wasmBinary.byteLength} bytes`)
+      const wasmBlobUrl = URL.createObjectURL(new Blob([wasmBinary], { type: 'application/wasm' }))
+
+      // 2. 加载 UMD（已 patched window.occtimportjs）
+      if (!window.occtimportjs) {
+        await new Promise((resolve, reject) => {
+          const script = document.createElement('script')
+          script.src = '/wasm/occt-import-js.js'
+          script.async = false
+          script.onload = resolve
+          script.onerror = () => reject(new Error('occt-import-js.js 加载失败'))
+          document.head.appendChild(script)
+        })
       }
-    } catch (e) {
-      console.warn('[DFM3DViewer] WASM 预加载失败:', e.message)
-    }
+      if (!window.occtimportjs) throw new Error('occt-import-js 未暴露到 window.occtimportjs')
 
-    // 2. 加载 UMD
-    if (!window.occtimportjs) {
-      await new Promise((resolve, reject) => {
-        const script = document.createElement('script')
-        script.src = '/wasm/occt-import-js.js'
-        script.async = false
-        script.onload = resolve
-        script.onerror = () => reject(new Error('occt-import-js.js 加载失败'))
-        document.head.appendChild(script)
+      // 3. 关键正确用法：occtimportjs() 返回 Promise（resolve 的是 Module 对象）
+      //    locateFile 必须在 moduleArg 里传入，Module 初始化时就会读取
+      const occt = await window.occtimportjs({
+        locateFile: (path) => {
+          if (path.endsWith('.wasm')) return wasmBlobUrl
+          return path
+        },
       })
+
+      if (!occt || typeof occt.ReadStepFile !== 'function') {
+        throw new Error('OCCT 模块初始化异常：缺少 ReadStepFile 方法')
+      }
+
+      console.log('[DFM3DViewer] OCCT 初始化完成')
+      occtModuleCache = { ...occt, ready: true }
+      return occtModuleCache
+    } catch (err) {
+      console.error('[DFM3DViewer] OCCT init failed:', err)
+      throw err
     }
+  })()
 
-    if (!window.occtimportjs) throw new Error('occt-import-js 未暴露到 window.occtimportjs')
-
-    // 3. 创建 Module 实例（传 wasmBinary）
-    const occtModule = window.occtimportjs({ wasmBinary })
-    occtModule.locateFile = (path) => {
-      if (path.endsWith('.wasm')) return wasmBinary ? URL.createObjectURL(new Blob([wasmBinary], { type: 'application/wasm' })) : `/wasm/${path}`
-      return path
-    }
-
-    // 4. 等待运行时就绪
-    if (!occtModule.calledRun) {
-      await new Promise((resolve) => {
-        occtModule.onRuntimeInitialized = resolve
-        setTimeout(() => { if (occtModule.calledRun) resolve() }, 3000)
-      })
-    }
-
-    occtModuleCache = { ...occtModule, ready: true }
-    return occtModuleCache
-  } catch (err) {
-    console.error('[DFM3DViewer] OCCT init failed:', err)
-    throw err
-  }
+  return Promise.race([initPromise, timeoutPromise])
 }
 
 // ==================== 主组件 ====================
@@ -186,8 +189,8 @@ export default function DFM3DViewer({ meta, file }) {
         controls.maxDistance = 500
         controlsRef.current = controls
 
-        // 6. 网格
-        scene.add(new THREE.GridHelper(diag * 2, 20, 0xcbd5e1, 0x94a3b8))
+        // 6. 网格（已隐藏，专注模型本身，接近 Creo 风格）
+        // scene.add(new THREE.GridHelper(diag * 2, 20, 0xcbd5e1, 0x94a3b8))
 
         // ===== 7. 优先用 OCCT 高精度解析 =====
         let mesh = null
@@ -201,17 +204,17 @@ export default function DFM3DViewer({ meta, file }) {
 
             setLoadingStage('高精度三角化模型...')
             const buffer = await file.arrayBuffer()
+            // occt-import-js 正确参数：linearDeflection（包围盒比例，越小越精细）
+            // 默认 0.01（1%），此处 0.001（0.1%）= 10 倍精度提升
             const result = occt.ReadStepFile(new Uint8Array(buffer), {
-              linearPrecision: 0.05,    // 高精度（默认 0.1 → 0.05）
-              angularPrecision: 0.3,
-              linearTolerance: 0.05,
-              angularTolerance: 0.3,
+              linearDeflection: 0.001,
+              angularDeflection: 0.5,
             })
 
             if (aborted) return
 
             if (result && result.meshes && result.meshes.length > 0) {
-              // 合并所有 mesh 的几何
+              // 合并所有 mesh 的几何（OCCT 正确字段：attributes.position.array / attributes.normal.array / index.array）
               let totalVertices = 0
               let totalIndices = 0
               const mergedPositions = []
@@ -219,51 +222,49 @@ export default function DFM3DViewer({ meta, file }) {
               const mergedIndices = []
 
               for (const m of result.meshes) {
-                const verts = m.attributes?.position?.array || m.vertices || []
-                const norms = m.attributes?.normal?.array || m.normals || []
-                const indices = m.attributes?.index?.array || m.indices || []
+                const posArr = m.attributes?.position?.array || m.vertices || []
+                const nrmArr = m.attributes?.normal?.array || m.normals || []
+                // 注意：OCCT 索引字段是 m.index.array（单数，不在 attributes 里）
+                const idxArr = m.index?.array || m.indices || m.attributes?.index?.array || []
 
                 // 顶点偏移
                 const offset = totalVertices
-                for (let i = 0; i < verts.length; i++) {
-                  mergedPositions.push(verts[i])
-                }
-                for (let i = 0; i < norms.length; i++) {
-                  mergedNormals.push(norms[i])
-                }
-                totalVertices += verts.length / 3
+                for (let i = 0; i < posArr.length; i++) mergedPositions.push(posArr[i])
+                for (let i = 0; i < nrmArr.length; i++) mergedNormals.push(nrmArr[i])
+                totalVertices += posArr.length / 3
 
                 // 索引偏移
-                for (let i = 0; i < indices.length; i++) {
-                  mergedIndices.push(indices[i] + offset)
+                for (let i = 0; i < idxArr.length; i++) mergedIndices.push(idxArr[i] + offset)
+                totalIndices += idxArr.length
+              }
+
+              if (totalIndices > 0 && totalVertices > 0) {
+                // 构建 Three.js 几何
+                const geometry = new THREE.BufferGeometry()
+                geometry.setAttribute('position', new THREE.BufferAttribute(new Float32Array(mergedPositions), 3))
+                if (mergedNormals.length === mergedPositions.length) {
+                  // 使用 OCCT 提供的精确法线（保留硬边 + 圆滑曲面）
+                  geometry.setAttribute('normal', new THREE.BufferAttribute(new Float32Array(mergedNormals), 3))
+                } else {
+                  geometry.computeVertexNormals()  // 兜底：重新计算平滑法线
                 }
-                totalIndices += indices.length
+                geometry.setIndex(new THREE.BufferAttribute(new Uint32Array(mergedIndices), 1))
+
+                const meshMat = new THREE.MeshStandardMaterial({
+                  color: COLORS.meshFill,
+                  roughness: 0.6,
+                  metalness: 0.2,
+                  side: THREE.DoubleSide,
+                  flatShading: false,
+                })
+                mesh = new THREE.Mesh(geometry, meshMat)
+                mesh.castShadow = true
+                mesh.receiveShadow = true
+                scene.add(mesh)
+
+                renderInfo = `OCCT 高精度 · ${result.meshes.length} mesh · ${totalVertices} 顶点 · ${totalIndices / 3} 三角形`
+                console.log(`[DFM3DViewer] OCCT 解析成功: ${renderInfo}`)
               }
-
-              // 构建 Three.js 几何
-              const geometry = new THREE.BufferGeometry()
-              geometry.setAttribute('position', new THREE.BufferAttribute(new Float32Array(mergedPositions), 3))
-              if (mergedNormals.length === mergedPositions.length) {
-                geometry.setAttribute('normal', new THREE.BufferAttribute(new Float32Array(mergedNormals), 3))
-              } else {
-                geometry.computeVertexNormals()  // 法线计算（圆滑过渡关键）
-              }
-              geometry.setIndex(new THREE.BufferAttribute(new Uint32Array(mergedIndices), 1))
-
-              const meshMat = new THREE.MeshStandardMaterial({
-                color: COLORS.meshFill,
-                roughness: 0.45,
-                metalness: 0.2,
-                side: THREE.DoubleSide,
-                flatShading: false,
-              })
-              mesh = new THREE.Mesh(geometry, meshMat)
-              mesh.castShadow = true
-              mesh.receiveShadow = true
-              scene.add(mesh)
-
-              renderInfo = `OCCT 高精度 · ${result.meshes.length} mesh · ${totalVertices} 顶点 · ${totalIndices / 3} 三角形`
-              console.log(`[DFM3DViewer] OCCT 解析成功: ${renderInfo}`)
             }
           } catch (occtErr) {
             console.warn('[DFM3DViewer] OCCT 解析失败，降级使用耳切法:', occtErr.message)
@@ -315,15 +316,15 @@ export default function DFM3DViewer({ meta, file }) {
           setInfo('未提取到面拓扑，仅显示包围盒')
         }
 
-        // ===== 9. 包围盒 =====
-        if (meta.boundingBox && meta.boundingBox.pointCount >= 3) {
-          const { minX, maxX, minY, maxY, minZ, maxZ } = meta.boundingBox
-          const boxGeo = new THREE.BoxGeometry(maxX - minX, maxY - minY, maxZ - minZ)
-          boxGeo.translate((minX + maxX) / 2, (minY + maxY) / 2, (minZ + maxZ) / 2)
-          const boxEdges = new THREE.EdgesGeometry(boxGeo)
-          const boxLine = new THREE.LineSegments(boxEdges, new THREE.LineBasicMaterial({ color: COLORS.bboxEdge, transparent: true, opacity: 0.12 }))
-          scene.add(boxLine)
-        }
+        // ===== 9. 包围盒（已隐藏，专注模型本身） =====
+        // if (meta.boundingBox && meta.boundingBox.pointCount >= 3) {
+        //   const { minX, maxX, minY, maxY, minZ, maxZ } = meta.boundingBox
+        //   const boxGeo = new THREE.BoxGeometry(maxX - minX, maxY - minY, maxZ - minZ)
+        //   boxGeo.translate((minX + maxX) / 2, (minY + maxY) / 2, (minZ + maxZ) / 2)
+        //   const boxEdges = new THREE.EdgesGeometry(boxGeo)
+        //   const boxLine = new THREE.LineSegments(boxEdges, new THREE.LineBasicMaterial({ color: COLORS.bboxEdge, transparent: true, opacity: 0.12 }))
+        //   scene.add(boxLine)
+        // }
 
         // ===== 10. autoFitCamera =====
         if (bbox) {
