@@ -15,11 +15,15 @@ import React, { useState, useEffect, useRef, useCallback } from 'react'
 import './HandbookLibrary.css'
 import { toast } from '../../utils/toast'
 import * as XLSX from 'xlsx'
+import * as idb from '../../utils/idbHandbook'
 
 // 自动检测 API URL：GitHub Pages 部署时指向 Render 后端，本地开发用 proxy
 const API_BASE = (typeof window !== 'undefined' && window.location.hostname.includes('github.io'))
   ? 'https://structural-engineer-ai-api.onrender.com'
   : ''
+
+// GitHub Pages 静态部署 → 用 IndexedDB 本地存储（无后端）
+const USE_IDB = (typeof window !== 'undefined' && window.location.hostname.includes('github.io'))
 
 // ==================== 手册分类定义 ====================
 const HANDBOOK_CATEGORIES = [
@@ -80,22 +84,37 @@ export default function HandbookLibrary({ onClose }) {
   const fetchBooks = useCallback(async () => {
     setLoading(true)
     try {
-      const params = new URLSearchParams({
-        category: activeCategory,
-        search: searchKeyword,
-        sort: 'uploadedAt',
-        order: 'desc',
-        limit: '100'
-      })
-      const listUrl = `${API_BASE}/api/handbook/list?${params}`
-      const res = await fetch(listUrl)
-      const data = await res.json()
-      if (data.success) {
-        setBooks(data.data || [])
-        setStats(data.stats)
+      if (USE_IDB) {
+        // GitHub Pages 静态站：IndexedDB 本地存储
+        const list = await idb.listBooks({ category: activeCategory, search: searchKeyword })
+        setBooks(list)
+        // 统计
+        const byCat = {}
+        let totalSize = 0
+        for (const b of list) {
+          byCat[b.category] = (byCat[b.category] || 0) + 1
+          totalSize += b.size || 0
+        }
+        setStats({ total: list.length, byCategory: byCat, totalSize })
+      } else {
+        const params = new URLSearchParams({
+          category: activeCategory,
+          search: searchKeyword,
+          sort: 'uploadedAt',
+          order: 'desc',
+          limit: '100'
+        })
+        const listUrl = `${API_BASE}/api/handbook/list?${params}`
+        const res = await fetch(listUrl)
+        const data = await res.json()
+        if (data.success) {
+          setBooks(data.data || [])
+          setStats(data.stats)
+        }
       }
     } catch (err) {
       console.error('[Handbook] Load error:', err)
+      toast.error('加载失败：' + err.message)
     }
     setLoading(false)
   }, [activeCategory, searchKeyword])
@@ -115,11 +134,15 @@ export default function HandbookLibrary({ onClose }) {
 
   // ---- 加载收藏列表 ----
   useEffect(() => {
-    fetch(`${API_BASE}/api/handbook/favorites/list`)
-      .then(r => r.json())
-      .then(d => { if (d.success) setFavorites(d.data || []) })
-      .catch(() => {})
-  }, [])
+    if (USE_IDB) {
+      idb.listFavorites().then(setFavorites).catch(() => {})
+    } else {
+      fetch(`${API_BASE}/api/handbook/favorites/list`)
+        .then(r => r.json())
+        .then(d => { if (d.success) setFavorites(d.data || []) })
+        .catch(() => {})
+    }
+  }, [books])
 
   // ---- 搜索（防抖） ----
   const searchTimerRef = useRef(null)
@@ -139,26 +162,50 @@ export default function HandbookLibrary({ onClose }) {
 
     for (const file of Array.from(files)) {
       try {
-        const form = new FormData()
-        form.append('file', file)
-        form.append('category', activeCategory !== 'all' ? activeCategory : 'other')
-        form.append('title', file.name.replace(/\.[^.]+$/, ''))
+        if (USE_IDB) {
+          // GitHub Pages 静态站：直接保存到 IndexedDB（浏览器本地）
+          const id = `bk-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`
+          const ext = (file.name.split('.').pop() || '').toLowerCase()
+          const book = {
+            id,
+            title: file.name.replace(/\.[^.]+$/, ''),
+            fileName: file.name,
+            fileType: ext,
+            category: activeCategory !== 'all' ? activeCategory : 'other',
+            tags: [],
+            description: '',
+            size: file.size,
+            blob: file,
+            favorite: false,
+            favoriteCount: 0,
+            uploadedAt: new Date().toISOString(),
+          }
+          setUploadProgress(50)
+          await idb.saveBook(book)
+          setUploadProgress(100)
+          toast.success(`已保存到浏览器本地: ${file.name}`)
+        } else {
+          const form = new FormData()
+          form.append('file', file)
+          form.append('category', activeCategory !== 'all' ? activeCategory : 'other')
+          form.append('title', file.name.replace(/\.[^.]+$/, ''))
 
-        const xhr = new XMLHttpRequest()
-        await new Promise((resolve, reject) => {
-          xhr.upload.addEventListener('progress', e => {
-            if (e.lengthComputable) {
-              const pct = Math.round((e.loaded / e.total) * 90)
-              setUploadProgress(pct)
-            }
+          const xhr = new XMLHttpRequest()
+          await new Promise((resolve, reject) => {
+            xhr.upload.addEventListener('progress', e => {
+              if (e.lengthComputable) {
+                const pct = Math.round((e.loaded / e.total) * 90)
+                setUploadProgress(pct)
+              }
+            })
+            xhr.onload = () => resolve()
+            xhr.onerror = () => reject(new Error('上传失败'))
+            xhr.open('POST', `${API_BASE}/api/handbook/upload`)
+            xhr.send(form)
           })
-          xhr.onload = () => resolve()
-          xhr.onerror = () => reject(new Error('上传失败'))
-          xhr.open('POST', `${API_BASE}/api/handbook/upload`)
-          xhr.send(form)
-        })
 
-        setUploadProgress(100)
+          setUploadProgress(100)
+        }
       } catch (err) {
         toast.error(`上传失败: ${file.name}\n${err.message}`)
       }
@@ -167,10 +214,10 @@ export default function HandbookLibrary({ onClose }) {
     setUploading(false)
     setUploadProgress(0)
     setShowUploadModal(false)
-    
+
     // 清空 input 以便重复选择同一文件
     if (fileInputRef.current) fileInputRef.current.value = ''
-    
+
     // 刷新列表
     fetchBooks()
   }
@@ -178,16 +225,28 @@ export default function HandbookLibrary({ onClose }) {
   // ---- 收藏操作 ----
   const toggleFavorite = async (bookId) => {
     try {
-      const isFav = favorites.some(f => f.bookId === bookId)
-      const method = isFav ? 'DELETE' : 'POST'
-      await fetch(`${API_BASE}/api/handbook/${bookId}/favorite`, { method })
-      
-      if (isFav) {
-        setFavorites(prev => prev.filter(f => f.bookId !== bookId))
-        setBooks(prev => prev.map(b => b.id === bookId ? {...b, favoriteCount: Math.max(0, (b.favoriteCount||0)-1)} : b))
+      if (USE_IDB) {
+        const newState = await idb.toggleFavorite(bookId)
+        if (newState === null) return
+        if (newState) {
+          setFavorites(prev => [...prev, { bookId, addedAt: new Date().toISOString() }])
+          setBooks(prev => prev.map(b => b.id === bookId ? { ...b, favorite: true, favoriteCount: (b.favoriteCount||0)+1 } : b))
+        } else {
+          setFavorites(prev => prev.filter(f => f.bookId !== bookId))
+          setBooks(prev => prev.map(b => b.id === bookId ? { ...b, favorite: false, favoriteCount: Math.max(0, (b.favoriteCount||0)-1) } : b))
+        }
       } else {
-        setFavorites(prev => [...prev, { bookId: bookId, addedAt: new Date().toISOString() }])
-        setBooks(prev => prev.map(b => b.id === bookId ? {...b, favoriteCount: (b.favoriteCount||0)+1} : b))
+        const isFav = favorites.some(f => f.bookId === bookId)
+        const method = isFav ? 'DELETE' : 'POST'
+        await fetch(`${API_BASE}/api/handbook/${bookId}/favorite`, { method })
+
+        if (isFav) {
+          setFavorites(prev => prev.filter(f => f.bookId !== bookId))
+          setBooks(prev => prev.map(b => b.id === bookId ? {...b, favoriteCount: Math.max(0, (b.favoriteCount||0)-1)} : b))
+        } else {
+          setFavorites(prev => [...prev, { bookId: bookId, addedAt: new Date().toISOString() }])
+          setBooks(prev => prev.map(b => b.id === bookId ? {...b, favoriteCount: (b.favoriteCount||0)+1} : b))
+        }
       }
     } catch (err) {
       console.error('[Handbook] Favorite error:', err)
@@ -219,8 +278,11 @@ export default function HandbookLibrary({ onClose }) {
     if (!previewBook || !showPreviewModal) return
 
     const ext = String(previewBook.fileType || '').toLowerCase()
-    const downloadUrl = `${API_BASE}/api/handbook/download/${previewBook.id}`
-    setPreviewUrl(downloadUrl)
+
+    const setBlobAndURL = (blob) => {
+      const url = URL.createObjectURL(blob)
+      setPreviewUrl(url)
+    }
 
     // 文本类：fetch + 文本/表格解析
     const textLike = ['txt', 'md', 'json', 'csv', 'log', 'xml', 'yaml', 'yml', 'js', 'css', 'html', 'ts', 'tsx', 'jsx']
@@ -230,32 +292,71 @@ export default function HandbookLibrary({ onClose }) {
     if (textLike.includes(ext)) {
       setPreviewType('text')
       setPreviewLoading(true)
-      fetch(downloadUrl).then(r => r.ok ? r.text() : Promise.reject(new Error(`HTTP ${r.status}`)))
-        .then(text => { setPreviewContent(text.slice(0, 50000)); setPreviewLoading(false) })
+      const loadBlob = USE_IDB
+        ? idb.getBook(previewBook.id).then(b => b?.blob).catch(() => null)
+        : fetch(`${API_BASE}/api/handbook/download/${previewBook.id}`).then(r => r.ok ? r.blob() : Promise.reject(new Error(`HTTP ${r.status}`)))
+      loadBlob.then(blob => {
+        if (!blob) throw new Error('文件不存在')
+        setBlobAndURL(blob)
+        return blob.text()
+      }).then(text => { setPreviewContent(text.slice(0, 50000)); setPreviewLoading(false) })
         .catch(err => { setPreviewError(err.message); setPreviewLoading(false) })
     } else if (tableLike.includes(ext)) {
       setPreviewType('table')
       setPreviewLoading(true)
-      fetch(downloadUrl).then(r => r.ok ? r.arrayBuffer() : Promise.reject(new Error(`HTTP ${r.status}`)))
-        .then(buf => {
-          const wb = XLSX.read(buf, { type: 'array' })
-          const sheetName = wb.SheetNames[0]
-          const sheet = wb.Sheets[sheetName]
-          const rows = XLSX.utils.sheet_to_json(sheet, { header: 1, defval: '' })
-          setPreviewContent({ sheetName, rows: rows.slice(0, 200), totalRows: rows.length })
-          setPreviewLoading(false)
-        })
-        .catch(err => { setPreviewError(err.message); setPreviewLoading(false) })
+      const loadBuf = USE_IDB
+        ? idb.getBook(previewBook.id).then(b => b?.blob.arrayBuffer()).catch(() => null)
+        : fetch(`${API_BASE}/api/handbook/download/${previewBook.id}`).then(r => r.ok ? r.arrayBuffer() : Promise.reject(new Error(`HTTP ${r.status}`)))
+      loadBuf.then(buf => {
+        const wb = XLSX.read(buf, { type: 'array' })
+        const sheetName = wb.SheetNames[0]
+        const sheet = wb.Sheets[sheetName]
+        const rows = XLSX.utils.sheet_to_json(sheet, { header: 1, defval: '' })
+        // 同时创建 blob URL 给下载按钮
+        const blob = new Blob([buf], { type: 'application/octet-stream' })
+        setBlobAndURL(blob)
+        setPreviewContent({ sheetName, rows: rows.slice(0, 200), totalRows: rows.length })
+        setPreviewLoading(false)
+      }).catch(err => { setPreviewError(err.message); setPreviewLoading(false) })
     } else if (unsupported.includes(ext)) {
       setPreviewType('unsupported')
     } else if (['pdf'].includes(ext)) {
       setPreviewType('pdf')
+      // PDF/图片/视频/音频：获取 blob URL
+      if (USE_IDB) {
+        idb.getBook(previewBook.id).then(b => {
+          if (b?.blob) setBlobAndURL(b.blob)
+        }).catch(err => setPreviewError(err.message))
+      } else {
+        setPreviewUrl(`${API_BASE}/api/handbook/download/${previewBook.id}`)
+      }
     } else if (['jpg', 'jpeg', 'png', 'gif', 'webp', 'svg', 'bmp'].includes(ext)) {
       setPreviewType('image')
+      if (USE_IDB) {
+        idb.getBook(previewBook.id).then(b => {
+          if (b?.blob) setBlobAndURL(b.blob)
+        }).catch(err => setPreviewError(err.message))
+      } else {
+        setPreviewUrl(`${API_BASE}/api/handbook/download/${previewBook.id}`)
+      }
     } else if (['mp4', 'webm', 'mov', 'avi', 'mkv'].includes(ext)) {
       setPreviewType('video')
+      if (USE_IDB) {
+        idb.getBook(previewBook.id).then(b => {
+          if (b?.blob) setBlobAndURL(b.blob)
+        }).catch(err => setPreviewError(err.message))
+      } else {
+        setPreviewUrl(`${API_BASE}/api/handbook/download/${previewBook.id}`)
+      }
     } else if (['mp3', 'wav', 'ogg', 'flac', 'm4a'].includes(ext)) {
       setPreviewType('audio')
+      if (USE_IDB) {
+        idb.getBook(previewBook.id).then(b => {
+          if (b?.blob) setBlobAndURL(b.blob)
+        }).catch(err => setPreviewError(err.message))
+      } else {
+        setPreviewUrl(`${API_BASE}/api/handbook/download/${previewBook.id}`)
+      }
     } else {
       // 其他未知格式：尝试通用预览
       setPreviewType('unsupported')
@@ -264,7 +365,21 @@ export default function HandbookLibrary({ onClose }) {
 
   // ---- 下载文件 ----
   const handleDownload = async (book) => {
-    window.open(`${API_BASE}/api/handbook/download/${book.id}`, '_blank')
+    if (USE_IDB) {
+      const b = await idb.getBook(book.id)
+      if (!b?.blob) {
+        toast.error('文件不存在')
+        return
+      }
+      const url = URL.createObjectURL(b.blob)
+      const a = document.createElement('a')
+      a.href = url
+      a.download = book.fileName
+      a.click()
+      setTimeout(() => URL.revokeObjectURL(url), 1000)
+    } else {
+      window.open(`${API_BASE}/api/handbook/download/${book.id}`, '_blank')
+    }
   }
 
   // ---- 删除文件 ----
@@ -272,9 +387,15 @@ export default function HandbookLibrary({ onClose }) {
     if (!window.confirm(`确定要删除「${book.title}」吗？`)) return
 
     try {
-      await fetch(`${API_BASE}/api/handbook/${book.id}`, { method: 'DELETE' })
-      setBooks(prev => prev.filter(b => b.id !== book.id))
-      setFavorites(prev => prev.filter(f => f.bookId !== book.id))
+      if (USE_IDB) {
+        await idb.deleteBook(book.id)
+        setBooks(prev => prev.filter(b => b.id !== book.id))
+        setFavorites(prev => prev.filter(f => f.bookId !== book.id))
+      } else {
+        await fetch(`${API_BASE}/api/handbook/${book.id}`, { method: 'DELETE' })
+        setBooks(prev => prev.filter(b => b.id !== book.id))
+        setFavorites(prev => prev.filter(f => f.bookId !== book.id))
+      }
       toast.success(`已删除「${book.title}」`)
     } catch (err) {
       toast.error('删除失败: ' + err.message)
@@ -315,6 +436,28 @@ export default function HandbookLibrary({ onClose }) {
           </div>
           <button className="hlib-close-btn" onClick={onClose}>✕</button>
         </div>
+
+        {/* ====== 本地存储模式提示（GitHub Pages 静态站） ====== */}
+        {USE_IDB && (
+          <div className="hlib-local-mode-banner">
+            <span className="hlib-local-icon">💾</span>
+            <div className="hlib-local-text">
+              <strong>本地存储模式</strong> · 数据保存在浏览器 IndexedDB（仅本设备，不跨设备）
+            </div>
+            <button
+              className="hlib-export-btn"
+              onClick={async () => {
+                try {
+                  const n = await idb.exportAll()
+                  toast.success(`已导出 ${n} 本手册的元数据`)
+                } catch (e) { toast.error('导出失败: ' + e.message) }
+              }}
+              title="导出所有手册元数据为 JSON"
+            >
+              📦 导出
+            </button>
+          </div>
+        )}
 
         {/* ====== 工具栏 ====== */}
         <div className="hlib-toolbar">
