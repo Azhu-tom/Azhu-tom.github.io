@@ -1,5 +1,7 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react'
 import modelData, { categories } from '../../data/modelData'
+import { fetchSmartSearch, enrichResult } from '../../utils/smartSearch'
+import SmartSuggest from '../Search/SmartSuggest'
 import './AISearchAssistant.css'
 
 /**
@@ -283,6 +285,76 @@ function generateSuggestions(q) {
   return suggestions.slice(0, 6)
 }
 
+// ==================== 后端智能结果渲染 ====================
+
+/**
+ * 渲染后端 POST /api/search/smart 返回结构（用于智能模式聊天气泡）
+ * - results 会经过 fuzzy 映射到本地 modelData，补充 code/material/has3DModel 等字段
+ */
+function SmartMessage({ smart, onSelect, onQuick }) {
+  const results = (smart.results || []).map(enrichResult)
+  const recs = (smart.recommendations || []).map(enrichResult)
+
+  return (
+    <div className="ais-smart">
+      {smart.correction && (
+        <div className="ais-correction">
+          <span>您是不是想搜：</span>
+          <button onClick={() => onQuick(smart.correction.corrected)}>{smart.correction.corrected}</button>
+        </div>
+      )}
+
+      {smart.summary && <p className="ais-msg-text">{smart.summary}</p>}
+
+      {results.length > 0 && (
+        <div className="ais-result-cards">
+          {results.map((r, i) => {
+            const local = r._localModel
+            const display = local || r
+            return (
+              <div
+                key={`${r.type}-${r.name}-${i}`}
+                className="ais-result-card"
+                onClick={() => onSelect(r)}
+              >
+                <div className="ais-card-type">{r.category || '结果'}</div>
+                <div className="ais-card-name">{display.name}</div>
+                {display.code && <div className="ais-card-code">{display.code}</div>}
+                <div className="ais-card-specs">
+                  {display.material && <span className="ais-tag">{display.material}</span>}
+                  {r.reason && <span className="ais-tag">{r.reason.substring(0, 18)}</span>}
+                  {display.has3DModel && <span className="ais-tag has3d">🎮 3D</span>}
+                </div>
+              </div>
+            )
+          })}
+        </div>
+      )}
+
+      {recs.length > 0 && (
+        <div className="ais-recos">
+          <div className="ais-recos-title">💡 为您推荐</div>
+          <div className="ais-recos-row">
+            {recs.map((r, i) => (
+              <button key={i} className="ais-reco-chip" onClick={() => onSelect(r)}>
+                {r.name}
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {smart.suggestions && smart.suggestions.length > 0 && (
+        <div className="ais-suggestions">
+          {smart.suggestions.slice(0, 5).map((s, i) => (
+            <button key={i} className="ais-suggest-btn" onClick={() => onQuick(s)}>💡 {s}</button>
+          ))}
+        </div>
+      )}
+    </div>
+  )
+}
+
 // ==================== 组件 ====================
 
 export default function AISearchAssistant({ onResultSelect, onSearchChange }) {
@@ -294,6 +366,15 @@ export default function AISearchAssistant({ onResultSelect, onSearchChange }) {
   const chatEndRef = useRef(null)
   const inputRef = useRef(null)
   const debounceRef = useRef(null)
+
+  // ===== 智能模式（后端 /api/search/smart）联想状态 =====
+  const [smartData, setSmartData] = useState(null)
+  const [smartLoading, setSmartLoading] = useState(false)
+  const [smartError, setSmartError] = useState(null)
+  const [showSuggest, setShowSuggest] = useState(false)
+  const [activeIndex, setActiveIndex] = useState(-1)
+  const suggestDebounceRef = useRef(null)
+  const smartSeqRef = useRef(0)
 
   // XSS防护：转义HTML特殊字符
   const escapeHtml = (str) => {
@@ -313,37 +394,66 @@ export default function AISearchAssistant({ onResultSelect, onSearchChange }) {
     }
   }, [conversations, isTyping])
 
-  // 发送消息
+  // 发送消息（智能模式：优先后端，失败降级本地引擎）
   const sendMessage = useCallback((text) => {
     if (!text.trim()) return
-    
+
     const userMsg = { role: 'user', content: text.trim(), timestamp: Date.now() }
+    const history = conversations.slice(-6).map(m => m.content).filter(Boolean)
     setConversations(prev => [...prev, userMsg])
     setQuery('')
+    setShowSuggest(false)
     setIsTyping(true)
-    
-    // 模拟AI思考延迟
-    setTimeout(() => {
-      const context = conversations.length > 0 ? conversations[conversations.length - 1] : null
-      const response = aiSearch(text.trim(), context)
-      
-      const aiMsg = {
-        role: 'assistant',
-        ...response,
-        timestamp: Date.now(),
-      }
-      setConversations(prev => [...prev, aiMsg])
+    setShowPanel(true)
+
+    const appendAssistant = (payload) => {
+      setConversations(prev => [...prev, { role: 'assistant', ...payload, timestamp: Date.now() }])
       setIsTyping(false)
       setShowPanel(true)
-    }, 400 + Math.random() * 400)
-  }, [conversations])
+    }
 
-  // 输入变化（普通搜索模式实时触发）
+    if (isAIMode) {
+      // 智能模式：调后端智能搜索（scope=model），失败时降级本地引擎
+      fetchSmartSearch({ query: text.trim(), scope: 'model', history })
+        .then(res => {
+          appendAssistant({ type: 'smart', smart: res })
+        })
+        .catch(() => {
+          const context = conversations.length > 0 ? conversations[conversations.length - 1] : null
+          const response = aiSearch(text.trim(), context)
+          appendAssistant({ ...response, _fallback: true })
+        })
+    } else {
+      // 本地引擎（保留原有对话行为）
+      setTimeout(() => {
+        const context = conversations.length > 0 ? conversations[conversations.length - 1] : null
+        const response = aiSearch(text.trim(), context)
+        appendAssistant(response)
+      }, 400 + Math.random() * 400)
+    }
+  }, [isAIMode, conversations])
+
+  // 输入变化
+  // - 普通模式：实时过滤本地表格（防抖 200ms，保留原行为）
+  // - 智能模式：防抖 300ms 调后端 /api/search/smart 联想（scope=model）
   const handleInputChange = (e) => {
     const val = e.target.value
     setQuery(val)
-    
-    if (!isAIMode && onSearchChange) {
+
+    if (isAIMode) {
+      if (val.trim()) {
+        setShowSuggest(true)
+        setShowPanel(false)
+        setActiveIndex(-1)
+        if (suggestDebounceRef.current) clearTimeout(suggestDebounceRef.current)
+        suggestDebounceRef.current = setTimeout(() => runSmartSuggest(val), 300)
+      } else {
+        setShowSuggest(false)
+      }
+      return
+    }
+
+    if (onSearchChange) {
       // 防抖处理
       if (debounceRef.current) clearTimeout(debounceRef.current)
       debounceRef.current = setTimeout(() => onSearchChange(val), 200)
@@ -355,12 +465,32 @@ export default function AISearchAssistant({ onResultSelect, onSearchChange }) {
     if (e.key === 'Enter') {
       if (isAIMode) {
         e.preventDefault()
+        // 有高亮的联想项 → 选择它；否则发送消息
+        if (showSuggest && activeIndex >= 0) {
+          const flat = getFlatSuggest()
+          if (flat[activeIndex]) {
+            handleSuggestSelect(flat[activeIndex])
+            return
+          }
+        }
         sendMessage(query)
       }
       // 非AI模式回车不特殊处理（已通过onChange实时搜索）
-    }
-    if (e.key === 'Escape') {
+    } else if (e.key === 'ArrowDown') {
+      if (isAIMode && showSuggest) {
+        e.preventDefault()
+        const flat = getFlatSuggest()
+        setActiveIndex(i => (flat.length ? (i + 1) % flat.length : -1))
+      }
+    } else if (e.key === 'ArrowUp') {
+      if (isAIMode && showSuggest) {
+        e.preventDefault()
+        const flat = getFlatSuggest()
+        setActiveIndex(i => (flat.length ? (i - 1 + flat.length) % flat.length : -1))
+      }
+    } else if (e.key === 'Escape') {
       setShowPanel(false)
+      setShowSuggest(false)
     }
   }
 
@@ -370,14 +500,104 @@ export default function AISearchAssistant({ onResultSelect, onSearchChange }) {
     if (!isAIMode) {
       setShowPanel(true)
       inputRef.current?.focus()
+    } else {
+      // 切回普通模式：清理智能联想状态
+      setShowSuggest(false)
+      setSmartData(null)
+      setSmartError(null)
+      setActiveIndex(-1)
+      if (suggestDebounceRef.current) clearTimeout(suggestDebounceRef.current)
     }
   }
+
+  // 卸载清理
+  useEffect(() => () => {
+    if (suggestDebounceRef.current) clearTimeout(suggestDebounceRef.current)
+  }, [])
 
   // 清空对话
   const clearChat = () => {
     setConversations([])
     setQuery('')
     setShowPanel(false)
+    setShowSuggest(false)
+    setSmartData(null)
+    setSmartError(null)
+    setActiveIndex(-1)
+    smartSeqRef.current += 1
+  }
+
+  // 智能联想：调后端（scope=model），失败时保留 error 由下拉面板展示
+  const runSmartSuggest = useCallback(async (text) => {
+    const q = String(text || '').trim()
+    if (!q) return
+    const seq = ++smartSeqRef.current
+    setSmartLoading(true)
+    setSmartError(null)
+    try {
+      const res = await fetchSmartSearch({ query: q, scope: 'model' })
+      if (seq !== smartSeqRef.current) return
+      setSmartData(res)
+    } catch (e) {
+      if (seq !== smartSeqRef.current) return
+      setSmartError(e)
+      setSmartData(null)
+    } finally {
+      if (seq === smartSeqRef.current) setSmartLoading(false)
+    }
+  }, [])
+
+  // 联想 flat 列表（与 SmartSuggest 顺序一致）
+  const getFlatSuggest = useCallback(() => {
+    const sugs = (smartData?.suggestions || []).slice(0, 5)
+    const res = (smartData?.results || []).slice(0, 3).map(enrichResult)
+    return [
+      ...sugs.map((s, i) => ({ type: 'suggestion', text: s, _i: i })),
+      ...res.map((r, i) => ({ type: 'result', result: r, _i: i + sugs.length })),
+    ]
+  }, [smartData])
+
+  // 选择后端结果：优先本地模型打开详情，否则构造最小模型对象
+  const handleSelectSmart = (r) => {
+    const local = r && r._localModel
+    if (local) {
+      if (onResultSelect) onResultSelect(local)
+      return
+    }
+    if (r && r.name) {
+      const pseudo = {
+        id: r.meta?.code || r.name,
+        code: r.meta?.code || '',
+        name: r.name,
+        category: r.category || '',
+        material: r.meta?.material || '',
+        specification: r.meta?.specification || r.meta?.spec || '',
+        has3DModel: Boolean(r.meta?.has3DModel),
+      }
+      if (onResultSelect) onResultSelect(pseudo)
+    }
+  }
+
+  // 联想面板选中
+  const handleSuggestSelect = (item) => {
+    setShowSuggest(false)
+    if (item.type === 'suggestion') {
+      setQuery(item.text)
+      setShowPanel(true)
+      sendMessage(item.text)
+    } else {
+      handleSelectSmart(item.result)
+    }
+  }
+
+  // 联想面板「搜索 xxx」
+  const handleSuggestSearch = (text) => {
+    const t = String(text || query).trim()
+    if (!t) return
+    setQuery(t)
+    setShowSuggest(false)
+    setShowPanel(true)
+    sendMessage(t)
   }
 
   // 选择结果
@@ -422,7 +642,12 @@ export default function AISearchAssistant({ onResultSelect, onSearchChange }) {
             value={query}
             onChange={handleInputChange}
             onKeyDown={handleKeyDown}
-            onFocus={() => isAIMode && setShowPanel(true)}
+            onFocus={() => {
+              if (isAIMode) {
+                if (query.trim()) { setShowSuggest(true); setShowPanel(false) }
+                else setShowPanel(true)
+              }
+            }}
           />
           
           {/* 操作按钮区 */}
@@ -430,7 +655,15 @@ export default function AISearchAssistant({ onResultSelect, onSearchChange }) {
             {query && (
               <button 
                 className="ais-btn ais-clear" 
-                onClick={() => { setQuery(''); if (onSearchChange) onSearchChange(''); }}
+                onClick={() => {
+                  setQuery('')
+                  if (onSearchChange) onSearchChange('')
+                  setShowSuggest(false)
+                  setSmartData(null)
+                  setSmartError(null)
+                  setActiveIndex(-1)
+                  if (suggestDebounceRef.current) clearTimeout(suggestDebounceRef.current)
+                }}
                 title="清除"
               >✕</button>
             )}
@@ -456,6 +689,21 @@ export default function AISearchAssistant({ onResultSelect, onSearchChange }) {
           </div>
         )}
       </div>
+
+      {/* 智能模式：输入联想下拉（防抖 300ms 调后端 scope=model） */}
+      {isAIMode && showSuggest && (
+        <div className="ais-smart-wrap">
+          <SmartSuggest
+            query={query}
+            data={smartData}
+            loading={smartLoading}
+            error={smartError}
+            activeIndex={activeIndex}
+            onSelect={handleSuggestSelect}
+            onSearch={handleSuggestSearch}
+          />
+        </div>
+      )}
 
       {/* AI对话面板 */}
       {isAIMode && showPanel && (
@@ -499,8 +747,22 @@ export default function AISearchAssistant({ onResultSelect, onSearchChange }) {
                   <div className="ais-msg-bubble">{escapeHtml(msg.content)}</div>
                 ) : (
                   <div className="ais-msg-bubble ais-ai-bubble">
-                    <p className="ais-msg-text">{escapeHtml(msg.message)}</p>
-                    
+                    {/* 后端智能结果 */}
+                    {msg.type === 'smart' && msg.smart && (
+                      <>
+                        <SmartMessage smart={msg.smart} onSelect={handleSelectSmart} onQuick={sendMessage} />
+                        {msg.smart.source === 'llm' && (
+                          <p className="ais-smart-source">✨ AI 智能回答</p>
+                        )}
+                      </>
+                    )}
+                    {msg._fallback && (
+                      <p className="ais-fallback-hint">⚠️ 智能服务暂不可用，已切换到本地检索</p>
+                    )}
+                    {msg.type !== 'smart' && (
+                      <p className="ais-msg-text">{escapeHtml(msg.message)}</p>
+                    )}
+
                     {/* 搜索结果卡片 */}
                     {(msg.type === 'search_results' || msg.type === 'recommendation' || msg.type === 'spec_detail' || msg.type === 'material_list') && msg.items && (
                       <div className="ais-result-cards">

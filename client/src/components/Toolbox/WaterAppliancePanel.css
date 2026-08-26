@@ -193,6 +193,41 @@
   user-select: none;
 }
 
+/* AI 智能问答按钮（DeepSeek） */
+.wa-ai-chat-btn {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 12px;
+  background: linear-gradient(135deg, rgba(14, 165, 233, 0.18), rgba(2, 132, 199, 0.08));
+  border: 1px solid rgba(14, 165, 233, 0.35);
+  border-radius: 8px;
+  color: #7dd3fc;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.wa-ai-chat-btn:hover {
+  background: linear-gradient(135deg, rgba(14, 165, 233, 0.32), rgba(2, 132, 199, 0.16));
+  border-color: rgba(14, 165, 233, 0.6);
+  color: #bae6fd;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(14, 165, 233, 0.28);
+}
+
+.wa-ai-chat-btn .ai-chat-icon {
+  display: inline-flex;
+  align-items: center;
+}
+
+.wa-ai-chat-btn .ai-chat-label {
+  letter-spacing: 0.3px;
+}
+
 .wa-ai-assistant-btn {
   display: flex;
   align-items: center;

@@ -3,6 +3,7 @@ import './DFMPanel.css'
 import { parseStpFile, suggestFeaturesFromParse, generateDefectList, bboxToDimensions, detectUndercuts } from '../../utils/stpParser'
 import { resolvePlugin } from '../../utils/fileViewerPlugin'
 import DFM3DViewer from './DFM3DViewer'
+import DFMProPanel from './DFMProPanel'
 
 /**
  * DFM模具初评面板
@@ -415,6 +416,10 @@ export default function DFMPanel({ onClose }) {
   const [evaluating, setEvaluating] = useState(false)
   const [evalStage, setEvalStage] = useState('')   // 评估进度阶段文本
 
+  // v2.7: 引擎切换（自研 v2.0 / 专业引擎 FreeCAD）+ 自研引擎耗时统计
+  const [activeEngine, setActiveEngine] = useState('self')  // 'self' | 'pro'
+  const [selfTimingMs, setSelfTimingMs] = useState(null)    // 自研引擎分析耗时
+
   // ===== v2.0 模型导入状态 =====
   const [modelFile, setModelFile] = useState(null)        // 上传的文件
   const [modelMeta, setModelMeta] = useState(null)        // 解析出的元信息
@@ -623,6 +628,7 @@ export default function DFMPanel({ onClose }) {
     }
 
     setEvaluating(true)
+    const evalStartAt = performance.now()   // v2.7: 统计自研引擎耗时（用于与专业引擎对比）
 
     // v2.6: 多阶段评估进度展示
     const stages = ['解析几何特征', '计算基础成本', '评估工艺复杂度', '识别制造缺陷', '生成 DFM 报告']
@@ -759,6 +765,7 @@ export default function DFMPanel({ onClose }) {
         dfmReport,
       })
 
+      setSelfTimingMs(Math.round(performance.now() - evalStartAt))
       setEvaluating(false)
     }, 800)
   }
@@ -1074,6 +1081,7 @@ export default function DFMPanel({ onClose }) {
     setAutoFeatures([])
     setDefects([])
     setModelError(null)
+    setSelfTimingMs(null)
     setActiveReportTab('overview')
   }
 
@@ -1095,7 +1103,34 @@ export default function DFMPanel({ onClose }) {
           <button className="dfm-close-btn" onClick={onClose}>✕</button>
         </div>
 
+        {/* ========== 引擎切换（自研 v2.0 / 专业引擎 FreeCAD） ========== */}
+        <div className="dfm-engine-tabs">
+          <button
+            className={`dfm-engine-tab ${activeEngine === 'self' ? 'active' : ''}`}
+            onClick={() => setActiveEngine('self')}
+            title="浏览器端解析 STP + 规则引擎，免费无需后端"
+          >
+            <span className="dfm-engine-tab-icon">🧠</span>
+            <span className="dfm-engine-tab-label">
+              <strong>自研引擎 v2.0</strong>
+              <em>浏览器端 · 免费</em>
+            </span>
+          </button>
+          <button
+            className={`dfm-engine-tab ${activeEngine === 'pro' ? 'active' : ''}`}
+            onClick={() => setActiveEngine('pro')}
+            title="调用 FastAPI 微服务 + FreeCAD 几何内核，结果更精确"
+          >
+            <span className="dfm-engine-tab-icon">🛠️</span>
+            <span className="dfm-engine-tab-label">
+              <strong>专业引擎 FreeCAD</strong>
+              <em>几何内核 · 需后端服务</em>
+            </span>
+          </button>
+        </div>
+
         {/* ========== 主内容区 ========== */}
+        {activeEngine === 'self' && (
         <div className="dfm-panel-body">
           {/* ---- 左侧: 输入区 ---- */}
           <div className="dfm-input-section">
@@ -1699,13 +1734,26 @@ export default function DFMPanel({ onClose }) {
             )}
           </div>
         </div>
+        )}
+
+        {/* v2.7: 专业引擎 FreeCAD（与自研引擎并排对比） */}
+        {activeEngine === 'pro' && (
+          <DFMProPanel
+            selfDefects={defects}
+            selfResult={result}
+            selfTimingMs={selfTimingMs}
+            selfFile={modelFile}
+            selfFileName={modelMeta?.title || modelFile?.name || ''}
+            onSelfNavigate={() => setActiveEngine('self')}
+          />
+        )}
 
         {/* ========== 底部信息栏 ========== */}
         <div className="dfm-panel-footer">
           <span className="footer-note">
             📌 本评估结果仅供参考，实际费用需结合具体产品结构和供应商报价确定
           </span>
-          <span className="footer-version">v2.0 · 支持模型导入 + AI 缺陷识别</span>
+          <span className="footer-version">v2.7 · 自研引擎 + 专业引擎 FreeCAD 对比</span>
         </div>
       </div>
     </div>

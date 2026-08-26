@@ -1103,6 +1103,7 @@ const importSummary = useMemo(() => {
                   </div>
                 </div>
               </div>
+
               <div className="preview-table-wrapper">
                 <table className="bom-preview-table">
                   <thead>

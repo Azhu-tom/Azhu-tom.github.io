@@ -5,6 +5,7 @@ import {
   countertopDesignSpecs
 } from '../../data/waterApplianceData'
 import SystemDesignAssistant from './SystemDesignAssistant'
+import WaterAIChat from './WaterAIChat'
 import './WaterAppliancePanel.css'
 
 // API 基地址（使用相对路径，通过 Vite proxy 转发到后端）
@@ -14,6 +15,41 @@ const API_BASE = '/api/wa-documents'
  * 水家电设计选型参考面板（含文档管理）
  * 三条产品线：净水机 / 饮水机 / 台净（台式净水器）
  */
+
+/** 将内置设计规范数据序列化为文本（供 AI 作为本地规范库上下文） */
+function buildBuiltinSpecText(data) {
+  if (!data) return ''
+  const parts = []
+  parts.push(`产品线：${data.name}（${data.description || ''}）`)
+  if (data.categories?.length) {
+    parts.push('\n【产品分类】')
+    data.categories.forEach(c => parts.push(`- ${c.name}：${c.description}；子类型：${(c.subTypes || []).join('、')}`))
+  }
+  if (data.coreParameters?.length) {
+    parts.push('\n【核心设计参数】')
+    data.coreParameters.forEach(g => {
+      parts.push(`\n${g.category}：`)
+      ;(g.items || []).forEach(it => parts.push(`- ${it.param}：${it.range}（${it.note || ''}）`))
+    })
+  }
+  if (data.filterConfigurations?.length) {
+    parts.push('\n【滤芯配置】')
+    data.filterConfigurations.forEach(f => parts.push(`- 第${f.stage}级 ${f.name}：${f.spec}；功能：${f.function}；寿命：${f.lifespan}`))
+  }
+  if (data.structuralGuidelines?.length) {
+    parts.push('\n【结构设计要点】')
+    data.structuralGuidelines.forEach(g => parts.push(`- [${g.priority}] ${g.title}\n${g.content}`))
+  }
+  if (data.interfaceStandards?.length) {
+    parts.push('\n【接口标准】')
+    data.interfaceStandards.forEach(i => parts.push(`- ${i.name}（${i.type}）：${i.material || i.pressure || i.flow || i.voltage || i.rating || i.trigger || i.power || ''}`))
+  }
+  if (data.certifications?.length) {
+    parts.push('\n【认证合规】')
+    data.certifications.forEach(c => parts.push(`- ${c.standard}：${c.scope}（${c.required ? '必需' : '可选'}）`))
+  }
+  return parts.join('\n')
+}
 export default function WaterAppliancePanel({ onClose }) {
   const [activeTab, setActiveTab] = useState('purifier')
 
@@ -30,6 +66,10 @@ export default function WaterAppliancePanel({ onClose }) {
 
   // AI 系统设计助手
   const [showAssistant, setShowAssistant] = useState(false)
+
+  // AI 智能问答（DeepSeek）
+  const [showAIChat, setShowAIChat] = useState(false)
+  const [aiInitialQuestion, setAiInitialQuestion] = useState('')
 
   const fileInputRef = useRef(null)
 
@@ -223,7 +263,15 @@ export default function WaterAppliancePanel({ onClose }) {
     } else if (e.key === 'Enter') {
       e.preventDefault()
       const target = searchResults[searchFocused]
-      if (target) handleSelectResult(target)
+      if (target) {
+        handleSelectResult(target)
+      } else if (searchQuery.trim()) {
+        // 无匹配结果 → 交给 AI 智能问答（DeepSeek + 本地规范 + 联网）
+        setAiInitialQuestion(searchQuery.trim())
+        setShowAIChat(true)
+        setSearchOpen(false)
+        searchInputRef.current?.blur()
+      }
     } else if (e.key === 'Escape') {
       setSearchOpen(false)
       searchInputRef.current?.blur()
@@ -432,7 +480,20 @@ export default function WaterAppliancePanel({ onClose }) {
                 title="清除"
               >×</button>
             )}
-            <span className="wa-search-shortcut">↑↓ 选择 · Enter 确认 · Esc 关闭</span>
+            <span className="wa-search-shortcut">↑↓ 选择 · Enter 确认 / AI 问答 · Esc 关闭</span>
+            <button
+              className="wa-ai-chat-btn"
+              onClick={() => { setAiInitialQuestion(searchQuery.trim()); setShowAIChat(true) }}
+              title="AI 智能问答：本地规范 + 联网资料综合回答，支持多轮对话"
+            >
+              <span className="ai-chat-icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+                  <path d="M8 9h8M8 13h5" />
+                </svg>
+              </span>
+              <span className="ai-chat-label">AI 问答</span>
+            </button>
             <button
               className="wa-ai-assistant-btn"
               onClick={() => setShowAssistant(true)}
@@ -801,6 +862,17 @@ export default function WaterAppliancePanel({ onClose }) {
           </div>
 
         </div>
+
+        {/* ========== AI 智能问答浮层（DeepSeek） ========== */}
+        {showAIChat && (
+          <WaterAIChat
+            onClose={() => setShowAIChat(false)}
+            productLine={activeTab}
+            productLineName={currentData.name}
+            initialQuestion={aiInitialQuestion}
+            builtinSpecText={buildBuiltinSpecText(currentData)}
+          />
+        )}
 
         {/* ========== AI 系统设计助手浮层 ========== */}
         {showAssistant && <SystemDesignAssistant productLine={currentData.name} onClose={() => setShowAssistant(false)} />}

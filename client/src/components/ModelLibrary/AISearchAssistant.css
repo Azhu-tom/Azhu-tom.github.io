@@ -761,3 +761,92 @@
     font-size: 12px;
   }
 }
+
+/* ====== 智能模式（后端 /api/search/smart）扩展样式 ====== */
+
+/* 联想下拉锚点（0 高度相对容器，使 .ss-panel 紧贴搜索栏下方） */
+.ais-smart-wrap {
+  position: relative;
+}
+
+/* 后端结果包裹 */
+.ais-smart {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* 纠错提示 */
+.ais-correction {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  padding: 8px 12px;
+  border: 1px solid rgba(245, 158, 11, 0.25);
+  border-radius: 10px;
+  background: rgba(245, 158, 11, 0.08);
+  font-size: 12.5px;
+  color: #94a3b8;
+}
+.ais-correction button {
+  border: none;
+  background: transparent;
+  color: #fbbf24;
+  font-size: 12.5px;
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  padding: 0;
+}
+.ais-correction button:hover { color: #fcd34d; }
+
+/* 推荐区 */
+.ais-recos {
+  margin-top: 8px;
+}
+.ais-recos-title {
+  font-size: 12px;
+  font-weight: 600;
+  color: #94a3b8;
+  margin-bottom: 6px;
+}
+.ais-recos-row {
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+}
+.ais-recos-row::-webkit-scrollbar { height: 4px; }
+.ais-recos-row::-webkit-scrollbar-thumb { background: rgba(0, 212, 255, 0.25); border-radius: 2px; }
+.ais-reco-chip {
+  flex-shrink: 0;
+  padding: 5px 12px;
+  border: 1px solid rgba(0, 212, 255, 0.3);
+  border-radius: 14px;
+  background: rgba(0, 212, 255, 0.06);
+  color: #00d4ff;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+.ais-reco-chip:hover {
+  background: rgba(0, 212, 255, 0.14);
+  border-color: rgba(0, 212, 255, 0.55);
+  box-shadow: 0 0 12px rgba(0, 212, 255, 0.15);
+}
+
+/* 来源 / 降级提示 */
+.ais-smart-source {
+  margin: 6px 0 0;
+  font-size: 11px;
+  color: #a78bfa;
+}
+.ais-fallback-hint {
+  margin: 0 0 6px;
+  font-size: 11.5px;
+  color: #f59e0b;
+}
+

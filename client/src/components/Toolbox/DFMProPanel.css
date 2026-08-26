@@ -1,0 +1,367 @@
+/* ==================== DFM 专业引擎面板（FreeCAD）样式 ==================== */
+
+/* 整体布局：与自研引擎主体一致的两栏结构 */
+.dfm-pro-panel {
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: 400px 1fr;
+  overflow: hidden;
+}
+
+.dfm-pro-input-section {
+  padding: 24px;
+  border-right: 1px solid rgba(255, 255, 255, 0.06);
+  overflow-y: auto;
+  background: rgba(15, 23, 42, 0.5);
+}
+
+.dfm-pro-result-section {
+  padding: 24px;
+  overflow-y: auto;
+  background: rgba(15, 23, 42, 0.3);
+  min-height: 480px;
+}
+
+.dfm-pro-group {
+  margin-bottom: 24px;
+}
+
+/* 复用自研模型按钮 */
+.dfm-pro-reuse-btn {
+  width: 100%;
+  margin-top: 10px;
+  padding: 9px 12px;
+  background: rgba(139, 92, 246, 0.12);
+  border: 1px dashed rgba(139, 92, 246, 0.4);
+  border-radius: 8px;
+  color: #c4b5fd;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-align: left;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.dfm-pro-reuse-btn:hover {
+  background: rgba(139, 92, 246, 0.2);
+  border-style: solid;
+}
+
+/* 错误提示（输入区） */
+.dfm-pro-error {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 10px;
+  padding: 10px 12px;
+  background: rgba(239, 68, 68, 0.08);
+  border: 1px solid rgba(239, 68, 68, 0.25);
+  border-radius: 8px;
+  color: #fca5a5;
+  font-size: 12.5px;
+  line-height: 1.5;
+}
+.dfm-pro-error-icon { font-size: 15px; flex-shrink: 0; }
+
+/* 材料选择 */
+.dfm-pro-material-select {
+  width: 100%;
+  padding: 10px 12px;
+  font-size: 13px;
+}
+.dfm-pro-hint { margin: 8px 0 0; font-size: 11px; color: #64748b; }
+
+/* 引擎说明 */
+.dfm-pro-note {
+  margin-top: 16px;
+  font-size: 11px;
+  color: #64748b;
+  background: rgba(148, 163, 184, 0.06);
+  border-radius: 8px;
+  padding: 10px 12px;
+  line-height: 1.6;
+}
+
+/* ===== 加载中 ===== */
+.dfm-pro-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  min-height: 300px;
+  text-align: center;
+  gap: 10px;
+  color: #94a3b8;
+}
+.dfm-pro-loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid rgba(0, 212, 255, 0.15);
+  border-top-color: #00d4ff;
+  border-radius: 50%;
+  animation: dfmProSpin 0.8s linear infinite;
+}
+@keyframes dfmProSpin { to { transform: rotate(360deg); } }
+.dfm-pro-loading p { margin: 0; font-size: 14px; color: #cbd5e1; font-weight: 600; }
+.dfm-pro-loading span { font-size: 11.5px; color: #64748b; }
+
+/* ===== 错误状态（微服务未启动等） ===== */
+.dfm-pro-error-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  min-height: 300px;
+  text-align: center;
+  gap: 8px;
+  padding: 24px;
+}
+.dfm-pro-error-state-icon { font-size: 44px; }
+.dfm-pro-error-state h4 { margin: 0; color: #f87171; font-size: 16px; }
+.dfm-pro-error-state p { margin: 0; color: #fca5a5; font-size: 13px; max-width: 460px; line-height: 1.6; }
+.dfm-pro-error-state-sub { font-size: 11.5px !important; color: #94a3b8 !important; }
+
+/* ===== 结果工具条 ===== */
+.dfm-pro-result-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.dfm-pro-material-badge {
+  font-size: 12.5px;
+  color: #94a3b8;
+  background: rgba(0, 212, 255, 0.08);
+  border: 1px solid rgba(0, 212, 255, 0.2);
+  padding: 6px 12px;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.dfm-pro-material-badge strong { color: #67e8f9; }
+.dfm-pro-engine-tag {
+  font-style: normal;
+  font-size: 10.5px;
+  color: #67e8f9;
+  background: rgba(0, 212, 255, 0.1);
+  padding: 2px 8px;
+  border-radius: 8px;
+}
+.dfm-pro-view-toggle { display: flex; gap: 6px; }
+.dfm-pro-view-btn {
+  padding: 7px 14px;
+  background: rgba(148, 163, 184, 0.08);
+  border: 1px solid rgba(148, 163, 184, 0.15);
+  border-radius: 8px;
+  color: #94a3b8;
+  font-size: 12.5px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.dfm-pro-view-btn:hover { color: #cbd5e1; }
+.dfm-pro-view-btn.active {
+  background: rgba(139, 92, 246, 0.18);
+  border-color: rgba(139, 92, 246, 0.4);
+  color: #c4b5fd;
+  font-weight: 600;
+}
+
+/* ===== 统计卡片 ===== */
+.dfm-pro-stats {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+  margin-bottom: 18px;
+}
+.dfm-pro-stat-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 14px 10px;
+  background: rgba(15, 23, 42, 0.5);
+  border: 1px solid rgba(148, 163, 184, 0.12);
+  border-radius: 10px;
+}
+.dfm-pro-stat-card.total { border-color: rgba(148, 163, 184, 0.25); }
+.dfm-pro-stat-card.error { border-color: rgba(239, 68, 68, 0.3); }
+.dfm-pro-stat-card.warning { border-color: rgba(245, 158, 11, 0.3); }
+.dfm-pro-stat-card.info { border-color: rgba(59, 130, 246, 0.3); }
+.dfm-pro-stat-card.timing { border-color: rgba(0, 212, 255, 0.3); }
+.dfm-pro-stat-value { font-size: 20px; font-weight: 800; color: #e2e8f0; line-height: 1.1; }
+.dfm-pro-stat-card.error .dfm-pro-stat-value { color: #f87171; }
+.dfm-pro-stat-card.warning .dfm-pro-stat-value { color: #fbbf24; }
+.dfm-pro-stat-card.info .dfm-pro-stat-value { color: #60a5fa; }
+.dfm-pro-stat-card.timing .dfm-pro-stat-value { color: #67e8f9; font-size: 15px; }
+.dfm-pro-stat-label { font-size: 10.5px; color: #64748b; }
+
+/* ===== 缺陷列表 ===== */
+.dfm-pro-defect-list { display: flex; flex-direction: column; gap: 10px; }
+.dfm-pro-defect-card {
+  background: rgba(15, 23, 42, 0.45);
+  border: 1px solid rgba(148, 163, 184, 0.1);
+  border-left: 3px solid #64748b;
+  border-radius: 8px;
+  padding: 12px 14px;
+}
+.dfm-pro-defect-card.sev-error { border-left-color: #ef4444; }
+.dfm-pro-defect-card.sev-warning { border-left-color: #f59e0b; }
+.dfm-pro-defect-card.sev-info { border-left-color: #3b82f6; }
+.dfm-pro-defect-card.sev-success { border-left-color: #10b981; }
+.dfm-pro-defect-head { display: flex; align-items: center; gap: 8px; }
+.dfm-pro-sev-badge {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 10px;
+  white-space: nowrap;
+}
+.dfm-pro-sev-badge.error { background: rgba(239, 68, 68, 0.15); color: #f87171; }
+.dfm-pro-sev-badge.warning { background: rgba(245, 158, 11, 0.15); color: #fbbf24; }
+.dfm-pro-sev-badge.info { background: rgba(59, 130, 246, 0.15); color: #60a5fa; }
+.dfm-pro-sev-badge.success { background: rgba(16, 185, 129, 0.15); color: #34d399; }
+.dfm-pro-defect-title { font-size: 13.5px; color: #e2e8f0; flex: 1; }
+.dfm-pro-defect-id {
+  font-size: 10px;
+  color: #64748b;
+  font-family: monospace;
+  background: rgba(148, 163, 184, 0.08);
+  padding: 2px 8px;
+  border-radius: 6px;
+}
+.dfm-pro-defect-overview { font-size: 12.5px; color: #cbd5e1; margin: 8px 0 0; line-height: 1.6; }
+.dfm-pro-defect-metric {
+  display: flex;
+  gap: 16px;
+  margin-top: 8px;
+}
+.dfm-pro-metric-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(148, 163, 184, 0.07);
+  border-radius: 6px;
+  padding: 4px 10px;
+}
+.dfm-pro-metric-label { font-size: 10.5px; color: #64748b; }
+.dfm-pro-metric-value { font-size: 12.5px; font-weight: 700; color: #e2e8f0; font-family: monospace; }
+.dfm-pro-defect-message { font-size: 12px; color: #94a3b8; margin: 8px 0 0; line-height: 1.6; }
+.dfm-pro-defect-refs {
+  margin-top: 8px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.dfm-pro-refs-label { font-size: 11px; color: #64748b; }
+.dfm-pro-ref-chip {
+  font-size: 11px;
+  color: #93c5fd;
+  background: rgba(59, 130, 246, 0.12);
+  border: 1px solid rgba(59, 130, 246, 0.25);
+  padding: 2px 8px;
+  border-radius: 10px;
+  cursor: help;
+}
+.dfm-pro-ref-more { font-size: 11px; color: #64748b; }
+
+/* ===== 并排对比视图 ===== */
+.dfm-pro-compare {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.dfm-pro-compare-col {
+  background: rgba(15, 23, 42, 0.45);
+  border: 1px solid rgba(148, 163, 184, 0.12);
+  border-radius: 12px;
+  padding: 16px;
+}
+.dfm-pro-compare-col.self { border-top: 3px solid #8b5cf6; }
+.dfm-pro-compare-col.pro { border-top: 3px solid #00d4ff; }
+.dfm-pro-compare-head { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+.dfm-pro-compare-engine-icon { font-size: 26px; }
+.dfm-pro-compare-title { display: block; font-size: 14px; color: #e2e8f0; }
+.dfm-pro-compare-sub { display: block; font-size: 10.5px; color: #64748b; margin-top: 2px; }
+.dfm-pro-compare-stats { display: flex; gap: 8px; margin-bottom: 12px; }
+.dfm-pro-compare-stat {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  padding: 10px 6px;
+  background: rgba(148, 163, 184, 0.06);
+  border-radius: 8px;
+}
+.dfm-pro-compare-stat-value { font-size: 18px; font-weight: 800; color: #e2e8f0; }
+.dfm-pro-compare-col.self .dfm-pro-compare-stat-value { color: #c4b5fd; }
+.dfm-pro-compare-col.pro .dfm-pro-compare-stat-value { color: #67e8f9; }
+.dfm-pro-compare-stat-label { font-size: 10px; color: #64748b; }
+.dfm-pro-compare-findings { font-size: 12px; color: #94a3b8; }
+.dfm-pro-compare-findings-label { display: block; font-size: 11px; color: #64748b; margin-bottom: 6px; }
+.dfm-pro-compare-findings-list {
+  margin: 0;
+  padding-left: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.dfm-pro-compare-findings-list li { line-height: 1.5; }
+.dfm-pro-finding-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-right: 6px;
+}
+.dfm-pro-finding-dot.error { background: #ef4444; }
+.dfm-pro-finding-dot.warning { background: #f59e0b; }
+.dfm-pro-finding-dot.info { background: #3b82f6; }
+.dfm-pro-finding-dot.success { background: #10b981; }
+.dfm-pro-finding-dot.high { background: #ef4444; }
+.dfm-pro-finding-dot.medium { background: #f59e0b; }
+.dfm-pro-finding-dot.low { background: #10b981; }
+.dfm-pro-compare-findings-none { color: #64748b; font-size: 12px; }
+.dfm-pro-compare-empty { padding: 12px; text-align: center; color: #94a3b8; font-size: 12.5px; }
+.dfm-pro-compare-goto {
+  margin-top: 10px;
+  padding: 8px 14px;
+  background: rgba(139, 92, 246, 0.15);
+  border: 1px solid rgba(139, 92, 246, 0.35);
+  border-radius: 8px;
+  color: #c4b5fd;
+  font-size: 12.5px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.dfm-pro-compare-goto:hover { background: rgba(139, 92, 246, 0.25); }
+.dfm-pro-compare-footer {
+  grid-column: 1 / -1;
+  font-size: 12px;
+  color: #fbbf24;
+  background: rgba(245, 158, 11, 0.06);
+  border: 1px dashed rgba(245, 158, 11, 0.25);
+  border-radius: 8px;
+  padding: 10px 12px;
+  line-height: 1.6;
+}
+
+/* ===== 响应式 ===== */
+@media (max-width: 900px) {
+  .dfm-pro-panel { grid-template-columns: 1fr; }
+  .dfm-pro-input-section { border-right: none; border-bottom: 1px solid rgba(255, 255, 255, 0.06); }
+  .dfm-pro-stats { grid-template-columns: repeat(3, 1fr); }
+  .dfm-pro-compare { grid-template-columns: 1fr; }
+  .dfm-pro-compare-footer { grid-column: auto; }
+}
+@media (max-width: 520px) {
+  .dfm-pro-stats { grid-template-columns: repeat(2, 1fr); }
+}

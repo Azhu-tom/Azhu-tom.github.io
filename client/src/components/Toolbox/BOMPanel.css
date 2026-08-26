@@ -10,7 +10,7 @@
   align-items: center;
   justify-content: center;
   z-index: 99999;
-  padding: 70px 20px 40px;
+  padding: 16px 16px 16px;
   overflow-y: auto;
   animation: bomFadeIn 0.25s ease-out;
 }
@@ -22,9 +22,9 @@
 
 /* ========== 主容器 ========== */
 .bom-panel-container {
-  width: 94%;
-  max-width: 1200px;
-  max-height: calc(100vh - 100px);
+  width: 96%;
+  max-width: min(96vw, 1680px);
+  max-height: calc(100vh - 32px);
   background: linear-gradient(160deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
   border: 1px solid rgba(16, 185, 129, 0.2);
   border-radius: 16px;
@@ -47,9 +47,10 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 20px 28px;
+  padding: 14px 24px;
   border-bottom: 1px solid rgba(255,255,255,0.06);
   background: rgba(16, 185, 129, 0.03);
+  flex-shrink: 0;
 }
 .bom-header-left { display: flex; align-items: center; gap: 14px; }
 .bom-header-icon { font-size: 36px; filter: drop-shadow(0 2px 8px rgba(16,185,129,0.4)); }
@@ -514,27 +515,33 @@
 
 /* 导入模式布局 */
 .bom-panel-body.import-mode {
-  display: block;
+  display: flex;
+  flex-direction: row;
   padding: 0;
+  overflow: hidden;
+  flex: 1;
+  min-height: 0;
 }
 .bom-import-layout {
   display: flex;
   gap: 0;
-  height: 100%;
+  flex: 1;
   width: 100%;
+  min-height: 0;
   overflow: hidden;
 }
 
 /* 左侧边栏 */
 .bom-import-sidebar {
   width: 100%;
-  min-width: 300px;
-  max-width: 340px;
+  min-width: 260px;
+  max-width: 300px;
   border-right: 1px solid rgba(255,255,255,0.06);
   overflow-y: auto;
   background: rgba(15,23,42,0.5);
   display: flex;
   flex-direction: column;
+  flex-shrink: 0;
 }
 
 /* ====== 上传区域 ====== */
@@ -848,9 +855,12 @@
 /* ====== 右侧主区域 ====== */
 .bom-import-main {
   flex: 1;
-  overflow-y: auto;
+  overflow: hidden;
   background: rgba(15,23,42,0.3);
-  padding: 20px;
+  padding: 14px 16px 12px;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
 }
 
 /* 空状态 */
@@ -870,11 +880,12 @@
 /* ====== 预览表格区域 ====== */
 .bom-preview-section {
   animation: previewIn 0.3s ease-out;
-  padding: 24px;
-  overflow-y: auto;
-  overflow-x: hidden;
+  padding: 16px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
   min-height: 0;
-  max-height: 100%;
 }
 @keyframes previewIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
@@ -882,7 +893,8 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 14px;
+  margin-bottom: 12px;
+  flex-shrink: 0;
 }
 .preview-header h3 {
   font-size: 16px;
@@ -906,14 +918,15 @@
   display: flex;
   align-items: stretch;
   gap: 0;
-  margin: 14px 0 12px;
-  padding: 18px 22px;
+  margin: 0 0 12px;
+  padding: 14px 18px;
   background: linear-gradient(135deg, rgba(99, 102, 241, 0.12) 0%, rgba(139, 92, 246, 0.08) 50%, rgba(59, 130, 246, 0.1) 100%);
   border: 1px solid rgba(139, 92, 246, 0.28);
   border-radius: 12px;
   position: relative;
   overflow: hidden;
   box-shadow: 0 4px 18px rgba(99, 102, 241, 0.1);
+  flex-shrink: 0;
 }
 .bom-total-hero::before {
   content: '';
@@ -1113,10 +1126,61 @@
 
 .preview-table-wrapper {
   overflow-x: auto;
-  border: 1px solid rgba(148,163,184,0.1);
-  border-radius: 10px;
-  max-height: calc(100vh - 280px);
   overflow-y: auto;
+  border: 1px solid rgba(148,163,184,0.18);
+  border-radius: 10px;
+  flex: 1;
+  min-height: 320px;
+  background: rgba(15, 23, 42, 0.4);
+  position: relative;
+  /* 自定义滚动条（WebKit） */
+  scrollbar-width: thin;
+  scrollbar-color: rgba(14, 165, 233, 0.55) rgba(30, 41, 59, 0.4);
+}
+.preview-table-wrapper::-webkit-scrollbar {
+  height: 12px;
+  width: 12px;
+}
+.preview-table-wrapper::-webkit-scrollbar-track {
+  background: rgba(30, 41, 59, 0.4);
+  border-radius: 6px;
+}
+.preview-table-wrapper::-webkit-scrollbar-thumb {
+  background: linear-gradient(90deg, rgba(14, 165, 233, 0.6), rgba(34, 211, 238, 0.6));
+  border-radius: 6px;
+  border: 2px solid rgba(30, 41, 59, 0.4);
+}
+.preview-table-wrapper::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(90deg, rgba(14, 165, 233, 0.85), rgba(34, 211, 238, 0.85));
+}
+
+/* 横向滚动提示（行成本在右侧时始终可见） */
+.preview-table-wrapper::after {
+  content: '→';
+  position: sticky;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  line-height: 22px;
+  text-align: center;
+  background: linear-gradient(90deg, transparent, rgba(14, 165, 233, 0.6));
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  border-radius: 50%;
+  pointer-events: none;
+  margin-right: 4px;
+  box-shadow: 0 2px 8px rgba(14, 165, 233, 0.4);
+  animation: hintScrollPulse 1.6s ease-in-out infinite;
+  z-index: 6;
+}
+
+@keyframes hintScrollPulse {
+  0%, 100% { opacity: 0.7; transform: translate(0, -50%); }
+  50% { opacity: 1; transform: translate(4px, -50%); }
 }
 
 .bom-preview-table {
@@ -1135,13 +1199,13 @@
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  padding: 9px 10px;
+  padding: 7px 10px;
   text-align: left;
   border-bottom: 1px solid rgba(148,163,184,0.12);
   white-space: nowrap;
 }
 .bom-preview-table td {
-  padding: 7px 10px;
+  padding: 5px 10px;
   border-bottom: 1px solid rgba(255,255,255,0.03);
   color: #cbd5e1;
   vertical-align: middle;
@@ -1154,18 +1218,38 @@
 .bom-preview-table tr.has-warning { background: rgba(245,158,11,0.03); }
 .bom-preview-table tr.has-warning:hover { background: rgba(245,158,11,0.06); }
 
-.col-num { width: 32px; text-align: center; color: #475569 !important; font-size: 11px; }
-.col-code { width: 95px; }
-.col-name { width: 130px; }
-.col-desc { width: 220px; max-width: 220px; }
-.col-desc .editable-cell { max-width: 200px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; display: inline-block; }
-.col-material { width: 80px; }
-.col-spec { width: 110px; }
-.col-process { width: 100px; }
-.col-color { width: 80px; }
-.col-qty { width: 60px; text-align: right; }
-.col-cost { width: 90px; text-align: right; font-weight: 700; padding: 2px 12px 2px 4px; }
-.col-action { width: 38px; text-align: center; }
+.col-num { width: 36px; min-width: 36px; text-align: center; color: #475569 !important; font-size: 11px; }
+.col-code { width: 92px; min-width: 92px; }
+.col-name { width: 116px; min-width: 116px; }
+.col-desc { width: 200px; min-width: 160px; max-width: 200px; }
+.col-desc .editable-cell { max-width: 180px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; display: inline-block; }
+.col-material { width: 68px; min-width: 60px; }
+.col-spec { width: 100px; min-width: 90px; }
+.col-process { width: 80px; min-width: 70px; }
+.col-color { width: 64px; min-width: 56px; }
+.col-qty { width: 56px; min-width: 56px; text-align: right; }
+.col-cost {
+  width: 120px;
+  min-width: 110px;
+  text-align: right;
+  font-weight: 700;
+  padding: 2px 12px 2px 4px;
+  color: #fbbf24;
+  background: rgba(251, 191, 36, 0.04);
+  border-left: 2px solid rgba(251, 191, 36, 0.25);
+  position: sticky;
+  right: 38px;
+  z-index: 2;
+}
+.col-action {
+  width: 38px;
+  min-width: 38px;
+  text-align: center;
+  position: sticky;
+  right: 0;
+  background: rgba(15, 23, 42, 0.95);
+  z-index: 2;
+}
 
 .bom-preview-table td.col-desc,
 .bom-preview-table td.col-spec,
@@ -1282,13 +1366,14 @@
 /* 预览统计摘要栏 */
 .preview-summary-bar {
   display: flex;
-  gap: 16px;
-  margin-top: 14px;
-  padding: 12px 16px;
+  gap: 14px;
+  margin-top: 10px;
+  padding: 8px 14px;
   background: rgba(30,41,59,0.5);
   border: 1px solid rgba(148,163,184,0.08);
-  border-radius: 10px;
+  border-radius: 8px;
   flex-wrap: wrap;
+  flex-shrink: 0;
 }
 .summary-stat {
   display: flex;
@@ -1608,6 +1693,36 @@
   .bom-import-main { min-height: 50vh; }
   .category-bar-item { grid-template-columns: 1fr; gap: 4px; }
   .cat-bar-values { justify-content: flex-start; }
+}
+
+/* 中等屏幕（平板 900-1200px）：折叠次要列，保留核心成本 */
+@media (max-width: 1200px) and (min-width: 901px) {
+  .bom-preview-table .col-process,
+  .bom-preview-table .col-color {
+    display: none;
+  }
+}
+
+/* 小屏幕（手机/窄屏 <900px）：进一步折叠，保留最核心列 */
+@media (max-width: 900px) {
+  .bom-preview-table .col-spec,
+  .bom-preview-table .col-process,
+  .bom-preview-table .col-color {
+    display: none;
+  }
+  /* 减少侧边栏，腾出表格空间 */
+  .bom-import-sidebar {
+    min-width: 220px;
+    max-width: 240px;
+  }
+}
+
+@media (max-width: 700px) {
+  .bom-preview-table .col-material,
+  .bom-preview-table .col-desc {
+    display: none;
+  }
+  .bom-panel-container { width: 100%; border-radius: 0; }
 }
 
 /* ========== 手动列映射 ========== */

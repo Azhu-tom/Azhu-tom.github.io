@@ -1395,3 +1395,53 @@
 .dfm-no-preview-icon { font-size: 48px; }
 .dfm-no-preview h4 { margin: 0; color: #f87171; font-size: 16px; }
 .dfm-no-preview p { margin: 0; font-size: 12px; max-width: 400px; line-height: 1.6; }
+
+/* ==================== v2.7 引擎切换（自研 v2.0 / 专业引擎 FreeCAD） ==================== */
+.dfm-engine-tabs {
+  display: flex;
+  gap: 8px;
+  padding: 12px 28px 0;
+  background: rgba(15, 23, 42, 0.6);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+.dfm-engine-tab {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 18px;
+  background: rgba(30, 41, 59, 0.5);
+  border: 1px solid rgba(148, 163, 184, 0.12);
+  border-bottom: none;
+  border-radius: 10px 10px 0 0;
+  color: #94a3b8;
+  cursor: pointer;
+  transition: all 0.2s;
+  position: relative;
+  top: 1px;
+}
+.dfm-engine-tab:hover {
+  color: #cbd5e1;
+  background: rgba(30, 41, 59, 0.85);
+}
+.dfm-engine-tab.active {
+  background: rgba(0, 212, 255, 0.08);
+  border-color: rgba(0, 212, 255, 0.3);
+  color: #67e8f9;
+  box-shadow: 0 -2px 12px rgba(0, 212, 255, 0.08) inset;
+}
+.dfm-engine-tab-icon { font-size: 18px; }
+.dfm-engine-tab-label {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  line-height: 1.25;
+}
+.dfm-engine-tab-label strong { font-size: 13px; font-weight: 700; }
+.dfm-engine-tab-label em { font-style: normal; font-size: 10.5px; color: #64748b; }
+.dfm-engine-tab.active .dfm-engine-tab-label em { color: #0e7490; }
+
+@media (max-width: 520px) {
+  .dfm-engine-tabs { padding: 10px 12px 0; gap: 6px; }
+  .dfm-engine-tab { padding: 8px 12px; flex: 1; }
+  .dfm-engine-tab-label em { display: none; }
+}

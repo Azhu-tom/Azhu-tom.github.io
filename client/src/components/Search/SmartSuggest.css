@@ -1,0 +1,169 @@
+/* ==================== 智能联想下拉面板 ==================== */
+
+.ss-panel {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  right: 0;
+  background: rgba(18, 22, 38, 0.98);
+  backdrop-filter: blur(18px) saturate(140%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+  border: 1px solid rgba(0, 212, 255, 0.18);
+  border-radius: 14px;
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.55), 0 0 24px rgba(0, 212, 255, 0.06);
+  z-index: 100060;
+  overflow: hidden;
+  max-height: 420px;
+  overflow-y: auto;
+  animation: ssDropIn 0.18s ease-out;
+}
+
+.ss-panel::-webkit-scrollbar { width: 5px; }
+.ss-panel::-webkit-scrollbar-track { background: transparent; }
+.ss-panel::-webkit-scrollbar-thumb { background: rgba(0, 212, 255, 0.25); border-radius: 3px; }
+
+@keyframes ssDropIn {
+  from { opacity: 0; transform: translateY(-6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ---- 加载中 ---- */
+.ss-loading {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 16px 18px;
+  color: var(--text-muted, #64748b);
+  font-size: 12px;
+}
+.ss-loading-dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #00d4ff, #7c3aed);
+  animation: ssBounce 1.2s infinite;
+}
+.ss-loading-dot:nth-child(2) { animation-delay: 0.15s; }
+.ss-loading-dot:nth-child(3) { animation-delay: 0.3s; }
+.ss-loading em { font-style: normal; margin-left: 4px; }
+@keyframes ssBounce {
+  0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
+  30% { transform: translateY(-4px); opacity: 1; }
+}
+
+/* ---- 错误态 ---- */
+.ss-error {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 18px;
+}
+.ss-error-icon { font-size: 20px; }
+.ss-error p { margin: 0; font-size: 13px; color: var(--text-secondary, #94a3b8); }
+.ss-error-sub { font-size: 11px !important; color: var(--text-muted, #64748b) !important; margin-top: 3px !important; }
+
+/* ---- 纠错提示 ---- */
+.ss-correction {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  padding: 10px 16px;
+  font-size: 12.5px;
+  color: var(--text-secondary, #94a3b8);
+  background: rgba(245, 158, 11, 0.08);
+  border-bottom: 1px solid rgba(245, 158, 11, 0.12);
+}
+.ss-correction-link {
+  border: none;
+  background: transparent;
+  color: #fbbf24;
+  font-size: 12.5px;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.ss-correction-link:hover { color: #fcd34d; }
+
+/* ---- 分组 ---- */
+.ss-group { padding: 6px 0; }
+.ss-group + .ss-group { border-top: 1px solid rgba(255, 255, 255, 0.05); }
+.ss-group-title {
+  padding: 6px 16px 4px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+  color: var(--text-muted, #64748b);
+  text-transform: uppercase;
+}
+
+/* ---- 行 ---- */
+.ss-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 9px 16px;
+  border: none;
+  background: transparent;
+  color: var(--text-primary, #e2e8f0);
+  font-size: 13px;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.12s;
+  font-family: inherit;
+}
+.ss-row:hover { background: rgba(0, 212, 255, 0.08); }
+.ss-row.active { background: rgba(0, 212, 255, 0.14); }
+.ss-row-icon { flex-shrink: 0; width: 20px; text-align: center; font-size: 14px; }
+.ss-row-text { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+.ss-row-main {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+.ss-row-sub {
+  font-size: 11px;
+  color: var(--text-muted, #64748b);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.ss-row-arrow { flex-shrink: 0; color: var(--text-muted, #64748b); font-size: 13px; }
+
+/* ---- 底部搜索入口 ---- */
+.ss-footer { border-top: 1px solid rgba(255, 255, 255, 0.05); padding: 6px 8px; }
+.ss-search-all {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  width: 100%;
+  padding: 9px 12px;
+  border: 1px solid rgba(0, 212, 255, 0.3);
+  border-radius: 10px;
+  background: rgba(0, 212, 255, 0.06);
+  color: #00d4ff;
+  font-size: 12.5px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: inherit;
+}
+.ss-search-all:hover {
+  background: rgba(0, 212, 255, 0.14);
+  border-color: rgba(0, 212, 255, 0.55);
+  box-shadow: 0 0 14px rgba(0, 212, 255, 0.15);
+}
+.ss-search-arrow { font-size: 15px; line-height: 1; }
+
+/* ---- 响应式 ---- */
+@media (max-width: 860px) {
+  .ss-panel {
+    max-height: 320px;
+  }
+}

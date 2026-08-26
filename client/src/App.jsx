@@ -8,6 +8,7 @@ import HomePage from './pages/HomePage'
 import LoginPage from './pages/LoginPage'
 import ModelLibraryPage from './pages/ModelLibraryPage'
 import ModelViewerPage from './pages/ModelViewerPage'
+import SearchPage from './pages/SearchPage'
 import ToolboxPage from './pages/ToolboxPage'
 import ProductManagementPage from './pages/ProductManagementPage'
 import UserManagementPage from './pages/UserManagementPage'
@@ -57,6 +58,11 @@ function App() {
               <Route path="/model-library/viewer/:id" element={
                 <ProtectedRoute>
                   <ErrorBoundary><ModelViewerPage /></ErrorBoundary>
+                </ProtectedRoute>
+              } />
+              <Route path="/search" element={
+                <ProtectedRoute>
+                  <ErrorBoundary><SearchPage /></ErrorBoundary>
                 </ProtectedRoute>
               } />
               <Route path="/toolbox" element={

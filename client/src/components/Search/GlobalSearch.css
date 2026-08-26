@@ -1,0 +1,138 @@
+/* ==================== Header 全局智能搜索框 ==================== */
+
+.gs-root {
+  position: relative;
+  flex: 0 1 340px;
+  max-width: 340px;
+  min-width: 0;
+  margin: 0 10px;
+}
+
+/* 搜索框容器（蓝紫渐变焦点） */
+.gs-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 36px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border-medium, rgba(255, 255, 255, 0.1));
+  border-radius: 20px;
+  transition: all 0.22s ease;
+  overflow: hidden;
+}
+.gs-box:focus-within {
+  background: rgba(0, 212, 255, 0.06);
+  border-color: rgba(0, 212, 255, 0.5);
+  box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.12), 0 0 16px rgba(0, 212, 255, 0.15);
+}
+
+.gs-icon { padding-left: 12px; font-size: 14px; opacity: 0.85; flex-shrink: 0; }
+
+.gs-input {
+  flex: 1;
+  min-width: 0;
+  padding: 8px;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--text-primary, #e2e8f0);
+  font-size: 13px;
+  font-family: inherit;
+}
+.gs-input::placeholder { color: var(--text-muted, #64748b); }
+
+.gs-kbd {
+  flex-shrink: 0;
+  margin-right: 8px;
+  padding: 1px 7px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 5px;
+  font-size: 10px;
+  color: var(--text-muted, #64748b);
+  background: rgba(255, 255, 255, 0.03);
+  white-space: nowrap;
+}
+
+.gs-clear {
+  flex-shrink: 0;
+  margin-right: 6px;
+  width: 22px;
+  height: 22px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text-secondary, #94a3b8);
+  font-size: 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s;
+}
+.gs-clear:hover { background: rgba(239, 68, 68, 0.15); color: #ef4444; }
+
+/* 窄屏图标按钮（默认隐藏） */
+.gs-toggle { display: none; }
+
+/* 窄屏展开的移动搜索条（默认隐藏） */
+.gs-mobile-bar { display: none; }
+
+/* ==================== 响应式 ==================== */
+
+@media (max-width: 1180px) {
+  .gs-root { flex-basis: 260px; max-width: 260px; }
+}
+
+@media (max-width: 1024px) {
+  .gs-root { flex-basis: 200px; max-width: 200px; }
+  .gs-kbd { display: none; }
+}
+
+/* 窄屏：收起为 🔍 图标按钮，点击展开移动端搜索条 */
+@media (max-width: 860px) {
+  .gs-root {
+    flex: 0 0 auto;
+    max-width: none;
+    margin: 0 2px;
+  }
+  .gs-box { display: none; }
+
+  .gs-toggle {
+    display: flex;
+    width: 36px;
+    height: 36px;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border-medium, rgba(255, 255, 255, 0.1));
+    border-radius: 8px;
+    color: var(--text-secondary, #94a3b8);
+    font-size: 15px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .gs-toggle:hover { background: rgba(255, 255, 255, 0.09); color: var(--text-primary, #e2e8f0); }
+
+  .gs-mobile-bar {
+    display: block;
+    position: fixed;
+    top: 56px;
+    left: 0;
+    right: 0;
+    padding: 10px 16px 12px;
+    background: rgba(10, 15, 30, 0.97);
+    backdrop-filter: blur(18px) saturate(140%);
+    -webkit-backdrop-filter: blur(18px) saturate(140%);
+    border-bottom: 1px solid var(--border-medium, rgba(255, 255, 255, 0.1));
+    z-index: 100060;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
+    animation: gsDropIn 0.18s ease-out;
+  }
+  .gs-mobile-bar .gs-box { display: flex; height: 40px; border-radius: 12px; }
+  .gs-mobile-bar .gs-input { font-size: 14px; }
+}
+
+@keyframes gsDropIn {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}

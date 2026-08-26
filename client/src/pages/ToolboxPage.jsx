@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import { useLocation } from 'react-router-dom'
 import DFMPanel from '../components/Toolbox/DFMPanel'
 import BOMPanel from '../components/Toolbox/BOMPanel'
 import WaterAppliancePanel from '../components/Toolbox/WaterAppliancePanel'
@@ -8,12 +9,25 @@ import PackagingPanel from '../components/Toolbox/PackagingPanel'
 import './ToolboxPage.css'
 
 function ToolboxPage() {
+  const location = useLocation()
   const [showDFM, setShowDFM] = useState(false)
   const [showBOM, setShowBOM] = useState(false)
   const [showWA, setShowWA] = useState(false)   // 水家电设计选型参考
   const [showHandbook, setShowHandbook] = useState(false)   // 结构高频数据库
   const [showSolver, setShowSolver] = useState(false)   // 开发问题解决助手
   const [showPackaging, setShowPackaging] = useState(false)   // 包装工程 AI 工具
+
+  // 支持从智能搜索结果页跳转：location.state.openPanel 自动打开对应面板
+  useEffect(() => {
+    const panel = location.state?.openPanel
+    if (!panel) return
+    if (panel === 'water-appliance') setShowWA(true)
+    else if (panel === 'dfm') setShowDFM(true)
+    else if (panel === 'bom') setShowBOM(true)
+    else if (panel === 'database') setShowHandbook(true)
+    else if (panel === 'problem-solver') setShowSolver(true)
+    else if (panel === 'packaging') setShowPackaging(true)
+  }, [location.state])
 
   // 读取角色：管理员可编辑知识库
   const [canEdit] = useState(() => {
@@ -78,7 +92,7 @@ function ToolboxPage() {
     {
       id: 'packaging',
       title: '包装工程',
-      description: '连接盒创 HeChuang 包装全链路AI工作台，支持包装选材推荐、码托装柜优化、纸箱/彩盒成本预估（iframe嵌入）。',
+      description: '包装选材推荐、码托装柜、纸箱/彩盒成本预估，默认嵌入盒创完整功能，服务不可用时自动降级本地离线计算。',
       icon: '📦',
       color: '#f97316',
       gradient: 'linear-gradient(135deg, #f97316 0%, #ea580c 100%)',

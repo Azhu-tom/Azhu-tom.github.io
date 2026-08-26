@@ -1,6 +1,7 @@
 import React, { useState, useCallback } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
+import GlobalSearch from './Search/GlobalSearch'
 import './Header.css'
 
 const NAV_ITEMS = [
@@ -54,6 +55,9 @@ function Header() {
             </Link>
           ))}
         </nav>
+
+        {/* 全局智能搜索框（导航项右侧、用户头像左侧） */}
+        <GlobalSearch />
 
         <div className="nav-right">
           {isAuthenticated && user ? (
