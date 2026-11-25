@@ -11,6 +11,7 @@ import handbookRoutes from './routes/handbook.js'      // 结构高频数据库-
 import aiChatRoutes from './routes/ai-chat.js'         // AI智能对话（DeepSeek + RAG + 联网搜索）
 import aiSearchRoutes from './routes/ai-search.js'     // 智能搜索（DeepSeek语义搜索 + 本地兜底）
 import dfmProRoutes from './routes/dfm-pro.js'         // DFM专业引擎代理（FastAPI微服务）
+import statsRoutes from './routes/statsRoutes.js'      // 访问统计（匿名 PV/UV，JSON 文件持久化）
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
@@ -20,7 +21,7 @@ const PORT = process.env.PORT || 8080
 
 // 中间件
 app.use(cors({
-  origin: ['http://localhost:3000', 'http://127.0.0.1:3000'],
+  origin: ['http://localhost:3000', 'http://127.0.0.1:3000', 'https://azhu-tom.github.io'],
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization']
@@ -45,6 +46,7 @@ app.use('/api/handbook', handbookRoutes) // 结构高频数据库（手册管理
 app.use('/api/ai', aiChatRoutes)         // AI智能对话（DeepSeek + RAG + 联网搜索）
 app.use('/api/search', aiSearchRoutes)   // 智能搜索（/api/search/smart, /api/search/smart/health）
 app.use('/api/dfm', dfmProRoutes)        // DFM专业引擎代理（/api/dfm/pro, /api/dfm/pro/health）
+app.use('/api/stats', statsRoutes)       // 访问统计（POST /visit 埋点, GET /visits 聚合）
 
 // 健康检查接口
 app.get('/api/health', (req, res) => {
